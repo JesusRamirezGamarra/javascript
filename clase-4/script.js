@@ -188,7 +188,7 @@ console.log(calculadora(numero1,numero2,operador))
 // console.log(calculadora(numero1,numero2,'*'))
 // console.log(calculadora(numero1,numero2,'/'))
 
-
+ 
 // // // // // Ejercicio 12
 function calculadora(primerNumero, segundoNumero, operacion) {
     if (operacion == "+") { console.log( primerNumero + segundoNumero);}
