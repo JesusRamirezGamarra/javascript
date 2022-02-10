@@ -14,7 +14,7 @@
 // Pedir un texto mediante prompt, y si es igual a "Hola" mostrar un alerta por consola.
 // Pedir un número por prompt y evaluar si está entre 10 y 50. En caso positivo mostrar un alert.
 
-
+console.log('1.CREAR UN ALGORITMO CON UN CONDICIONAL')
 let numeroRandomFloat1 = 0;
 let numeroRandomFloat2 = 0;
 let solicitarNumero = true;
