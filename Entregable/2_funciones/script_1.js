@@ -8,7 +8,7 @@
 // “ELEGIR UN PROCESO QUE ME RESULTE INTERESANTE” : Si me siento motivado sobre el tema, es más llevadero enfrentar los retos de desarrollo e interpretación. 
 // Antes de programar existe la etapa de relevamiento y análisis que me permite identificar cómo solucionar el proceso.
 
-// >> Consigna: Con los conocimientos vistos hasta el momento, empezarás a armar la estructura inicial de tu proyecto integrador. 
+// >> Consigna: Con los conocimientos vistos hasta el momento, empezarás a armar la estructura inicial de tu proyecto integrador. 
 // A partir de los ejemplos mostrados la primera clase, deberás:
 // Pensar el alcance de tu proyecto: ¿usarás un cotizador de seguros? ¿un simulador de créditos? ¿un simulador personalizado?
 // Armar la estructura HTML del proyecto.
@@ -26,3 +26,66 @@
 
 
 console.log('1.ARMAR UN SIMULADOR INTERACTIVO, LA ESTRUCTURA FINAL DE TU PROYECTO INTEGRADOR')
+let puntos = 0;
+let puntosNivel = 10;  //cantidad de puntos para pasar de nivel
+const tiempoNivel =30; //segundos
+let tiempo = tiempoNivel;
+
+MostarCabecera(0);
+MostarCabecera(0,30);
+restarTiempo();
+document.getElementById('player').addEventListener("mouseover",sumarPuntos);
+
+setInterval(restarTiempo,1000)
+
+function sumarPuntos(){
+    puntos++
+    MostarCabecera(puntos,puntosNivel);
+    moverObjeto();
+    if(puntos == puntosNivel){
+        alert("Ganaste excelente , muy pronto mas niveles de dificultad")
+    }
+}
+
+function MostarCabecera(puntos,puntosNivel){
+    document.getElementById("puntaje").innerHTML=  "<br>Puntos: "   + puntos +"/" 
+                                                                    + puntosNivel + "  </br>";
+
+                                                                
+}
+
+function moverObjeto(){
+    let numero = probabilidadRandom()
+    console.log(numero)
+    document.getElementById("player").style.marginTop = probabilidadRandom() + "px";
+    document.getElementById("player").style.marginLeft= probabilidadRandom() + "px";
+
+}
+
+function probabilidadRandom()
+{
+    let numeroRandomFloatToFixed = Math.random(); 
+    numeroRandomFloatToFixed *= 500
+    if( numeroRandomFloatToFixed>= 450)
+        numeroRandomFloatToFixed = 450;
+    
+    console.log(numeroRandomFloatToFixed.toFixed(0))
+    return Math.round(numeroRandomFloatToFixed).toFixed(0);
+}
+
+
+function restarTiempo(){
+    tiempo--;
+    document.getElementById("tiempo").innerHTML = "Tiempo:" + tiempo ; 
+    if(tiempo ==0 && puntos<puntosNivel){
+        alert("continua intentando , muy pronto subiras de nivel")
+        tiempo=tiempoNivel;
+        puntos=0;
+    }
+    else if (tiempo<=0){
+        tiempo=tiempoNivel;
+        puntos=0;
+    }
+
+}
+
