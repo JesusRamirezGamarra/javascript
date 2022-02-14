@@ -125,6 +125,7 @@ function iniciarEstados(){
     nroJugadasResta =-1;
     nroJugadasMultiplicacion =-1;
     nroJugadasDivision =-1; 
+    nroOperadoresUtilizados = 0;
     calculator.displayValue=''
     calculator.firstOperand=null
     calculator.waitingForSecondOperand=false
