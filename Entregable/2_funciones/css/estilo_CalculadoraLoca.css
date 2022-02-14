@@ -80,6 +80,30 @@ button:hover{
     /* border: 0.5px; */
 }
 
+
+
+.contenedor{
+    padding: 0px;
+    margin:auto;
+    /* margin-top: 50px; */
+    width: 400px;
+    height: 70px;
+    background-color: rgb(187, 255, 249);
+    /* border: 3px dashed rgb(68, 155, 170); */
+
+}
+
+.cabecera{
+    background-color: firebrick;
+    height: 80px;
+    /* margin-top: 30px; */
+    border-bottom: 0px;
+    color: #fff;
+    font-size: 1um;
+    text-align: center;
+    padding: 10px 0px;
+}
+
 .footer{
     background-color: black;
     height: 70px;

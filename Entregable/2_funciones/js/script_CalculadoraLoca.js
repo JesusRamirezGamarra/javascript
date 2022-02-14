@@ -31,6 +31,20 @@ const buttons=document.querySelectorAll('button')
 const display=document.querySelector('#display')
 const reto=document.querySelector('#reto')
 const bitacora=document.querySelector('#bitacora')
+let timerId =0;
+const tiempoNivel =120; //segundos
+let tiempo = tiempoNivel;
+let puntaje = 10;
+
+let nroJugadas = -1;
+let nroJugadasMaximoSuma =0
+let nroJugadasMaximoResta =0
+let nroJugadasMaximoMultiplicacion =0
+let nroJugadasMaximoDivision =0
+let nroJugadasSuma =-1;
+let nroJugadasResta =-1;
+let nroJugadasMultiplicacion =-1;
+let nroJugadasDivision =-1;
 
 const calculator = {
     displayValue:'',
@@ -39,6 +53,13 @@ const calculator = {
     operator:null,
     retoValue:'',
     bitacoraValue:'',
+}
+
+
+function NumeroJugadasRandom()
+{
+    let numeroRandomFloatToFixed = Math.random(); 
+    return Math.round(numeroRandomFloatToFixed *10).toFixed(0);
 }
 
 function NumeroRandom()
@@ -51,10 +72,33 @@ function NumeroRandom()
     return Math.round(numeroRandomFloatToFixed).toFixed(0);
 }
 
+function updateJugadas(operador){
+    // nroJugadas++;
+    if(operador=='+'){
+        nroJugadasSuma++;
+        document.getElementById("suma").innerHTML=  "[ + ] : "  + nroJugadasSuma +"/" 
+                                                                + nroJugadasMaximoSuma ;  
+    }else if(operador=='-'){
+        nroJugadasResta++;
+        document.getElementById("resta").innerHTML=  "[ - ] : " + nroJugadasResta +"/" 
+                                                                + nroJugadasMaximoResta ;  
+    }else if(operador=='*'){
+        nroJugadasMultiplicacion++;
+        document.getElementById("multiplicacion").innerHTML=  "[ * ] : "+ nroJugadasMultiplicacion +"/" 
+                                                                        + nroJugadasMaximoMultiplicacion ;  
+    }else if(operador=='/'){
+        nroJugadasDivision++;
+        document.getElementById("division").innerHTML=  "[ / ] : "  + nroJugadasDivision +"/" 
+                                                                    + nroJugadasMaximoDivision ;  
+    }
+
+}
+
 
 //funcion para actualizar las operaciones = potencial respuesta
 function updateBitacora(){
     bitacora.value += calculator.bitacoraValue;
+    calculator.bitacoraValue =''
 }
 
 //funcion para actualizar el reto = desafio
@@ -65,6 +109,11 @@ function updateReto(){
 // funcion para actualizar el display = resultado
 function updateDisplay(){
     display.value = calculator.displayValue;
+    if( reto.value !='' && (display.value == reto.value)){
+        clearInterval(timerId);
+        timerId =0;
+        alert('Felicitaciones lograste cumplir el reto')
+    }
 }
 
 function iniciarEstados(){
@@ -72,41 +121,54 @@ function iniciarEstados(){
     calculator.firstOperand=null
     calculator.waitingForSecondOperand=false
     calculator.operator=null
-    //calculator.retoValue=''
+    reto.value = NumeroRandom();
     calculator.bitacoraValue=''
     bitacora.value =''
+    nroJugadasMaximoSuma =NumeroJugadasRandom();
+    updateJugadas('+')
+    nroJugadasMaximoResta =NumeroJugadasRandom();
+    updateJugadas('-')
+    nroJugadasMaximoMultiplicacion =NumeroJugadasRandom();
+    updateJugadas('*')
+    nroJugadasMaximoDivision = NumeroJugadasRandom();
+    updateJugadas('/')
+    
 
 }
-function iniciar(){
-    iniciarEstados();
-    updateBitacora();
-    updateReto();
-    updateDisplay();
 
-}
 
-function performcCalculation(operator){
-    const value = parseFloat(calculator.displayValue)
-    if(calculator.firstOperand == null){
-        calculator.firstOperand = value;
+function performcCalculation(operator,key){
+
+    if( calculator.displayValue!='')
+    {
+        const value = parseFloat(calculator.displayValue)
+        if(calculator.firstOperand == null){
+                calculator.bitacoraValue = key;
+                calculator.firstOperand = value;
+        }
+        //else if(calculator.operator){
+        else if(key =='='){
+            const result = calculator.operator(calculator.firstOperand,value);
+            calculator.displayValue =result;
+            calculator.firstOperand =result;
+        }
+        else {
+            calculator.bitacoraValue = key;
+        }
+        calculator.waitingForSecondOperand =true;
+        calculator.operator = operator;
+        updateDisplay();
     }
-    else if(calculator.operator){
-        const result = calculator.operator(calculator.firstOperand,value);
-        calculator.displayValue =result;
-        calculator.firstOperand =result;
-
+    else{
+        alert('Debe seleccionar un numero')
     }
-    calculator.waitingForSecondOperand =true;
-    calculator.operator = operator;
-    updateDisplay();
 }
 
 buttons.forEach(button => {
     button.addEventListener('click',() =>{
-            const key = button.innerText;
-            calculator.bitacoraValue = key;              
+            const key = button.innerText;        
         if(key=='Iniciar Coders'){
-            calculator.displayValue = '0'
+            calculator.displayValue = ''
             calculator.firstOperand = null
             calculator.waitingForSecondOperand = false
             calculator.operator = null
@@ -114,25 +176,25 @@ buttons.forEach(button => {
             calculator.retoValue = NumeroRandom();
         }
         else if(key == 'c'){
-            calculator.displayValue = '0'
+            calculator.displayValue = ''
             calculator.firstOperand = null
             calculator.waitingForSecondOperand = false
             calculator.operator = null
             calculator.bitacoraValue = ''
         }else if (  key == '='  ){
-            performcCalculation(calculator.operator)
+            performcCalculation(calculator.operator,key)
         }else if(   key =='+' ||
                     key =='*' ||
                     key =='-' ||
                     key =='/' ){
-            calculator.bitacoraValue = key;
-            performcCalculation( new Function('a','b',`return a ${key} b`))
+            updateJugadas(key)                        
+            performcCalculation( new Function('a','b',`return a ${key} b`),key)
         // }else if(   key=='.'){
         //     if(!calculator.displayValue.includes('.')){
         //         calculator.displayValue += '.'
         //     }
         }else {
-      
+            calculator.bitacoraValue = key;
             if(calculator.waitingForSecondOperand){
                 calculator.displayValue = key
                 calculator.waitingForSecondOperand =false
@@ -141,8 +203,39 @@ buttons.forEach(button => {
                 calculator.displayValue +=key
             }   
         }
-        updateDisplay();
         updateBitacora();
+        updateDisplay();
+        
     })
 })
 
+
+function restarTiempo(){
+    tiempo--;
+    document.getElementById("puntaje").innerHTML = "<br># Jugadas Permitidas : " + puntaje; 
+    document.getElementById("tiempo").innerHTML = "<br>Tiempo : " + tiempo ; 
+    if(tiempo ==0 ){ //&& puntos<puntosNivel
+        clearInterval(timerId);
+        alert("continua intentando , muy pronto subiras de nivel")
+        tiempo=tiempoNivel;
+        puntos=0;
+        timerId =0;
+    }
+    // else if (tiempo<=0){
+    //     tiempo=tiempoNivel;
+    //     puntos=0;
+    // }
+
+}
+
+
+function iniciar(){   
+    updateBitacora();
+    updateReto();
+    updateDisplay();
+    iniciarEstados();
+    if(timerId==0){
+        timerId = setInterval(restarTiempo,1000);
+    }
+    
+}
