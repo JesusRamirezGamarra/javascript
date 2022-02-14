@@ -41,7 +41,7 @@
 
 .input{
     
-    padding: 4px;
+    padding: 0px;
     font-size: 30px;
     text-align: right;
     /* border: 1px; */
@@ -93,6 +93,7 @@ button:hover{
 
 }
 
+
 .cabecera{
     background-color: firebrick;
     height: 80px;
@@ -102,6 +103,11 @@ button:hover{
     font-size: 1um;
     text-align: center;
     padding: 10px 0px;
+}
+
+.puntaje{
+
+    text-align: center;
 }
 
 .footer{

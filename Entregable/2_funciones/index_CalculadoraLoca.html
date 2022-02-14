@@ -18,6 +18,13 @@
             sin embargo la opcion de no concretarse otra seria un ecommerce o portal 
             para mostrar unos video juegos con registro de perfil y/o puntaje
         </p>
+        <h2>reglas :</h2>
+        <p>
+            Ingresar diversas operaciones matematicas [ + - * / ] y logra en base al numero inicial [ 0 ] alcanzar
+            el numero objetivo propuesto sin utilizar mas operaciones de las permitidas y antes que el tiempo termine.
+        </p>
+        <br>        
+        <p><a href="./index.html">regresar al formulario principal</a></p>
         <br>
     </header>
     <main class="main">
@@ -25,18 +32,21 @@
 
         <div class="contenedor cabecera" >
             <span >Coder Game : Atrapalo si puedes !!!  </span>
-            <span id="puntaje"></span>
+            <span id="jugadas"></span>
             <span id="tiempo"></span>
         </div>            
-        <section>
-            <span id="suma">[ + ] : </span>
-            <span id="resta">[ - ] : </span>
-            <span id="multiplicacion">[ * ] : </span>
-            <span id="division">[ / ] : </span>
+        <section class="puntaje">
+            <span id="suma">[ + ] : 0/0</span>
+            <span id="resta">[ - ] : 0/0</span>
+            <span id="multiplicacion">[ * ] : 0/0</span>
+            <span id="division">[ / ] : 0/0</span>
         </section>
         <input class="inputBitacoraReadOnly" id="bitacora" readonly>
-        <input class="inputReadOnly" type="number" id="reto" readonly>
-        <input class="input" type="number" value="0" id="display">
+        <input class="inputReadOnly" type="number" id="reto" readonly> 
+        <!-- <div> -->
+            <!-- <input class="input" type="number" value="0" id="displayResultado" readonly> -->
+            <input class="input" type="number" value="0" id="display" readonly>
+        <!-- </div> -->
         <section>
             <button>7</button>
             <button>8</button>

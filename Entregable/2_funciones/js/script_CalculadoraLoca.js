@@ -34,7 +34,8 @@ const bitacora=document.querySelector('#bitacora')
 let timerId =0;
 const tiempoNivel =120; //segundos
 let tiempo = tiempoNivel;
-let puntaje = 10;
+let jugadas = 10;
+let nroOperadoresUtilizados =0;
 
 let nroJugadas = -1;
 let nroJugadasMaximoSuma =0
@@ -109,7 +110,10 @@ function updateReto(){
 // funcion para actualizar el display = resultado
 function updateDisplay(){
     display.value = calculator.displayValue;
-    if( reto.value !='' && (display.value == reto.value)){
+    if( reto.value !='' && 
+        (display.value == reto.value) &&
+        nroOperadoresUtilizados > parseInt( jugadas /2)
+        ){
         clearInterval(timerId);
         timerId =0;
         alert('Felicitaciones lograste cumplir el reto')
@@ -117,6 +121,10 @@ function updateDisplay(){
 }
 
 function iniciarEstados(){
+    nroJugadasSuma =-1;
+    nroJugadasResta =-1;
+    nroJugadasMultiplicacion =-1;
+    nroJugadasDivision =-1; 
     calculator.displayValue=''
     calculator.firstOperand=null
     calculator.waitingForSecondOperand=false
@@ -132,16 +140,17 @@ function iniciarEstados(){
     updateJugadas('*')
     nroJugadasMaximoDivision = NumeroJugadasRandom();
     updateJugadas('/')
-    
+    jugadas = parseInt(nroJugadasMaximoSuma) +  parseInt(nroJugadasMaximoResta) +  parseInt(nroJugadasMaximoMultiplicacion) +  parseInt(nroJugadasMaximoDivision);
 
 }
 
 
-function performcCalculation(operator,key){
+function calcular(operator,key){
 
     if( calculator.displayValue!='')
     {
         const value = parseFloat(calculator.displayValue)
+        const bitacoraActual= bitacora.value.substring((bitacora.value).length-1,(bitacora.value).length);
         if(calculator.firstOperand == null){
                 calculator.bitacoraValue = key;
                 calculator.firstOperand = value;
@@ -152,9 +161,16 @@ function performcCalculation(operator,key){
             calculator.displayValue =result;
             calculator.firstOperand =result;
         }
-        else {
+        else if(!isNaN(bitacoraActual)) {
             calculator.bitacoraValue = key;
         }
+        // else if( !calculator.waitingForSecondOperand) {
+        //     calculator.bitacoraValue = key;
+        // }
+        // else {
+        //     bitacora.value
+        // }
+        // calculator.bitacoraValue = key;
         calculator.waitingForSecondOperand =true;
         calculator.operator = operator;
         updateDisplay();
@@ -181,14 +197,16 @@ buttons.forEach(button => {
             calculator.waitingForSecondOperand = false
             calculator.operator = null
             calculator.bitacoraValue = ''
+            bitacora.value = ''
         }else if (  key == '='  ){
-            performcCalculation(calculator.operator,key)
+            calcular(calculator.operator,key)
         }else if(   key =='+' ||
                     key =='*' ||
                     key =='-' ||
                     key =='/' ){
-            updateJugadas(key)                        
-            performcCalculation( new Function('a','b',`return a ${key} b`),key)
+            updateJugadas(key)          
+            nroOperadoresUtilizados++;              
+            calcular( new Function('a','b',`return a ${key} b`),key)
         // }else if(   key=='.'){
         //     if(!calculator.displayValue.includes('.')){
         //         calculator.displayValue += '.'
@@ -212,9 +230,13 @@ buttons.forEach(button => {
 
 function restarTiempo(){
     tiempo--;
-    document.getElementById("puntaje").innerHTML = "<br># Jugadas Permitidas : " + puntaje; 
+    document.getElementById("jugadas").innerHTML = "<br># Jugadas Permitidas : " + jugadas + ", minimo : " + nroOperadoresUtilizados+ "/" + parseInt( jugadas /2) ; 
     document.getElementById("tiempo").innerHTML = "<br>Tiempo : " + tiempo ; 
-    if(tiempo ==0 ){ //&& puntos<puntosNivel
+    if( tiempo ==0 || 
+        nroJugadasSuma > nroJugadasMaximoSuma ||  
+        nroJugadasResta > nroJugadasMaximoResta ||  
+        nroJugadasMultiplicacion > nroJugadasMaximoMultiplicacion ||  
+        nroJugadasDivision > nroJugadasMaximoDivision  ){ 
         clearInterval(timerId);
         alert("continua intentando , muy pronto subiras de nivel")
         tiempo=tiempoNivel;
@@ -229,7 +251,7 @@ function restarTiempo(){
 }
 
 
-function iniciar(){   
+function iniciar(){  
     updateBitacora();
     updateReto();
     updateDisplay();
