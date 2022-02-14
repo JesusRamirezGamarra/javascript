@@ -38,6 +38,7 @@ document.getElementById('player').addEventListener("mouseover",sumarPuntos);
 
 setInterval(restarTiempo,1000)
 
+// funcion encargada de sumar puntos  da inicio al juego
 function sumarPuntos(){
     puntos++
     MostarCabecera(puntos,puntosNivel);
@@ -46,7 +47,7 @@ function sumarPuntos(){
         alert("Ganaste excelente , muy pronto mas niveles de dificultad")
     }
 }
-
+// funcion encargada de mostrar el score / puntaje
 function MostarCabecera(puntos,puntosNivel){
     document.getElementById("puntaje").innerHTML=  "<br>Puntos: "   + puntos +"/" 
                                                                     + puntosNivel + "  </br>";

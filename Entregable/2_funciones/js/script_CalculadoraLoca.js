@@ -29,19 +29,61 @@ console.log('1.ARMAR UN SIMULADOR INTERACTIVO, LA ESTRUCTURA FINAL DE TU PROYECT
 
 const buttons=document.querySelectorAll('button')
 const display=document.querySelector('#display')
+const reto=document.querySelector('#reto')
+const bitacora=document.querySelector('#bitacora')
 
 const calculator = {
     displayValue:'',
     firstOperand:null,
     waitingForSecondOperand:false,
     operator:null,
+    retoValue:'',
+    bitacoraValue:'',
 }
 
+function NumeroRandom()
+{
+    let numeroRandomFloatToFixed;
+    let numeroRandomFloatToFixedA = Math.random(); 
+    let numeroRandomFloatToFixedB = Math.random(); 
+    numeroRandomFloatToFixed = numeroRandomFloatToFixedA * numeroRandomFloatToFixedB *10000
+    console.log(numeroRandomFloatToFixed.toFixed(0))
+    return Math.round(numeroRandomFloatToFixed).toFixed(0);
+}
+
+
+//funcion para actualizar las operaciones = potencial respuesta
+function updateBitacora(){
+    bitacora.value += calculator.bitacoraValue;
+}
+
+//funcion para actualizar el reto = desafio
+function updateReto(){
+    reto.value = calculator.retoValue;
+}
+
+// funcion para actualizar el display = resultado
 function updateDisplay(){
     display.value = calculator.displayValue;
 }
 
-updateDisplay();
+function iniciarEstados(){
+    calculator.displayValue=''
+    calculator.firstOperand=null
+    calculator.waitingForSecondOperand=false
+    calculator.operator=null
+    //calculator.retoValue=''
+    calculator.bitacoraValue=''
+    bitacora.value =''
+
+}
+function iniciar(){
+    iniciarEstados();
+    updateBitacora();
+    updateReto();
+    updateDisplay();
+
+}
 
 function performcCalculation(operator){
     const value = parseFloat(calculator.displayValue)
@@ -61,34 +103,46 @@ function performcCalculation(operator){
 
 buttons.forEach(button => {
     button.addEventListener('click',() =>{
-        const key = button.innerText;
-        if(key == 'C'){
+            const key = button.innerText;
+            calculator.bitacoraValue = key;              
+        if(key=='Iniciar Coders'){
             calculator.displayValue = '0'
             calculator.firstOperand = null
             calculator.waitingForSecondOperand = false
             calculator.operator = null
+            calculator.bitacoraValue = ''
+            calculator.retoValue = NumeroRandom();
+        }
+        else if(key == 'c'){
+            calculator.displayValue = '0'
+            calculator.firstOperand = null
+            calculator.waitingForSecondOperand = false
+            calculator.operator = null
+            calculator.bitacoraValue = ''
         }else if (  key == '='  ){
             performcCalculation(calculator.operator)
         }else if(   key =='+' ||
                     key =='*' ||
                     key =='-' ||
                     key =='/' ){
+            calculator.bitacoraValue = key;
             performcCalculation( new Function('a','b',`return a ${key} b`))
-        }else if(   key=='.'){
-            if(!calculator.displayValue.includes('.')){
-                calculator.displayValue += '.'
-            }
+        // }else if(   key=='.'){
+        //     if(!calculator.displayValue.includes('.')){
+        //         calculator.displayValue += '.'
+        //     }
         }else {
+      
             if(calculator.waitingForSecondOperand){
                 calculator.displayValue = key
                 calculator.waitingForSecondOperand =false
-
             }
             else{
                 calculator.displayValue +=key
             }   
         }
         updateDisplay();
+        updateBitacora();
     })
 })
 
