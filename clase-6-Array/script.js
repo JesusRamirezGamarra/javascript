@@ -56,25 +56,25 @@
 
 // // // // // // Ejercicio 03
 
-// let nombres1 = ['Francisco','Lucia','Lucas','Juan','Cristian']
-// let nombres2 = ['Elmily','Emma']
+let nombres1 = ['Francisco','Lucia','Lucas','Juan','Cristian']
+let nombres2 = ['Elmily','Emma']
 
-// // console.log(nombres1)
-// // nombres3 = nombres1.splice(0, 3, 'drum');
-// // console.log(nombres3)
-// // nombres4 = nombres1.splice(1, 0, 'drum');
-// // console.log(nombres4)
-
-
-// let nombreAEliminar = prompt("Ingrese un nombre : ")
-// let indice = nombres1.findIndex(nombres => nombres == nombreAEliminar) // retorna -1 en caso no se encuentre ningun valor
-// if( indice != -1){
-//     nombres1.splice(indice,1,'Nemo') // elimina el elemento[indice] y Agrega 'Nemo' en su lugar
-// }
-// else{
-//     alert("Ingrese un nombre valido")
-// }
 // console.log(nombres1)
+// nombres3 = nombres1.splice(0, 3, 'drum');
+// console.log(nombres3)
+// nombres4 = nombres1.splice(1, 0, 'drum');
+// console.log(nombres4)
+
+
+let nombreAEliminar = prompt("Ingrese un nombre : ")
+let indice = nombres1.findIndex(nombres => nombres == nombreAEliminar) // retorna -1 en caso no se encuentre ningun valor
+if( indice != -1){
+    nombres1.splice(indice,1,'Nemo') // elimina el elemento[indice] y Agrega 'Nemo' en su lugar
+}
+else{
+    alert("Ingrese un nombre valido")
+}
+console.log(nombres1)
 
 
 
@@ -108,46 +108,46 @@
 
 // // // // // Ejercicio 05
 
-class Persona{
-    constructor(nombre , apellido, edad){
-        this.nombre =nombre;
-        this.apellido =apellido;
-        this.edad = edad;
-    }
-}
+// class Persona{
+//     constructor(nombre , apellido, edad){
+//         this.nombre =nombre;
+//         this.apellido =apellido;
+//         this.edad = edad;
+//     }
+// }
 
-class Mascota{
-    constructor(nombre , raza, edad){
-        this.nombre =nombre;
-        // this.apellido =apellido;
-        this.edad = edad;
-        this.raza =raza;
+// class Mascota{
+//     constructor(nombre , raza, edad){
+//         this.nombre =nombre;
+//         // this.apellido =apellido;
+//         this.edad = edad;
+//         this.raza =raza;
 
-    }
-}
+//     }
+// }
 
-const persona1 = new Persona("Francisco","Pugh",40)
-const persona2 = new Persona("Juan","Chapur",14)
-const persona3 = new Persona("Milton","Salazar",20)
+// const persona1 = new Persona("Francisco","Pugh",40)
+// const persona2 = new Persona("Juan","Chapur",14)
+// const persona3 = new Persona("Milton","Salazar",20)
 
-const mascota1 = new Mascota("Dishy","Perro",1)
-const mascota2 = new Mascota("Boby","Gato",2)
+// const mascota1 = new Mascota("Dishy","Perro",1)
+// const mascota2 = new Mascota("Boby","Gato",2)
 
-let personas = [persona1,persona2,persona3]
-console.log(personas)
+// let personas = [persona1,persona2,persona3]
+// console.log(personas)
 
-for(let personaEnArray of personas){
-    console.log(personaEnArray)
-}
+// for(let personaEnArray of personas){
+//     console.log(personaEnArray)
+// }
 
-let seresVivos = [persona1,persona2,persona3,mascota1,mascota2]
-console.log(seresVivos)
+// let seresVivos = [persona1,persona2,persona3,mascota1,mascota2]
+// console.log(seresVivos)
 
-let seresVivos2 = [mascota1 ,mascota2,persona1,persona2,persona3]
-console.log(seresVivos2)
+// let seresVivos2 = [mascota1 ,mascota2,persona1,persona2,persona3]
+// console.log(seresVivos2)
 
-for(let elemento of seresVivos){
-    console.log(elemento)
-}
+// for(let elemento of seresVivos){
+//     console.log(elemento)
+// }
 
 
