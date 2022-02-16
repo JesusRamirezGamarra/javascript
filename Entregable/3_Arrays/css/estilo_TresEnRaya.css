@@ -1,0 +1,50 @@
+body {
+    height: 100vh;
+}
+h2{color: green;}
+h1{color:orange;}
+h4{color:red;}
+/* hr{border: 0px;} */
+/* div.titulo{
+    font-family: Arial, Helvetica, sans-serif;    
+    font-size: 61px;
+    padding: 10px;
+    padding-top: 45px;
+    display: inline;
+    background: rgb(0, 0, 0);
+} */
+.tituloInline{
+    display: inline;
+}
+.tablero{
+    display: table;
+    margin: 0 auto;
+}
+/* .tableroBtn{
+    background: rgb(182, 182, 182);
+    padding: 0px 0px;
+    margin: 0px 0px;
+} */
+.btn{
+    font-size: 50px;
+    color: white;
+    width: 145px;
+    height: 145px;
+    background: rgb(34, 34, 34);
+    border: 0px 0px 0px 0px gainsboro;
+    margin: auto;
+
+}
+.btn:hover{
+    background: rgb(70, 69, 69);
+}
+.btn-reinicio{
+    background: grey;
+    font-size: 35px;
+}
+.btn-reinicio:hover{
+    background:  rgb(70, 69, 69);
+}
+.btn-reinicio:active{
+    transform: translateY(4px);
+}
