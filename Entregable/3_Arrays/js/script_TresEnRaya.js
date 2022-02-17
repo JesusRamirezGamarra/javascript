@@ -168,22 +168,35 @@ function verificarGanador(turn){
         contador =0;
     }
 
-    //Analisis Diagonal
+    //Analisis Diagonal : derecha a izquierda
     contador =0;
     for( i = 0; i < 6; i++){
         for( j = 0; j < 6; j++){
-            if(arrayBidimensional[i][j] == operador){
-                contador++;
-                if(contador>=3){
-                    return true;
+            if(j+2<=5){
+                if( arrayBidimensional[i][j] == operador &&
+                    arrayBidimensional[i+1][j+1] == operador && 
+                    arrayBidimensional[i+2][j+2] == operador
+                    ){
+                        return true;
                 }
             }
-            else{
-                contador=0;
+        }
+    }
+
+    //Analisis Diagonal : izquierda a derecha
+    contador =0;
+    for( i = 0; i < 6; i++){
+        for( j = 0; j < 6; j++){
+            if(j-2>=0){
+                if( arrayBidimensional[i][j] == operador &&
+                    arrayBidimensional[i+1][j-1] == operador && 
+                    arrayBidimensional[i+2][j-2] == operador
+                    ){
+                        return true;
+                }
             }
         }
-        contador =0;
-    }
+    }    
 
 
 
@@ -294,7 +307,7 @@ function iniciarMatriz(){
 }
 
 function iniciar(){
-
+    location.reload();
     iniciarMatriz();
     // retirando los elemento del Array antes de iniciar
     bitadoraJugadadas=['X',0,'O',0];
@@ -312,6 +325,6 @@ function iniciar(){
         }
     }
 
-    // location.reload();
+    
 }
 
