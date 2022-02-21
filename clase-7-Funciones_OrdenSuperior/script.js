@@ -130,7 +130,7 @@ const  generateRandomString = (num) => {
         result1 += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
 
-    return result1;
+    return result1;                         
 }
 
 const displayRandomString = () =>{
