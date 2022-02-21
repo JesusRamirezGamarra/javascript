@@ -60,7 +60,7 @@ personas.forEach(persona =>{
     console.log(persona)
 })
 // find : encuentra el primer obbjeto que cumpla con las condiciones
-// de no existir elemento que cumpla cn las condiciones : undefined
+// de no existir elemento que cumpla con las condiciones : undefined
 // findIndex = find , solo que devuelve el indice
 console.log('find()')
 console.log(personas.find(    (persona)=> persona.nombre === "Milton")    )
