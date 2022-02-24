@@ -1,7 +1,10 @@
 class Pedido{
-    constructor(idProducto,cantidad) {
+    constructor(idProducto,nombre,cantidad,precioUnitario,subTotal) {
         this.idProducto = idProducto;
+        this.nombre = nombre;
         this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+        this.subTotal = subTotal;
     }
 
     //////////////////////////////// Metodo encargado de confirmar compra de productos agregados a la bolsa
@@ -21,6 +24,7 @@ class Pedido{
         oPedidos.forEach((item, index)=>{
             console.log(index, item)
         })
+        this.mostrarPedido(oPedidos)
 
         // const avengers = ['thor', 'captain america', 'hulk'];
         // avengers.forEach((item, index)=>{
@@ -40,5 +44,22 @@ class Pedido{
         // console.log(retrievedObject[0].precioOriginal);
         // console.log(retrievedObject[0].categoria);
         // console.log(retrievedObject[0].stock);
+    }
+
+    mostrarPedido(oPedidos){
+        let total = 0;
+        let mensaje = 'Bolsa de Pedido: \n';
+        const moneda =  ' s/. PEN'
+        oPedidos.forEach((item, index)=>{
+            // console.log(index, item)
+            mensaje += 'Producto  #' +  (index+1) + ' : ' + item.nombre + '\n' + 
+                                '('  +  item.cantidad +' unidades) x ' + 
+                                        item.precioUnitario + moneda + ' = ' + 
+                                        item.subTotal + moneda +  ' ) \n' 
+            total += item.subTotal;
+        })
+        mensaje +='\n\n Total : ' + total + moneda
+
+        alert(mensaje)
     }
 }
