@@ -1,3 +1,11 @@
+// Para aquella situaciones en la que se espera se convierta el contenido y es que tiene sentido
+console.log(Number(true))       // Convierte true a 1
+console.log(Number({nombre:"Francisco", edad:30}))      // No puede devolver nada xq no tiene sentido la conversion del Objeto
+// Para aquellas situaciones donde se ingresara un numero en formato texto
+console.log(parseInt(true))     // devuelve NaN
+console.log(parseFloat(true))   // devuelve NaN
+
+
 
 // // // // // Ejercicio 01
 Number("123")        //puedes enviar lo que sea . es una clase ( ver primer letra N)
