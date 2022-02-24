@@ -40,9 +40,6 @@ class Producto {
             let oUsuario = prompt(`Bienvenido a Coder pet , Ingresa tu nombre :` , 'Nombre o Nick ')
             sessionStorage.setItem('oUsuario',oUsuario);
         }
-        // else {
-        //     alert(`Bienvenido :${oUsuario} coder Pet espera que tu estadia sea lo mejor posible !!`)
-        // }
 
         let precioProducto = 0;
         let precioProductoSubTotal = 0;
@@ -117,6 +114,7 @@ const oProducto06 = new Producto(6,'Brit Care Mini GF Puppy','73.00','81.40','Pe
 const oProducto07 = new Producto(7,'Brit Care Senior Lamb & Rice','243.00','270.90','Perros','50')
 const oProducto08 = new Producto(8,'Pro Plan Active Mind Raza','49.05','109','Perros','30')
 oProductos =[oProducto01,oProducto02,oProducto03,oProducto04,oProducto05,oProducto06,oProducto07,oProducto08]
+console.table(oProductos)
 
 
 

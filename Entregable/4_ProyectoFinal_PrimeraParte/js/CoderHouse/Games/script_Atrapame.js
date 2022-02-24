@@ -27,8 +27,8 @@
 
 console.log('1.ARMAR UN SIMULADOR INTERACTIVO, LA ESTRUCTURA FINAL DE TU PROYECTO INTEGRADOR')
 let puntos = 0;
-let puntosNivel = 30;  //cantidad de puntos para pasar de nivel
-const tiempoNivel =30; //segundos
+let puntosNivel = 15;  //cantidad de puntos para pasar de nivel
+const tiempoNivel =20; //segundos
 let tiempo = tiempoNivel;
 let timerId =0;
 document.getElementById('player').addEventListener("mouseover",sumarPuntos);
@@ -41,7 +41,9 @@ function sumarPuntos(){
     if(puntos == puntosNivel){
         clearInterval(timerId);
         timerId =0;
-        alert("Ganaste excelente , muy pronto mas niveles de dificultad")
+        // alert("Ganaste excelente , muy pronto mas niveles de dificultad")
+        localStorage.setItem('Game',true)
+        self.close();
     }
 }
 
@@ -74,7 +76,7 @@ function restarTiempo(){
     document.getElementById("tiempo").innerHTML = "Tiempo:" + tiempo ; 
     if(tiempo ==0 && puntos<puntosNivel){
         clearInterval(timerId);
-        alert("continua intentando , muy pronto subiras de nivel")
+        alert("continua intentando , muy pronto subiras lograsras obtener grandes descuentos!!! ")
         tiempo=tiempoNivel;
         puntos=0;
         timerId =0;
@@ -82,6 +84,9 @@ function restarTiempo(){
     else if (tiempo<=0){
         tiempo=tiempoNivel;
         puntos=0;
+        alert("continua intentando , muy pronto subiras lograsras obtener grandes descuentos!!! ")
+        localStorage.setItem('Game',false);
+        self.close();
     }
 
 }
@@ -89,7 +94,7 @@ function restarTiempo(){
 function iniciar(){
     // console.log(timerId)
     puntos = 0;
-    puntosNivel = 30;  //cantidad de puntos para pasar de nivel
+    puntosNivel = 15;  //cantidad de puntos para pasar de nivel
     tiempo = tiempoNivel;
 
     MostarCabecera(0);

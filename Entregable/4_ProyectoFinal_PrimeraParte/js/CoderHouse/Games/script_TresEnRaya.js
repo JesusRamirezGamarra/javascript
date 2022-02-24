@@ -3,7 +3,7 @@ let turn = 1;
 let a1, a2, a3, a4, a5, a6,  b1, b2, b3,b4, b5, b6, c1, c2, c3 , c4, c5, c6;
 let  bitacoraJugadadas=['X',0,'O',0];
 let timerId = 0;
-const tiempoNivel = 60; //Segundos
+const tiempoNivel = 20; //Segundos
 let tiempo = tiempoNivel;
 let nroJugadasMaxima= 10;
 let nroJugadasX=0;
@@ -175,8 +175,7 @@ function verificarGanador(turn){
 
 function ganador() {
 
-    if(verificarGanador(turn))
-        {
+    if(verificarGanador(turn)){
         if (turn == 0) {
             setTimeout(() => { alert(`Gana el jugador ${bitacoraJugadadas[0]}  !!! , con un total de :  ${bitacoraJugadadas[1]} jugadas`); }, 100); 
             setTimeout(() => { location.reload(); },1000);
@@ -186,6 +185,8 @@ function ganador() {
             timerId =0;
             nroJugadasX =0;
             nroJugadasO =0;
+            localStorage.setItem('Game',true)
+            self.close();
 
         } else if (turn == 1) {
             setTimeout(() => { alert(`Gana el jugador ${bitacoraJugadadas[2]}  !!! , con un total de :  ${bitacoraJugadadas[3]} jugadas`); }, 100); 
@@ -196,9 +197,9 @@ function ganador() {
             timerId =0;
             nroJugadasX =0;
             nroJugadasO =0;
-
+            localStorage.setItem('Game',true)
+            self.close();
         };
-
     };
 }
 
@@ -211,22 +212,21 @@ function restarTiempo(){
         nroJugadasX >= nroJugadasMaxima ||  
         nroJugadasO >= nroJugadasMaxima  ){ 
         clearInterval(timerId);
-        alert("continua intentando , muy pronto subiras de nivel")
+        alert("continua intentando , muy pronto subiras lograsras obtener grandes descuentos!!! ")
         tiempo=tiempoNivel;
         puntos=0;
         timerId =0;
         nroJugadasX =0;
         nroJugadasO =0;
+        localStorage.setItem('Game',false);
+        self.close();
     }
 
 }
- timerId =setInterval(restarTiempo,500);
+timerId =setInterval(restarTiempo,1000);
 
 
 function iniciarMatriz(){
-    // for (let i = 0; i < 6; i++) {
-    //     arrayBidimensional[i] = new Array(5);
-    // }
     let i = 0
     let j = 0
     for( i = 0; i < 6; i++){

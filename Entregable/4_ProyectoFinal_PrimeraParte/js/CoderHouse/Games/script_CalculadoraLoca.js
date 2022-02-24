@@ -32,7 +32,7 @@ const display=document.querySelector('#display')
 const reto=document.querySelector('#reto')
 const bitacora=document.querySelector('#bitacora')
 let timerId =0;
-const tiempoNivel =120; //segundos
+const tiempoNivel =20; //segundos
 let tiempo = tiempoNivel;
 let jugadas = 10;
 let nroOperadoresUtilizados =0;
@@ -116,7 +116,9 @@ function updateDisplay(){
         ){
         clearInterval(timerId);
         timerId =0;
-        alert('Felicitaciones lograste cumplir el reto')
+        // alert('Felicitaciones lograste cumplir el reto')
+        localStorage.setItem('Game',true)
+        self.close();
     }
 }
 
@@ -156,7 +158,6 @@ function calcular(operator,key){
                 calculator.bitacoraValue = key;
                 calculator.firstOperand = value;
         }
-        //else if(calculator.operator){
         else if(key =='='){
             const result = calculator.operator(calculator.firstOperand,value);
             calculator.displayValue =result;
@@ -165,13 +166,6 @@ function calcular(operator,key){
         else if(!isNaN(bitacoraActual)) {
             calculator.bitacoraValue = key;
         }
-        // else if( !calculator.waitingForSecondOperand) {
-        //     calculator.bitacoraValue = key;
-        // }
-        // else {
-        //     bitacora.value
-        // }
-        // calculator.bitacoraValue = key;
         calculator.waitingForSecondOperand =true;
         calculator.operator = operator;
         updateDisplay();
@@ -208,10 +202,6 @@ buttons.forEach(button => {
             updateJugadas(key)          
             nroOperadoresUtilizados++;              
             calcular( new Function('a','b',`return a ${key} b`),key)
-        // }else if(   key=='.'){
-        //     if(!calculator.displayValue.includes('.')){
-        //         calculator.displayValue += '.'
-        //     }
         }else {
             calculator.bitacoraValue = key;
             if(calculator.waitingForSecondOperand){
@@ -239,16 +229,13 @@ function restarTiempo(){
         nroJugadasMultiplicacion > nroJugadasMaximoMultiplicacion ||  
         nroJugadasDivision > nroJugadasMaximoDivision  ){ 
         clearInterval(timerId);
-        alert("continua intentando , muy pronto subiras de nivel")
+        alert("continua intentando , muy pronto subiras lograsras obtener grandes descuentos!!! ")
         tiempo=tiempoNivel;
         puntos=0;
         timerId =0;
+        localStorage.setItem('Game',false);
+        self.close();        
     }
-    // else if (tiempo<=0){
-    //     tiempo=tiempoNivel;
-    //     puntos=0;
-    // }
-
 }
 
 
