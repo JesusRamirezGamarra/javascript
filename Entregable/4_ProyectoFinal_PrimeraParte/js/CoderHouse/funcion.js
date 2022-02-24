@@ -11,3 +11,13 @@ function validarCantidad(value,btnAgregarProducto) {
     }
 
 }
+
+
+function sumarDias(fecha, dias){
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha;
+  }
+
+  function popUp(URL) {
+    window.open(URL, 'Coder Game', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=no,resizable=1,width=500,height=800,left = 390,top = 50');
+}

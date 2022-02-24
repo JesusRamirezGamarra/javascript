@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 02 : Funciones</title>
+    <link rel="stylesheet" type="text/css" href="./css/estilo_CalculadoraLoca.css">
+</head>
+<body>
+    <header>
+        <h1>Javascript Desafio-02</h1>
+        <h2>2.Funciones</h2>
+        <p>Lucio Jesus Ramirez Gamarra</p>
+        <br>        
+        <pre>ARMAR UN SIMULADOR INTERACTIVO, LA ESTRUCTURA FINAL DE TU PROYECTO INTEGRADOR</pre>
+        <p>(*) La estructura del proyecto final aun esta en proceso de definicion, 
+            sin embargo la opcion de no concretarse otra seria un ecommerce o portal 
+            para mostrar unos video juegos con registro de perfil y/o puntaje
+        </p>
+        <h2>reglas :</h2>
+        <p>
+            Ingresar diversas operaciones matematicas [ + - * / ] y logra en base al numero inicial [ 0 ] alcanzar
+            el numero objetivo propuesto sin utilizar mas operaciones de las permitidas y antes que el tiempo termine.
+        </p>
+        <br>        
+        <p><a href="./index.html">regresar al formulario principal</a></p>
+        <br>
+    </header>
+    <main class="main">
+        <!-- <div class="resultado">0</div> -->
+
+        <div class="contenedor cabecera" >
+            <span >Coder Game : Atrapalo si puedes !!!  </span>
+            <span id="jugadas"></span>
+            <span id="tiempo"></span>
+        </div>            
+        <section class="puntaje">
+            <span id="suma">[ + ] : 0/0</span>
+            <span id="resta">[ - ] : 0/0</span>
+            <span id="multiplicacion">[ * ] : 0/0</span>
+            <span id="division">[ / ] : 0/0</span>
+        </section>
+        <input class="inputBitacoraReadOnly" id="bitacora" readonly>
+        <input class="inputReadOnly" type="number" id="reto" readonly> 
+        <!-- <div> -->
+            <!-- <input class="input" type="number" value="0" id="displayResultado" readonly> -->
+            <input class="input" type="number" value="0" id="display" readonly>
+        <!-- </div> -->
+        <section>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operacion">*</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="operacion">+</button>
+            <button>1</button>        
+            <button>2</button>
+            <button>3</button>
+            <button class="operacion">-</button>
+            <button class="operacion">c</button>
+            <button>0</button>
+            <button class="operacion">/</button>
+            <!-- <button class="operacion">&#xF7;</button> -->
+            <button class="operacion">=</button>        
+        </section>    
+        <div class="contenedor footer" >
+            <button name="button" text="Iniciar Coders"  onclick="iniciar()" class="buttonIniciar" >Iniciar Coders</button>
+        </div>
+    <script src="../js/CoderHouse/Games/script_CalculadoraLoca.js"></script>
+    </main>
+</body>
+</html>

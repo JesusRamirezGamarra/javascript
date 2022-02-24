@@ -15,13 +15,10 @@ class Producto {
 
     //////////////////////////////// Metodo encargado de obtener un determinado Producto x idPrducto
     obtenerProductoById(idProducto){
-        // oProductos = localStorage.getItem('oProductos');
-        // if(oProductos != null){
             let oProductoFind =  oProductos.find( (producto) => producto.idProducto === idProducto  )
             console.log(`Clase : Producto , Metodo : obtenerProducto con Id : ${oProductoFind.idProducto}`)
             console.log(oProductoFind);
             return oProductoFind;
-        // }
     }
     //////////////////////////////// Metodo encargado de obtener determinado Producto x NombreProducto
     buscarProducto(nombreProducto){
@@ -36,7 +33,7 @@ class Producto {
 
     //////////////// Metodo agregar Producto : Encargado de agregar cantidad de Unidades solicitada por el Usuario para un determinado Producto
     //  Informacion Adicional : https://es.acervolima.com/diferencia-entre-metodos-y-funciones-en-javascript/
-    agregarProducto(idElementoInput_cantidad,idElemento_producto){  
+    agregarProducto(idElementoInput_cantidad,idProducto){  
         
         let oUsuario = sessionStorage.getItem('oUsuario');
         if(oUsuario == null){
@@ -49,25 +46,65 @@ class Producto {
 
         let precioProducto = 0;
         let precioProductoSubTotal = 0;
+        let boolActualizarProducto =false;
         const cantidad = parseInt( ( document.querySelector('#'+idElementoInput_cantidad) ) .value  );
-        // precioProducto = (this.obtenerProductoById(parseInt(idElemento_producto))).precio;
-        let oProducto = this.obtenerProductoById(parseInt(idElemento_producto))
+        let oProducto = this.obtenerProductoById(parseInt(idProducto))
         precioProductoSubTotal = cantidad * parseFloat(precioProducto);
+        let oPedido;
+        if(oPedidos == null || oPedidos.length ==0 ){
+            oPedido = new Pedido(idProducto,oProducto.nombre,cantidad,oProducto.precio,oProducto.precio *cantidad)
+            oPedidos.push(oPedido);
+        }
+        else{
+            oPedido = new Pedido().obtenerPedidoById(idProducto)
+            if(oPedido== null)
+            {
+                oPedido = new Pedido(idProducto,oProducto.nombre,cantidad,oProducto.precio,oProducto.precio *cantidad)
+                oPedidos.push(oPedido);
+            }
+            else{
 
-        const oPedido = new Pedido(idElemento_producto,oProducto.nombre,cantidad,oProducto.precio,oProducto.precio *cantidad)
-        oPedidos.push(oPedido);
+                const moneda =  ' s/. PEN'
+                let mensaje =   `Su pedido ya tiene unidades del Producto : \n `+ 
+                                        `${oPedido.nombre} \n\n ` + 
+                                'su pedido actual es de : \n ' + 
+                                        `(`  +  oPedido.cantidad +` unidades) x ` + 
+                                        oPedido.precioUnitario + moneda + ` = ` + 
+                                        oPedido.subTotal + moneda +  ` ) \n\n` +
+                                `desea reemplazarlo por : \n `+ 
+                                        `(`  +  cantidad +` unidades) x ` + 
+                                        oPedido.precioUnitario + moneda + ` = ` + 
+                                        oProducto.precio *cantidad + moneda +  ` ) \n\n` 
 
-
-
+                if(confirm(mensaje)){
+                    let oPedidoIndex = new Pedido().obtenerPedidoIndexById(idProducto);
+                    oPedido= new Pedido(idProducto,oProducto.nombre,cantidad,oProducto.precio,oProducto.precio *cantidad)
+                    oPedidos.splice(oPedidoIndex,1,oPedido)
+                    boolActualizarProducto = true;
+                }
+            }
+        }
+        
+        this.mostrarProducto(oPedido,boolActualizarProducto)
     }
 
-    mostrarPedido(oPedidos){
-        let mensaje = 'Bolsa de Pedido: \n';;
-        oPedidos.forEach((item, index)=>{
-            // console.log(index, item)
-            mensaje += 'Producto  #' + index + ' : ' + item.nombre + ',' + item.cantidad
-        })
+    mostrarProducto(oPedido,boolActualizarProducto=False){
+        let mensaje ;
+        const moneda =  ' s/. PEN'
+        if(boolActualizarProducto){
+            mensaje = 'Felicidades acabas de actualizar a tu Pedido: \n';
+        }
+        else {
+            mensaje = 'Felicidades acabas de agregar a tu Pedido: \n';
+        }
+        mensaje += 'Producto : ' +   oPedido.nombre + '\n' + 
+        '('  +  oPedido.cantidad +' unidades) x ' + 
+                oPedido.precioUnitario + moneda + ' = ' + 
+                oPedido.subTotal + moneda +  ' ) \n' 
+        alert(mensaje)
     }
+
+
 
 }
 

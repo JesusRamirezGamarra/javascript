@@ -1,0 +1,55 @@
+
+h1{color:orange; height: 20px;font-size:20px;}
+h2{color: green; height: 20px;font-size: 18px;}
+h3{color: blue; height: 20px;font-size: 14px;}
+/* hr{border: 0px;} */
+div.titulo{
+    font-size: 20px;
+    display: inline;
+    align-items: center;
+    text-align: center;
+    height: 25px;
+    border: 1px;
+}
+
+span{
+    font-size: 16px;
+}
+.tituloInline{
+    display: inline;
+}
+.tablero{
+    display: table;
+    margin: 0 auto;
+}
+
+.btn{
+    font-size: 30px;
+    color: white;
+    width: 45px;
+    height: 45px;
+    background: firebrick;
+    border: 0px 0px 0px 0px gainsboro;
+    margin-top: 5px;
+    text-align: center;
+    vertical-align: middle;
+
+}
+.btn:hover{
+    background: rgb(194, 136, 136) ;
+    filter: brightness(80%);
+    cursor:pointer;
+}
+.btn-reinicio{
+    background: grey;
+}
+
+
+div.reiniciar{
+    display: inline;
+    align-items: center;
+    text-align: center;
+    height: 25px;
+    border: 1px;
+    width: 450px;
+}
