@@ -1,5 +1,6 @@
 //-------------- ACTIVIDAD 1 --------------//
 let usuario = localStorage.getItem('nombre');
+// if (usuario == null) {
 if (usuario == 'null') {
     localStorage.setItem('nombre', prompt('INGRESAR NOMBRE'));
 } else {
