@@ -1,6 +1,6 @@
 let oProductos= [];
 let oPedidos= [];
-
+const moneda =  ' s/. PEN'     
 
 //////////////////////////////// Clase Producto : Encargada de implementar la funcionalidad del producto en el carrito de compra.
 class Producto {
@@ -11,6 +11,36 @@ class Producto {
         this.precioOriginal = precioOriginal;
         this.categoria = categoria;
         this.stock = stock;
+    }
+
+    static BuscarProductobyName(){
+        let textoBusqueda = document.getElementById('idinputBuscar').value;
+        let PrecioBusqueda = document.getElementById('idinputPrecio').value;
+        let oProductoBusqueda 
+        let mensaje 
+        if(textoBusqueda=="" && PrecioBusqueda == ""){
+            oProductoBusqueda = null;
+            mensaje = 'Debe ingresar un criterio de busqueda';
+        }
+        else {
+            oProductoBusqueda=  oProductos.filter(    (oProducto)=> {
+                if( oProducto.precio>PrecioBusqueda && 
+                    oProducto.nombre.toLowerCase().includes(textoBusqueda) 
+                    ){
+                    return oProducto;
+                }  
+            })
+            mensaje =  `existen ${oProductoBusqueda.length} productos \n` 
+            oProductoBusqueda.forEach((item, index)=>{
+                mensaje += 'Producto  #' +  (index+1) + ' : ' + item.nombre + '\n' + 
+                                    '('  +   item.stock +' unidades disponibles) x ' + 
+                                            item.precio + moneda  + '\n'
+
+            })
+        }
+        alert(mensaje);            
+        console.table(oProductoBusqueda)
+        return oProductoBusqueda;
     }
 
     //////////////////////////////// Metodo encargado de obtener un determinado Producto x idPrducto
@@ -61,7 +91,6 @@ class Producto {
             }
             else{
 
-                const moneda =  ' s/. PEN'
                 let mensaje =   `Su pedido ya tiene unidades del Producto : \n `+ 
                                         `${oPedido.nombre} \n\n ` + 
                                 'su pedido actual es de : \n ' + 
@@ -87,7 +116,7 @@ class Producto {
 
     mostrarProducto(oPedido,boolActualizarProducto=False){
         let mensaje ;
-        const moneda =  ' s/. PEN'
+
         if(boolActualizarProducto){
             mensaje = 'Felicidades acabas de actualizar a tu Pedido: \n';
         }

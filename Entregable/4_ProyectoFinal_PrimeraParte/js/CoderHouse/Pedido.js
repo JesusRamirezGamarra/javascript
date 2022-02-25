@@ -54,7 +54,7 @@ class Pedido{
     mostrarPedido(oPedidosActual){
         let total = 0;
         let mensaje = 'Bolsa de Pedido: \n';
-        const moneda =  ' s/. PEN'
+        
         oPedidosActual.forEach((item, index)=>{
             mensaje += 'Producto  #' +  (index+1) + ' : ' + item.nombre + '\n' + 
                                 '('  +  item.cantidad +' unidades) x ' + 
@@ -131,7 +131,7 @@ class Pedido{
                 localStorage.setItem('Game',false)
                 let total = 0;
                 let mensaje = 'Bolsa de Pedido: \n';
-                const moneda =  ' s/. PEN'
+                
                 let decuento = probabilidadRandom();
                 alert(`Felicidades : Lo lograste tienes un decuento adicional de :${decuento}%`)
                 oPedidos.forEach((item, index)=>{

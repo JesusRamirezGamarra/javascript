@@ -45,16 +45,16 @@
 							<li class="last">Log in / Registrate</li>
 							<li class="last"><a href="#"><img src="images/search-icon.png"></a></li>
 							<li class="active">
-							 <div id="myNav" class="overlay">
+								<div id="myNav" class="overlay">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                             <div class="overlay-content">
-                             	<a href="index.html">Home</a>
+							<div class="overlay-content">
+								<a href="index.html">Home</a>
                                 <a href="about.html">Acerca de Nosotros</a>
                                 <a href="gallery.html">Galeria</a>
                                 <a href="contact.html">Contactanos</a>
-                              </div>
                             </div>
-                             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+                            </div>
+								<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
                             </div>	
                             </li>
 						</ul>
@@ -165,7 +165,18 @@
     				<!-- <h1 class="pet_taital">Pet Shop</h1> -->
 					<h1 class="pet_taital"><strong><span style="color: #f7941d;">Shop</span> Coder Pet</strong></h1>
     				<p class="lorem_text">Todo tipo de productos para tu engreido segun sus necesidades.</p>
-	
+					<input type="text" id="idinputBuscar" style="width:50%" placeholder="Nombre de Producto"  >
+					<input list="precio" name="Precios" id="idinputPrecio" placeholder="Precio de Producto">
+					<datalist id="precio">
+						<option value="40">mas de 40</option>
+						<option value="50">mas de 50</option>
+						<option value="60">mas de 60</option>
+						<option value="70">mas de 70</option>
+						<option value="80">mas de 80</option>
+						<option value="90">mas de 90</option>
+						<option value="100">mas de 100</option>
+					</datalist>
+					<button id="idBuscar" type="button" onclick="Producto.BuscarProductobyName();" style="cursor:pointer;" >Buscar</button>
     			</div>
     			<div class="col-sm-4"><div class="dog_img"><img src="./images/PetEmergencia.png" style="max-width: 230px;"></div></div>
 <!-- 			Primera fila						 -->
