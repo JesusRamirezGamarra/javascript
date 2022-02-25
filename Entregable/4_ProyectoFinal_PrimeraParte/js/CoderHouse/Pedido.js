@@ -71,8 +71,8 @@ class Pedido{
         if(confirm(`Deseas Probar tu suerte ?`)){
             let ancho = screen.width;
             let alto = screen.height;
-            let anchoFinal = 500;
-            let altoFinal = 600;
+            let anchoFinal = 700;
+            let altoFinal = 800;
             let difA = ancho - anchoFinal;
             let difH = alto - altoFinal;
             let tope = difH/2;
@@ -85,18 +85,19 @@ class Pedido{
 
             switch(randomNumber) {
                 case 3:
-                    pagina = '/Entregable/4_ProyectoFinal_PrimeraParte/Games/index_Atrapame.html'
+                    pagina = '/Games/index_Atrapame.html'
                     break;
                 case 2:
-                    pagina = '/Entregable/4_ProyectoFinal_PrimeraParte/Games/index_CalculadoraLoca.html'
+                    pagina = '/Games/index_CalculadoraLoca.html'
                     break;
                 default://1
-                    pagina = '/Entregable/4_ProyectoFinal_PrimeraParte/Games/index_tresEnRaya.html'
+                    pagina = '/Games/index_tresEnRaya.html'
             }
 
-            
+            let actualURL = window.location;
+            let paginaURL = actualURL.href.replace('index.html',pagina)
             let opciones="status=no, menubar=no, directories=no, location=no, toolbar=no, scrollbars=yes, resizable=no, width="+anchoFinal+", height="+altoFinal+", top="+tope+", left="+lado+"";
-            let ventana = open(pagina,"_blank",opciones);
+            let ventana = open(paginaURL,"_blank",opciones);
 
 
             //setTimeout(this.aplicarPromocion,tiempoNivel * 1000)
