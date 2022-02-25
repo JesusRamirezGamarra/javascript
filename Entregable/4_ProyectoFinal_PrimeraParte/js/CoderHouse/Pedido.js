@@ -94,8 +94,9 @@ class Pedido{
                     pagina = '/Games/index_tresEnRaya.html'
             }
 
-            let actualURL = window.location;
-            let paginaURL = actualURL.href.replace('index.html',pagina)
+            // let actualURL = window.location;
+            // let paginaURL = actualURL.href.replace('index.html',pagina)
+            let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/4_ProyectoFinal_PrimeraParte/' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
             let opciones="status=no, menubar=no, directories=no, location=no, toolbar=no, scrollbars=yes, resizable=no, width="+anchoFinal+", height="+altoFinal+", top="+tope+", left="+lado+"";
             let ventana = open(paginaURL,"_blank",opciones);
 
