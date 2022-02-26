@@ -143,7 +143,7 @@
     				</div>
     				<div class="col-sm-7">
 						<div class="gallery_blog">
-                           <img src="./images/gallery-img4.jpg" style="max-width: 100%; height: 300px; width: 100%;">
+							<img src="./images/gallery-img4.jpg" style="max-width: 100%; height: 300px; width: 100%;">
                         <div class="overlay">
                             <div class="text"><strong>PuppyDogPetAnimal</strong></div>
                         </div>
@@ -159,18 +159,21 @@
     		</div>
     	</div>
     </div>
+
+
     <div class="gallery_section_2" id="shop">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-sm-8">
-    				<!-- <h1 class="pet_taital">Pet Shop</h1> -->
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-9">
+					<!-- <h1 class="pet_taital">Pet Shop</h1> -->
 					<h1 class="pet_taital">
 						<strong>
 							<span style="color: #f7941d;">Shop</span> 
 							Coder Pet
 						</strong>
 					</h1>
-    				<p class="lorem_text">Todo tipo de productos para tu engreido segun sus necesidades.</p>
+					<p class="lorem_text">Todo tipo de productos para tu engreido segun sus necesidades.</p>
 					<input type="text" id="idinputBuscar" style="width:50%" placeholder="Nombre de Producto"  >
 					<input list="precio" name="Precios" id="idinputPrecio" placeholder="Precio de Producto">
 					<datalist id="precio">
@@ -183,255 +186,419 @@
 						<option value="100">mas de 100</option>
 					</datalist>
 					<button id="idBuscar" type="button" onclick="Producto.BuscarProductobyName();" style="cursor:pointer;" >Buscar</button>
-    			</div>
-    			<div class="col-sm-4">
+				</div>
+				<div class="col-sm-3">
 					<div class="dog_img">
-						<!-- <h3 ><div id="idUsuario">Bienvenido : Jesus</div></h3> -->
 						<img src="./images/PetEmergencia.png" style="max-width: 230px;">
 						<h3 >
-							<div id="idUsuario" >
-								<!-- <div class="usuario_titulo">
-									<span> Jesus Ramirez </span><br>
-									<span class="precio_titulo"> Total :  150.45 S/.(PEN)  </span>
-								</div> -->
+							<div id="idUsuarioInfo" >
 							</div>
 						</h3>
 					</div>
 				</div>
-<!-- 			Primera fila						 -->
-				<div class="col-sm-3" style="text-align: center;">
-					<div>
-						<img src="./images/Producto/brit-premiun-chicken.jpg" style="width: 225px;height: 300px;">
+
+
+				<div class="col-sm-6 col-md-6 col-lg-3">					
+					<div >
+						<div>
+							<img src="./images/Producto/brit-premiun-chicken.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Brit Premium By Nature Junior</h3>	
+						<del><span style="color:red" >S/ 54.50</span></del>					
+						<span style="color:green;font-weight: bold;" >S/ 67.00</span>
+						
+						<div>
+							<input  type="number" id="Cantidad_01" value="0" style="width:60px" onchange="validarCantidad(this.value,'Agregar_01')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_01" text="Agregar Carrito"  onclick="new Producto().agregarProducto('Cantidad_01','1');" style="cursor:pointer;" disabled>Agregar Carrito</button>
+						</div>
 					</div>
-					<h3>Brit Premium By Nature Junior</h3>	
-					<del><span style="color:red" >S/ 54.50</span></del>					
-					<span style="color:green;font-weight: bold;" >S/ 67.00</span>
+					<div >
+						<div>
+							<img src="./images/Producto/brit_care_mini_yorkshire-1.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Brit Care Mini GF Yorkshire</h3>		
+						<del><span style="color:red" >S/ 81.40</span></del>					
+						<span style="color:green;font-weight: bold;" >S/ 73.00</span>		
+						<div>
+							<input  type="number" id="Cantidad_02" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_02')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_02" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_02','2');" style="cursor:pointer;" disabled>Agregar Carrito</button>
+						</div>	
+					</div>
+					<div >
+						<div>
+							<img src="./images/Producto/pro-plan.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Proplan Adulto mayor Cordero </h3>	
+						<del><span style="color:red" >S/ 393.90</span></del>					
+						<span style="color:green;font-weight: bold;" >S/ 354.51</span>
+						<div>
+							<input  type="number" id="Cantidad_03" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_03')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_03" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_03','3');" style="cursor:pointer;"  disabled >Agregar Carrito</button>
+						</div>
+					</div>
+				</div>	
+				<div class="col-sm-6 col-md-6 col-lg-3">
+					<div>
+						<div>
+							<img src="./images/Producto/brit_care_mini_hair_skin-1.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Brit Care Mini Hair & Skin</h3>		
+						<del><span style="color:red" >S/ 75.20</span></del>					
+						<span style="color:green;font-weight: bold;" >S/ 50.00</span>		
+						<div>
+							<input  type="number" id="Cantidad_04" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_04')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_04" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_04','4');" style="cursor:pointer;"  disabled>Agregar Carrito</button>
+						</div>		
+					</div>
+					<div >
+						<div>
+							<img src="./images/Producto/equilibriograinfreecachorro7777-e1644511711510.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Equilibrio Grain Free Puppy</h3>	
+						<!-- <del><span style="color:red" >S/ 51.00</span></del>					 -->
+						<span style="color:green;font-weight: bold;" >S/ 51.00</span>
+						<div>
+							<input  type="number" id="Cantidad_05" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_05')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_05" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_05','5');" style="cursor:pointer;" disabled>Agregar Carrito</button>
+						</div>
+					</div>
+					<div >
+						<div>
+							<img src="./images/Producto/brit_care_mini_puppy_lamb-1.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Brit Care Mini GF Puppy</h3>		
+						<del><span style="color:red" >S/ 81.40</span></del>					
+						<span style="color:green;font-weight: bold;" >S/ 73.00</span>		
+						<div>
+							<input  type="number" id="Cantidad_06" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_06')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_06" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_06','6');" style="cursor:pointer;" disabled>Agregar Carrito</button>
+						</div>	
+					</div>
+				</div>					
+				<div class="col-sm-6 col-md-6 col-lg-3">
+					<div >
+						<div>
+							<img src="./images/Producto/lamb-senior-ric.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Brit Care Senior Lamb & Rice</h3>	
+						<del><span style="color:red" >S/ 270.90</span></del>					
+						<span style="color:green;font-weight: bold;" >S/ 243.00</span>
+						<div>
+							<input  type="number" id="Cantidad_07" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_07')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_07" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_07','7');" style="cursor:pointer;"  disabled>Agregar Carrito</button>
+						</div>
+					</div>
+					<div>
+						<div>
+							<img src="./images/Producto/pruina-pr-plan.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Pro Plan Active Mind Raza</h3>		
+						<del><span style="color:red" >S/ 109.00</span></del>					
+						<span style="color:green;font-weight: bold;" >S/ 49.05</span>		
+						<div>
+							<input  type="number" id="Cantidad_08" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_08')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_08"  text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_08','8');" style="cursor:pointer;"  disabled>Agregar Carrito</button>
+						</div>		
+					</div>
+					<div>
+						<div>
+							<img src="./images/Producto/equilibrio-1.jpg" style="width: 225px;height: 300px;">
+						</div>
+						<h3>Equilibrio Active Adulto mayor</h3>		
+						<!-- <del><span style="color:red" >S/ 100.00</span></del>					 -->
+						<span style="color:green;font-weight: bold;" >S/ 100.00</span>		
+						<div>
+							<input  type="number" id="Cantidad_09" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_09')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_09"  text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_09','9');" style="cursor:pointer;"  disabled>Agregar Carrito</button>
+						</div>		
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-6 col-lg-3">
 					
-					<div>
-						<input  type="number" id="Cantidad_01" value="0" style="width:60px" onchange="validarCantidad(this.value,'Agregar_01')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-						<button type="button" id="Agregar_01" text="Agregar Carrito"  onclick="new Producto().agregarProducto('Cantidad_01','1');" style="cursor:pointer;" disabled>Agregar Carrito</button>
-					</div>
+
+					<div id="idPedidoInfo"  style="padding: 0px 0px 0px 0px; font-size: 12px;" >
+						<!-- <div id="idProducto_1" class="row">
+							<div class="col-12" style="text-align: center;">
+								<hr>
+								<h4>Equilibrio Active Adulto mayor	</h4>
+							</div>
+							<div class="col-7" style="text-align: right;">
+								<span >Precio: (S/.)</span>
+							</div>
+							<div class="col-5">
+								<span style="color:green;font-weight: bold;" >67.00</span>
+								<del><span style="color:red" > (54.50)</span></del>	
+							</div>
+							<div class="col-7" style="text-align: right;">
+								<span >Unidades: </span>
+							</div>
+							<div class="col-5">
+								<span >5 </span>
+							</div>							
+							<div class="col-7" style="text-align: right;">
+								<span >Total: </span>
+							</div>
+							<div class="col-5">
+								<span >500 </span>
+							</div>							
+						</div>
+
+						<div id="idProducto_2" class="row">
+							<div class="col-12" style="text-align: center;">
+								<hr>
+								<h4>Equilibrio Active Adulto mayor	</h4>
+							</div>
+							<div class="col-7" style="text-align: right;">
+								<span >Precio: (S/.)</span>
+							</div>
+							<div class="col-5">
+								<span style="color:green;font-weight: bold;" >67.00</span>
+								<del><span style="color:red" > (54.50)</span></del>	
+							</div>
+							<div class="col-7" style="text-align: right;">
+								<span >Unidades: </span>
+							</div>
+							<div class="col-5">
+								<span >5 </span>
+							</div>							
+							<div class="col-7" style="text-align: right;">
+								<span >Total: </span>
+							</div>
+							<div class="col-5">
+								<span >500 </span>
+							</div>							
+						</div> -->
+
+						<!-- <div id="idProducto_total" class="row">
+							<div class="col-12" style="text-align: center;">
+								<hr>
+								<h3>Total Final	</h3>
+							</div>
+							<div class="col-7" style="text-align: right;">
+								<span >Precio: (S/.)</span>
+							</div>
+							<div class="col-5">
+								<span style="color:green;font-weight: bold;" >167.00</span>
+								<del><span style="color:red" > (54.50)</span></del>	
+							</div>
+							<div class="col-7" style="text-align: right;">
+								<span >Descuento: (8%)</span>
+							</div>
+							<div class="col-5">
+								<span style="color:green;font-weight: bold;" >67.00</span>
+								<del><span style="color:red" > (54.50)</span></del>	
+							</div>	
+							<div class="col-7" style="text-align: right;">
+								<span >Monto a Pagar: (S/.)</span>
+							</div>
+							<div class="col-5">
+								<span style="color:green;font-weight: bold;" >100.00</span>
+							</div>														
+							<div class="col-12" style="text-align: center;">
+								<hr>	
+							</div>
+											
+						</div>						
+						 -->
+						
+						<!-- <div id="idProducto_2" style="text-align: center;">
+							<hr>
+							<h4>Equilibrio Active Adulto mayor	</h4>
+						
+							<div style="padding: 0px; float: left; width: 45%; text-align: right;">
+								<span >Precio: (S/. PEN )</span>
+							</div>
+							<div style="padding: 0px; float: right; width: 45%; text-align: left;">
+								<span style="color:green;font-weight: bold;" >67.00</span>
+								<del><span style="color:red" > (54.50)</span></del>	
+							</div>
+
+							<div style="padding: 0px; float: left; width: 45%; text-align: right;">
+								<span >Unidades: </span>
+							</div>
+							<div style="padding: 0px; float: right; width: 45%; text-align: left;">
+								<span >5 </span>
+							</div>		
+
+							<div style="padding: 0px; float: left; width: 45%; text-align: right;">
+								<span >Total: </span>
+							</div>
+							<div style="padding: 0px; float: right; width: 45%; text-align: left;">
+								<span >500 </span>
+							</div>								
+						</div>
+						<div>sasdasd</div> -->
+						<!-- <div id="idProducto_2" style="text-align: center;">
+							
+							<h4>Equilibrio Active Adulto mayor	</h4>
+						
+							<div style="padding: 0px; float: left; width: 45%; text-align: right;">
+								<span >Precio: (S/. PEN )</span>
+							</div>
+							<div style="padding: 0px; float: right; width: 45%; text-align: left;">
+								<span style="color:green;font-weight: bold;" >67.00</span>
+								<del><span style="color:red" > (54.50)</span></del>	
+							</div>
+
+							<div style="padding: 0px; float: left; width: 45%; text-align: right;">
+								<span >Unidades: </span>
+							</div>
+							<div style="padding: 0px; float: right; width: 45%; text-align: left;">
+								<span >5 </span>
+							</div>		
+
+							<div style="padding: 0px; float: left; width: 45%; text-align: right;">
+								<span >Total: </span>
+							</div>
+							<div style="padding: 0px; float: right; width: 45%; text-align: left;">
+								<span >500 </span>
+							</div>								
+							
+						</div> -->
+					</div>					
 				</div>
-				<div class="col-sm-3" style="text-align: center;">
-					<div>
-						<img src="./images/Producto/brit_care_mini_yorkshire-1.jpg" style="width: 225px;height: 300px;">
-					</div>
-					<h3>Brit Care Mini GF Yorkshire</h3>		
-					<del><span style="color:red" >S/ 81.40</span></del>					
-					<span style="color:green;font-weight: bold;" >S/ 73.00</span>		
-					<div>
-						<input  type="number" id="Cantidad_02" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_02')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-						<button type="button" id="Agregar_02" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_02','2');" style="cursor:pointer;" disabled>Agregar Carrito</button>
-					</div>	
-				</div>
-				<div class="col-sm-3" style="text-align: center;">
-					<div>
-						<img src="./images/Producto/pro-plan.jpg" style="width: 225px;height: 300px;">
-					</div>
-					<h3>Proplan Adulto Cordero</h3>	
-					<del><span style="color:red" >S/ 393.90</span></del>					
-					<span style="color:green;font-weight: bold;" >S/ 354.51</span>
-					<div>
-						<input  type="number" id="Cantidad_03" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_03')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-						<button type="button" id="Agregar_03" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_03','3');" style="cursor:pointer;"  disabled >Agregar Carrito</button>
-					</div>
-				</div>
-				<div class="col-sm-3" style="text-align: center;">
-					<div>
-						<img src="./images/Producto/brit_care_mini_hair_skin-1.jpg" style="width: 225px;height: 300px;">
-					</div>
-					<h3>Brit Care Mini Hair & Skin</h3>		
-					<del><span style="color:red" >S/ 75.20</span></del>					
-					<span style="color:green;font-weight: bold;" >S/ 50.00</span>		
-					<div>
-						<input  type="number" id="Cantidad_04" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_04')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-						<button type="button" id="Agregar_04" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_04','4');" style="cursor:pointer;"  disabled>Agregar Carrito</button>
-					</div>		
-				</div>
-<!-- 			Segunda fila						 -->
-				<div class="col-sm-3" style="text-align: center;">
-					<div>
-						<img src="./images/Producto/equilibriograinfreecachorro7777-e1644511711510.jpg" style="width: 225px;height: 300px;">
-					</div>
-					<h3>Equilibrio Grain Free Puppy</h3>	
-					<!-- <del><span style="color:red" >S/ 51.00</span></del>					 -->
-					<span style="color:green;font-weight: bold;" >S/ 51.00</span>
-					<div>
-						<input  type="number" id="Cantidad_05" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_05')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-						<button type="button" id="Agregar_05" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_05','5');" style="cursor:pointer;" disabled>Agregar Carrito</button>
-					</div>
-				</div>
-				<div class="col-sm-3" style="text-align: center;">
-					<div>
-						<img src="./images/Producto/brit_care_mini_puppy_lamb-1.jpg" style="width: 225px;height: 300px;">
-					</div>
-					<h3>Brit Care Mini GF Puppy</h3>		
-					<del><span style="color:red" >S/ 81.40</span></del>					
-					<span style="color:green;font-weight: bold;" >S/ 73.00</span>		
-					<div>
-						<input  type="number" id="Cantidad_06" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_06')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-						<button type="button" id="Agregar_06" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_06','6');" style="cursor:pointer;" disabled>Agregar Carrito</button>
-					</div>	
-				</div>
-				<div class="col-sm-3" style="text-align: center;">
-					<div>
-						<img src="./images/Producto/lamb-senior-ric.jpg" style="width: 225px;height: 300px;">
-					</div>
-					<h3>Brit Care Senior Lamb & Rice</h3>	
-					<del><span style="color:red" >S/ 270.90</span></del>					
-					<span style="color:green;font-weight: bold;" >S/ 243.00</span>
-					<div>
-						<input  type="number" id="Cantidad_07" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_07')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-						<button type="button" id="Agregar_07" text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_07','7');" style="cursor:pointer;"  disabled>Agregar Carrito</button>
-					</div>
-				</div>
-    			<div class="col-sm-3" style="text-align: center;">
-					<div>
-						<img src="./images/Producto/pruina-pr-plan.jpg" style="width: 225px;height: 300px;">
-					</div>
-					<h3>Pro Plan Active Mind Raza</h3>		
-					<del><span style="color:red" >S/ 109.00</span></del>					
-					<span style="color:green;font-weight: bold;" >S/ 49.05</span>		
-					<div>
-						<input  type="number" id="Cantidad_08" value="0" style="width:60px"  onchange="validarCantidad(this.value,'Agregar_08')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-						<button type="button" id="Agregar_08"  text="Agregar Carrito" onclick="new Producto().agregarProducto('Cantidad_08','8');" style="cursor:pointer;"  disabled>Agregar Carrito</button>
-					</div>		
-				</div>
-				<!-- <div class="col-sm-4"></div>	 -->
+
+
 				<div class="col-sm-8">
 					<div class="banner_bt" style="text-align: center;">
 						<button class="dog_bt" style="width:100%;" onclick="new Pedido().ComprarPedido();" style="cursor:pointer;" >Comprar</button>
 					</div>
-				</div>				
-    			<div class="col-sm-4">
+				</div>		
+				<div class="col-sm-4">
 					<div class="box_3">
 						<h1 class="numbar">03</h1>
 					</div>
 				</div>					
-    		</div>
-    	</div>
-    </div>
+
+
+			</div>			
+		</div>
+	</div>
+
+
+
 	<!-- section gallery end -->
 	<!-- section get in touch start -->
     <div class="touch_section">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-sm-12">
-				    <h1 class="get_taital"><strong><span style="color: #ffffff;">Contactanos</span>  Coder Pet</strong></h1>
-    			</div>
-    		</div>
-    		<div class="email_box">
-                    <div class="input_main">
-                       <div class="container">
-                          <form action="/action_page.php">
-                            <div class="form-group">
-                              <input type="text" class="email-bt" placeholder="Nombre" name="Name">
-                            </div>
-                            <div class="form-group">
-                              <input type="text" class="email-bt" placeholder="Celular" name="Name">
-                            </div>
-                            <div class="form-group">
-                              <input type="text" class="email-bt" placeholder="Email" name="Email">
-                            </div>
-                            
-                            <div class="form-group">
-                                <textarea class="massage-bt" placeholder="Mensaje" rows="5" id="comment" name="Massage"></textarea>
-                            </div>
-                          </form>   
-                       </div> 
-                       <div class="send_btn">
-                        <button type="button" class="main_bt"><a href="#">Enviar</a></button>
-                       </div>                   
-                    </div>
-    		</div>
-    	</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1 class="get_taital"><strong><span style="color: #ffffff;">Contactanos</span>  Coder Pet</strong></h1>
+				</div>
+			</div>
+			<div class="email_box">
+					<div class="input_main">
+						<div class="container">
+							<form action="/action_page.php">
+							<div class="form-group">
+								<input type="text" class="email-bt" placeholder="Nombre" name="Name">
+							</div>
+							<div class="form-group">
+								<input type="text" class="email-bt" placeholder="Celular" name="Name">
+							</div>
+							<div class="form-group">
+								<input type="text" class="email-bt" placeholder="Email" name="Email">
+							</div>
+							
+							<div class="form-group">
+								<textarea class="massage-bt" placeholder="Mensaje" rows="5" id="comment" name="Massage"></textarea>
+							</div>
+							</form>   
+						</div> 
+						<div class="send_btn">
+						<button type="button" class="main_bt"><a href="#">Enviar</a></button>
+						</div>                   
+					</div>
+			</div>
+		</div>
     </div>
     <div class="touch_section_2">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-sm-12">
-    				<h1 class="our_texts">Newsletter</h1>
-    				<div class="input-group mb-3">
-                        <input class="email_bt" type="text" class="form-control" placeholder="Email">
-                     <div class="input-group-append">
-                        <button class="subscribe_bt" class="btn btn-primary" type="Subscribe">Subscribe</button>  
-                     </div>
-                    </div>
-    			</div>
-    		</div>
-    	</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1 class="our_texts">Newsletter</h1>
+					<div class="input-group mb-3">
+						<input class="email_bt" type="text" class="form-control" placeholder="Email">
+						<div class="input-group-append">
+						<button class="subscribe_bt" class="btn btn-primary" type="Subscribe">Subscribe</button>  
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
     <!-- section get in touch end -->
 
 	<!-- section footer start -->
     <div class="section_footer">
-    	<div class="container">
-    		<div class="mail_section">
-    			<ul>
-    				<li class="footer-logo"><img src="images/logo.png" style="width:200px;"></li>
-    				<li class="footer-logo"><img src="images/map-icon.png"><span class="map_text">Ignacio Seminario #364</span></li>
-    				<li class="footer-logo"><img src="images/call-icon.png"><span class="map_text">(+51) 978-111-558</span></li>
-    				<li class="footer-logo"><img src="images/email-icon.png"><span class="map_text">LucioJesusRamiezGamarra@gmail.com</span></li>
-    			</ul>
-    	    </div> 
-    	    <div class="footer_section_2">
-		        <div class="row">
-    		        <div class="col-sm-6 col-md-6 col-lg-3">
-    		        	<h2 class="shop_text">Acerca de Coder Pet Shop</h2>
-    		        	<p class="dummy_text">Somos un equipo de profesionales comprometidos a proporcionar a su mascota la mejor atención médica posible.
+		<div class="container">
+			<div class="mail_section">
+				<ul>
+					<li class="footer-logo"><img src="images/logo.png" style="width:200px;"></li>
+					<li class="footer-logo"><img src="images/map-icon.png"><span class="map_text">Ignacio Seminario #364</span></li>
+					<li class="footer-logo"><img src="images/call-icon.png"><span class="map_text">(+51) 978-111-558</span></li>
+					<li class="footer-logo"><img src="images/email-icon.png"><span class="map_text">LucioJesusRamiezGamarra@gmail.com</span></li>
+				</ul>
+			</div> 
+			<div class="footer_section_2">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<h2 class="shop_text">Acerca de Coder Pet Shop</h2>
+						<p class="dummy_text">Somos un equipo de profesionales comprometidos a proporcionar a su mascota la mejor atención médica posible.
 							Nuestros servicios incluyen el asesoramiento para cualquier consulta sobre su mascota.  </p>
 						<p class="dummy_text">Somos un equipo de profesionales comprometidos a proporcionar a su mascota la mejor atención médica posible.
- 							El mejor tratamiento de mano de nuestros expertos. En Hurón Azul encontrarás todo lo que necesitas para tu mascota. Nuestro objetivo es dejarle libre de preocupaciones porque sabe que sus mascotas están en las mejores manos. </p>
+							El mejor tratamiento de mano de nuestros expertos. En Hurón Azul encontrarás todo lo que necesitas para tu mascota. Nuestro objetivo es dejarle libre de preocupaciones porque sabe que sus mascotas están en las mejores manos. </p>
 					</div>
-    		        <div class="col-sm-6 col-md-6 col-lg-3">
-    		        	<h2 class="shop_text">Links</h2>
-    		        	<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Pet Dictionary</span></div>
-    				    <div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Help</span></div>
-    				    <div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Preguntas frecuentes</span></div>
-    				    <div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">llamar al Doctor</span></div>
-    				    <div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Pet Emergencias</span></div>
-    		        </div>
-    		        <div class="col-sm-6 col-md-6 col-lg-3">
-    				    <h2 class="shop_text">Overview</h2>
-    				    <div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Bacerim Dictionary</span></div>
-    				    <div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Help</span></div>
-    				    <div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">bacerim Attitudes</span></div>    				
-    		        </div>
-    			<div class="col-sm-6 col-md-6 col-lg-3">
-    				<h2 class="adderess_text">Instagram</h2>
-    				<div class="footer-img">
-    					<div class="row">
-    						<div class="col-sm-6">
-    							<div class="footer-img"><img src="images/footer-img1.png" style="width: 100%;"></div>
-    							<div class="footer-img"><img src="images/footer-img2.png" style="width: 100%;"></div>
-    						</div>
-    						<div class="col-sm-6">
-    							<div class="footer-img"><img src="images/footer-img3.png" style="width: 100%;"></div>
-    							<div class="footer-img"><img src="images/footer-img4.png" style="width: 100%;"></div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			</div>
-    	        </div>
-    	        <div class="social-icon">
-	        	    <div class="row">
-	        		    <div class="col-sm-12">
-	        			    <div class="icons">
-	        				    <ul>
-	        					    <li><a href="#"><img src="images/fb-icon.png"></a></li>
-	        					    <li><a href="#"><img src="images/twitter-icon.png"></a></li>
-	        					    <li><a href="#"><img src="images/google-icon.png"></a></li>
-	        					    <li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-	        				    </ul>
-	        			    </div>
-	        		    </div>
-	        	    </div>
-	            </div>
-	            <div class="copyright">2022 All Rights Reserved. <a href="https://RamirezGamarra.Com">@JesusRamirez</a></div>
-	        </div>
-    	</div>
-    </div>
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<h2 class="shop_text">Links</h2>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Pet Dictionary</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Help</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Preguntas frecuentes</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">llamar al Doctor</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Pet Emergencias</span></div>
+					</div>
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<h2 class="shop_text">Overview</h2>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Bacerim Dictionary</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Help</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">bacerim Attitudes</span></div>    				
+					</div>
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<h2 class="adderess_text">Instagram</h2>
+						<div class="footer-img">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="footer-img"><img src="images/footer-img1.png" style="width: 100%;"></div>
+									<div class="footer-img"><img src="images/footer-img2.png" style="width: 100%;"></div>
+								</div>
+								<div class="col-sm-6">
+									<div class="footer-img"><img src="images/footer-img3.png" style="width: 100%;"></div>
+									<div class="footer-img"><img src="images/footer-img4.png" style="width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="social-icon">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="icons">
+							<ul>
+								<li><a href="#"><img src="images/fb-icon.png"></a></li>
+								<li><a href="#"><img src="images/twitter-icon.png"></a></li>
+								<li><a href="#"><img src="images/google-icon.png"></a></li>
+								<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">2022 All Rights Reserved. <a href="https://RamirezGamarra.Com">@JesusRamirez</a></div>
+		</div>
+	</div>
+</div>
 	<!-- section footer end -->
 
     <!-- Javascript files-->
@@ -444,52 +611,52 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-	  <!-- <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script> -->
-    
-      <script src="js/plugin.js"></script>
-	  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	  <script src="jquery.fancybox.min.js"></script>	   -->
-	  <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-	  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-			 -->
-	  <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-      <!-- javascript --> 
-      <script src="js/owl.carousel.js"></script>
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
-	  <script src="./js/jquery.fancybox.min.js"></script>
-	  <!-- <script src="js/plugin.js"></script> -->
-      <script>
-      $(document).ready(function(){
-      $(".fancybox").fancybox({
-         openEffect: "none",
-         closeEffect: "none"
-         });
-         
-         $(".zoom").hover(function(){
-         
-         $(this).addClass('transition');
-         }, function(){
-         
-         $(this).removeClass('transition');
-         });
-         });
-         </script> 
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script> -->
 
-	
-   <script>
-	
-    function openNav() {
-    document.getElementById("myNav").style.width = "100%";
-    }
+	<script src="js/plugin.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="jquery.fancybox.min.js"></script>	   -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+	<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+			-->
+	<!-- sidebar -->
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/custom.js"></script>
+	<!-- javascript --> 
+	<script src="js/owl.carousel.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
+	<script src="./js/jquery.fancybox.min.js"></script>
+	<!-- <script src="js/plugin.js"></script> -->
+	<script>
+	$(document).ready(function(){
+	$(".fancybox").fancybox({
+		openEffect: "none",
+		closeEffect: "none"
+		});
+		
+		$(".zoom").hover(function(){
+		
+		$(this).addClass('transition');
+		}, function(){
+		
+		$(this).removeClass('transition');
+		});
+		});
+		</script> 
 
-    function closeNav() {
-   document.getElementById("myNav").style.width = "0%";
-   }
+
+<script>
+
+function openNav() {
+document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+document.getElementById("myNav").style.width = "0%";
+}
 </script>
-     
+	
 </body>
 </html>

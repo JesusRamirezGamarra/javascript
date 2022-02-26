@@ -2,12 +2,14 @@ let timerId = 0;
 const tiempoNivel = 20; //Segundos
 let tiempo = tiempoNivel;
 
+
 class Pedido{
-    constructor(idProducto,nombre,cantidad,precioUnitario,subTotal) {
+    constructor(idProducto,nombre,cantidad,precioUnitario,precioUnitarioOriginal,subTotal) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
+        this.precioUnitarioOriginal = precioUnitarioOriginal;
         this.subTotal = subTotal;
     }
 
@@ -64,6 +66,7 @@ class Pedido{
         })
         mensaje +='\n\n Total : ' + parseFloat(total.toFixed(2)) + moneda
         alert(mensaje)
+        // crearDOMPedidoTotal(total,0,0,0)
 
         // localStorage.setItem('Game',false)
         localStorage.removeItem('Game');
@@ -98,7 +101,7 @@ class Pedido{
             let paginaURL = actualURL.href.replace('index.html',pagina)
             // let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/4_ProyectoFinal_PrimeraParte/' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
             let opciones="status=no, menubar=no, directories=no, location=no, toolbar=no, scrollbars=yes, resizable=no, width="+anchoFinal+", height="+altoFinal+", top="+tope+", left="+lado+"";
-            let ventana = open(paginaURL,"_blank",opciones);
+            open(paginaURL,"_blank",opciones);
 
 
             //setTimeout(this.aplicarPromocion,tiempoNivel * 1000)
@@ -112,6 +115,7 @@ class Pedido{
             let fechaEntrega = sumarDias(new Date(Date.now()),3)
             alert( `${oUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`)
             sessionStorage.removeItem('oUsuario');
+            removeDOMUsuarioInfo()
         }
     }
         
@@ -132,30 +136,38 @@ class Pedido{
                 
                 localStorage.setItem('Game',false)
                 let total = 0;
+                let montoDescuento =0;
+                let totalConDescuento =0;
                 let mensaje = 'Bolsa de Pedido: \n';
                 
-                let decuento = probabilidadRandom();
-                alert(`Felicidades : Lo lograste tienes un decuento adicional de :${decuento}%`)
+                const descuento = probabilidadRandom();
+                alert(`Felicidades : Lo lograste tienes un decuento adicional de :${descuento}%`)
                 oPedidos.forEach((item, index)=>{
                     mensaje += 'Producto  #' +  (index+1) + ' : ' + item.nombre + '\n' + 
                                         '(' +   item.cantidad +' unidades) x ' + 
                                                 item.precioUnitario + moneda + ' = ' + 
                                                 item.subTotal + moneda +  '  \n'  + 
-                                        '-> (' +   decuento + ' %) = ' +
-                                        parseFloat( (item.subTotal * (1- decuento/100)).toFixed(2)) + moneda +  '  \n' 
+                                        '-> (' +   descuento + ' %) = ' +
+                                        parseFloat( (item.subTotal * (1- descuento/100)).toFixed(2)) + moneda +  '  \n' 
                     total += item.subTotal;
                 })
                 
-                mensaje +='\nTotal : ' + parseFloat(total.toFixed(2)) + moneda
-                mensaje +='\nDescuento : ' + parseFloat((total* (decuento/100)).toFixed(2)) + moneda
-                mensaje +='\nTotal Final (' +   decuento + ' %) : ' + parseFloat((total* (1- decuento/100)).toFixed(2)) + moneda
+                total = parseFloat(total.toFixed(2))
+                montoDescuento = parseFloat((total* (descuento/100)).toFixed(2))
+                totalConDescuento = parseFloat((total* (1- descuento/100)).toFixed(2))
+
+                mensaje +='\nTotal : ' + total  + moneda
+                mensaje +='\nDescuento : ' + montoDescuento  + moneda
+                mensaje +='\nTotal Final (' +   descuento + ' %) : ' + totalConDescuento + moneda
                 alert(mensaje);
+                // crearDOMPedidoTotal(total,descuento,montoDescuento,totalConDescuento)
 
                 oPedidos= [];       
                 let oUsuario = sessionStorage.getItem('oUsuario');                     
                 let fechaEntrega = sumarDias(new Date(Date.now()),3)
                 alert( `${oUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`)
                 sessionStorage.removeItem('oUsuario');
+                removeDOMUsuarioInfo()
 
             }
             else {
@@ -165,6 +177,8 @@ class Pedido{
                 let fechaEntrega = sumarDias(new Date(Date.now()),3)
                 alert( `${oUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`)
                 sessionStorage.removeItem('oUsuario');
+                removeDOMUsuarioInfo()
+                
             }
 
 
