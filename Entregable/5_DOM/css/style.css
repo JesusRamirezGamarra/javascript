@@ -436,6 +436,21 @@ a {
 	float: left;
 }
 
+.usuario_titulo{
+    background-color: black;
+    color: #ffffff;
+    /* height:50px; */
+    text-align: center;
+    vertical-align:center;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+
+}
+
+.precio_titulo{
+    font-size:10px;
+}
+
 .touch_section{
 	width: 100%;
 	float: left;

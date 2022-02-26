@@ -17,7 +17,6 @@ console.log(parrafoByClassName) // devuelve 1 HTML.collection(n) con todos los e
 console.log(parrafoByClassName[0]) 
 console.log(parrafoByClassName[0].children[0] )
 
-
 let parrafoByTagName = document.getElementsByTagName("p") 
 console.log('document.getElementsByTagName')
 console.log(parrafoByTagName) // devuelve 1 HTML.collection(n) con todos los elementos que lo contienen

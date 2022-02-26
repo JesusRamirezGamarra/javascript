@@ -164,7 +164,12 @@
     		<div class="row">
     			<div class="col-sm-8">
     				<!-- <h1 class="pet_taital">Pet Shop</h1> -->
-					<h1 class="pet_taital"><strong><span style="color: #f7941d;">Shop</span> Coder Pet</strong></h1>
+					<h1 class="pet_taital">
+						<strong>
+							<span style="color: #f7941d;">Shop</span> 
+							Coder Pet
+						</strong>
+					</h1>
     				<p class="lorem_text">Todo tipo de productos para tu engreido segun sus necesidades.</p>
 					<input type="text" id="idinputBuscar" style="width:50%" placeholder="Nombre de Producto"  >
 					<input list="precio" name="Precios" id="idinputPrecio" placeholder="Precio de Producto">
@@ -179,7 +184,20 @@
 					</datalist>
 					<button id="idBuscar" type="button" onclick="Producto.BuscarProductobyName();" style="cursor:pointer;" >Buscar</button>
     			</div>
-    			<div class="col-sm-4"><div class="dog_img"><img src="./images/PetEmergencia.png" style="max-width: 230px;"></div></div>
+    			<div class="col-sm-4">
+					<div class="dog_img">
+						<!-- <h3 ><div id="idUsuario">Bienvenido : Jesus</div></h3> -->
+						<img src="./images/PetEmergencia.png" style="max-width: 230px;">
+						<h3 >
+							<div id="idUsuario" >
+								<!-- <div class="usuario_titulo">
+									<span> Jesus Ramirez </span><br>
+									<span class="precio_titulo"> Total :  150.45 S/.(PEN)  </span>
+								</div> -->
+							</div>
+						</h3>
+					</div>
+				</div>
 <!-- 			Primera fila						 -->
 				<div class="col-sm-3" style="text-align: center;">
 					<div>
@@ -421,6 +439,7 @@
 	<script src="./js/CoderHouse/Pedido.js"></script>
 	<script src="./js/CoderHouse/Producto.js"></script>
 	<script src="./js/CoderHouse/funcion.js"></script>
+	<script src="./js/CoderHouse/DOM.js"></script>	
 	<!-- CoderHouse Javascript end -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
