@@ -188,3 +188,11 @@ class Pedido{
         }
     }
 }
+
+
+
+
+let btn_FinalizarPedido= document.getElementById('btn_FinalizarPedido');
+btn_FinalizarPedido.addEventListener('click',()=>{   
+    new Pedido().ComprarPedido();
+})

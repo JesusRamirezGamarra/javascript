@@ -118,14 +118,14 @@ botonPersonas.addEventListener('dblclick',() =>{
     arrayPersonas.forEach((personaEnArray,indice)=>{
         divPersonas.innerHTML +=`        
         <div class="card" id="persona${indice}" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Persona N°: ${indice + 1}</h5>
-            <p class="card-text">Nombre: ${personaEnArray.nombre}</p>
-            <p class="card-text">Apellido: ${personaEnArray.apellido}</p>
-            <p class="card-text">Edad : ${personaEnArray.edad}</p>
-            <button class="btn btn-dark">Eliminar Persona</button>
+            <div class="card-body">
+                <h5 class="card-title">Persona N°: ${indice + 1}</h5>
+                <p class="card-text">Nombre: ${personaEnArray.nombre}</p>
+                <p class="card-text">Apellido: ${personaEnArray.apellido}</p>
+                <p class="card-text">Edad : ${personaEnArray.edad}</p>
+                <button class="btn btn-dark">Eliminar Persona</button>
+            </div>
         </div>
-    </div>
         `
     })
 })

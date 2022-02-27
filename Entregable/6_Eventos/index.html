@@ -163,7 +163,7 @@
 
     <div class="gallery_section_2" id="shop">
 		<div class="container">
-			<div class="row">
+			<div id="divlistadoProductos" class="row">
 
 				<div class="col-sm-9">
 					<!-- <h1 class="pet_taital">Pet Shop</h1> -->
@@ -208,8 +208,9 @@
 						<span style="color:green;font-weight: bold;" >S/ 67.00</span>
 						
 						<div>
-							<input  type="number" id="Cantidad_01" value="0" style="width:60px" onchange="validarCantidad(this.value,'Agregar_01')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
-							<button type="button" id="Agregar_01" text="Agregar Carrito"  onclick="new Producto().agregarProducto('Cantidad_01','1');" style="cursor:pointer;" disabled>Agregar Carrito</button>
+							<input  type="number" id="btnCantidad_01" value="0" style="width:60px" onchange="validarCantidad(this.value,'Agregar_01')" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+							<button type="button" id="Agregar_01" text="Agregar Carrito"  
+							style="cursor:pointer;" disabled>Agregar Carrito</button>
 						</div>
 					</div>
 					<div >
@@ -324,7 +325,7 @@
 				<div class="col-sm-8">
 					<div class="banner_bt" style="text-align: center;">
 						<!-- <button class="dog_bt" style="width:100%;" onclick="new Pedido().ComprarPedido();" style="cursor:pointer;" >Comprar</button> -->
-						<button class="dog_bt" style="width:100%;" onclick="new Pedido().ComprarPedido();" style="cursor:pointer;" >Comprar</button>
+						<button id="btn_FinalizarPedido" class="dog_bt" style="width:100%;" style="cursor:pointer;" >Comprar</button>
 					</div>
 				</div>		
 				<div class="col-sm-4">
@@ -466,8 +467,8 @@
 
     <!-- Javascript files-->
 	<!-- CoderHouse Javascript : Script a ser revisados en el contexto de lo solicitado en los desafios -->
-	<script src="./js/CoderHouse/Pedido.js"></script>
 	<script src="./js/CoderHouse/Producto.js"></script>
+	<script src="./js/CoderHouse/Pedido.js"></script>	
 	<script src="./js/CoderHouse/funcion.js"></script>
 	<script src="./js/CoderHouse/DOM.js"></script>	
 	<!-- CoderHouse Javascript end -->

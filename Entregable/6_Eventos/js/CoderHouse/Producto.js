@@ -2,6 +2,11 @@ let oProductos= [];
 let oPedidos= [];
 const moneda =  ' s/. PEN'     
 
+
+
+
+
+
 //////////////////////////////// Clase Producto : Encargada de implementar la funcionalidad del producto en el carrito de compra.
 class Producto {
     constructor(idProducto,nombre,precio,precioOriginal,categoria,stock) {
@@ -149,5 +154,9 @@ oProductos =[oProducto01,oProducto02,oProducto03,oProducto04,oProducto05,oProduc
 console.table(oProductos)
 
 
+const containerShopPet = document.getElementById('divlistadoProductos');
+const buttons = containerShopPet.querySelectorAll('button[type="button"]')
 
-
+// buttons.forEach(button => {
+//     button.addEventListener('click', () => console.log('Clicked!'));
+// });
