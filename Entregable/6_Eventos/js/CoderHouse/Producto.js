@@ -154,9 +154,3 @@ oProductos =[oProducto01,oProducto02,oProducto03,oProducto04,oProducto05,oProduc
 console.table(oProductos)
 
 
-const containerShopPet = document.getElementById('divlistadoProductos');
-const buttons = containerShopPet.querySelectorAll('button[type="button"]')
-
-// buttons.forEach(button => {
-//     button.addEventListener('click', () => console.log('Clicked!'));
-// });

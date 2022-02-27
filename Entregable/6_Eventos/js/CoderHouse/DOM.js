@@ -81,6 +81,9 @@ function crearDOMPedido(oPedidos){
             <div class="col-12" style="text-align: center;">
                 <hr>
                 <h4>${opedidoEnArray.nombre}</h4>
+                <button type="button" id="Eliminar_0${opedidoEnArray.idProducto}" text="Eliminar"  style="cursor:pointer;" 
+                onclick="new Pedido().eliminarPedido(${opedidoEnArray.idProducto});" 
+                >Eliminar <img src="./images/btnEliminar.png"></button>
             </div>
             <div class="col-7" style="text-align: right;">
                 <span >Precio: (S/.)</span>
@@ -103,7 +106,24 @@ function crearDOMPedido(oPedidos){
             </div>	
         </div>            
         `
+        // onclick="new Pedido().eliminarPedido(${opedidoEnArray.idProducto});" 
+        // let btn_FinalizarPedido= document.getElementById('Eliminar_01');
+        // btn_FinalizarPedido.addEventListener('click',()=>{   
+        //     new Pedido().eliminarPedido(opedidoEnArray.idProducto,opedidoEnArray.cantidad)
+        // })
+        // btn_EliminarProductoPedido.onclick = () =>{   new Pedido().eliminarPedido(opedidoEnArray.idProducto,opedidoEnArray.cantidad)}
+
+
+        
     })   
+    
+    // oPedidos.forEach(opedidoEnArray =>{
+    //     let btn_EliminarProductoPedido= document.getElementById(`Eliminar_0${opedidoEnArray.idProducto}`);
+    //     btn_EliminarProductoPedido.addEventListener('click',()=>{   
+    //         console.log(`mmmmmmmmmmmmmmmmmmmm${opedidoEnArray.idProducto}`)
+    //             new Pedido().eliminarPedido(opedidoEnArray.idProducto)
+    //     })
+    // })
     
     let total = 0;
     

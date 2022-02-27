@@ -30,7 +30,21 @@ class Pedido{
     }
 
 
+    eliminarPedido(idProducto ){
+        // let oPedidoIndex = new Pedido().obtenerPedidoIndexById(idProducto);
+        // let oProducto = new Producto().obtenerProductoById(parseInt(idProducto))
 
+        // let oPedido= new Pedido(idProducto,oProducto.nombre,cantidad,oProducto.precio,oProducto.        precioOriginal,oProducto.precio *cantidad)
+
+        // oPedidos.splice(oPedidoIndex,1,oPedido)
+        // let boolActualizarProducto = true;
+
+        let oPedidosNew = oPedidos.filter((item) => item.idProducto != idProducto);
+        oPedidos = oPedidosNew;
+        crearDOMPedido(oPedidos);
+        crearDOMUsuarioInfoPrecio(oPedidos);
+        // new Producto().mostrarProducto(oPedido,boolActualizarProducto)
+    }
 
 
     //////////////////////////////// Metodo encargado de confirmar compra de productos agregados a la bolsa
@@ -188,11 +202,3 @@ class Pedido{
         }
     }
 }
-
-
-
-
-let btn_FinalizarPedido= document.getElementById('btn_FinalizarPedido');
-btn_FinalizarPedido.addEventListener('click',()=>{   
-    new Pedido().ComprarPedido();
-})
