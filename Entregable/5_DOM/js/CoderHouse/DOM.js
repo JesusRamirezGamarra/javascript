@@ -33,6 +33,43 @@ function removeDOMUsuarioInfo(){
     parrafoById.innerHTML = '';
 }
 
+////////////////////////////////Funcion encargada de eliminar pedido resumen
+function removeDOMPedido(){
+    // Se implementa un bucle a drede para poner en practica el recorriro y eliminado x elemento
+
+    //Forma 01
+    // let parrafoById = document.getElementById("idPedidoInfo") ;
+    // oPedidos.forEach(opedidoEnArray =>{
+    //     parrafoById = document.getElementById("idProducto_"+opedidoEnArray.idProducto) ;
+    //     parrafoById.remove();
+    // })
+    // parrafoById = document.getElementById("idProducto_total") ;
+    // parrafoById.remove() ;
+
+    //Forma 02
+    // [...document.getElementById('idPedidoInfo').children].forEach(child => {
+    //     console.log(child.id)
+    //     child.remove()
+    // })
+
+    //Forma 03
+    // let parrafoById = document.getElementById('idPedidoInfo')
+    // for (let i=0; i< parrafoById.children.length;i++) {
+    //     console.log(`Producto eliminado con Id :${parrafoById.children[i].id}`);
+    //     elemento = document.getElementById(parrafoById.children[i].id)
+    //     parrafoById.removeChild(elemento)
+    //   }
+    let parrafoById = document.getElementById("idPedidoInfo");
+    while (parrafoById.firstChild) {
+        parrafoById.removeChild(parrafoById.firstChild);
+    }
+
+
+}
+
+
+
+
 ////////////////////////////////Funcion encargada de Crear el contenido x Producto existente en la Bolsa de Pedido
 function crearDOMPedido(oPedidos){
     let parrafoById = document.getElementById("idPedidoInfo") ;
@@ -40,7 +77,7 @@ function crearDOMPedido(oPedidos){
     oPedidos.forEach(opedidoEnArray =>{
         let subTotal = parseFloat((opedidoEnArray.cantidad * opedidoEnArray.precioUnitario).toFixed(2))
         parrafoById.innerHTML += `
-        <div id="idProducto_${opedidoEnArray.idproducto}" class="row">
+        <div id="idProducto_${opedidoEnArray.idProducto}" class="row">
             <div class="col-12" style="text-align: center;">
                 <hr>
                 <h4>${opedidoEnArray.nombre}</h4>
@@ -130,7 +167,7 @@ let oUsuario =sessionStorage.getItem('oUsuario')
 if(oUsuario != null){
     crearDOMUsuarioInfo(oUsuario);
 }
-if(oPedidos!=null ){
+if(oPedidos!=null && oPedidos.length>0 ){
     crearDOMUsuarioInfoPrecio(oPedidos);
 }
 

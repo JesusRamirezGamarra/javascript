@@ -116,6 +116,7 @@ class Pedido{
             alert( `${oUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`)
             sessionStorage.removeItem('oUsuario');
             removeDOMUsuarioInfo()
+            removeDOMPedido()
         }
     }
         
@@ -168,6 +169,7 @@ class Pedido{
                 alert( `${oUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`)
                 sessionStorage.removeItem('oUsuario');
                 removeDOMUsuarioInfo()
+                removeDOMPedido()
 
             }
             else {
@@ -178,6 +180,7 @@ class Pedido{
                 alert( `${oUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`)
                 sessionStorage.removeItem('oUsuario');
                 removeDOMUsuarioInfo()
+                removeDOMPedido()
                 
             }
 
