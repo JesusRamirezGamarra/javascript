@@ -112,8 +112,6 @@ function crearDOMPedido(oPedidos){
         //     new Pedido().eliminarPedido(opedidoEnArray.idProducto,opedidoEnArray.cantidad)
         // })
         // btn_EliminarProductoPedido.onclick = () =>{   new Pedido().eliminarPedido(opedidoEnArray.idProducto,opedidoEnArray.cantidad)}
-
-
         
     })   
     
