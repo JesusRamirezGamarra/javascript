@@ -11,8 +11,8 @@ console.log(totalR);
 
 // https://medium.com/@jmoran.losada/javascript-map-reduce-filter-find-foreach-c%C3%B3mo-utilizarlos-y-sus-diferencias-e0e078646d11
 
-let numerosIII = [1, 2, 3, 4, 5];
-let totalIII = (numeros.reduce((a, b) => a + b , 0))
+  let numerosIII = [1, 2, 3, 4, 5];
+  let totalIII = (numerosIII.reduce((a, b) => a + b , 0))
 //       .filter((a,b) => {
 //           if(b%2==0) return true
 //           else return false;
