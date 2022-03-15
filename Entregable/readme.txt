@@ -6,6 +6,9 @@ https://jesusramirezgamarra.github.io/javascript/Entregable/3_Arrays/
 https://jesusramirezgamarra.github.io/javascript/Entregable/4_ProyectoFinal_PrimeraParte/
 
 
+https://jesusramirezgamarra.github.io/javascript/Entregable/7_ProyectoFinal_SegundaParte/
+
+
 Proyectos Referenciales CoderHouse
 Tienda de PC: 			https://bcoalova.github.io/CODER-js-Tienda/
 Tienda de Bebidas: 		https://vanifederici.github.io/mono-galactico/

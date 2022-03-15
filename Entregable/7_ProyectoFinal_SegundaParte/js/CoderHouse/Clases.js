@@ -126,7 +126,7 @@ class Pedido{
                 let max =3 
                 let min =1 
                 let randomNumber =  Math.floor(Math.random() * (max - min + 1)) + min;
-                  
+
                 switch(randomNumber) {
                     case 3:
                         pagina = '/Games/index_Atrapame.html'
@@ -139,8 +139,8 @@ class Pedido{
                 }
     
                 let actualURL = window.location;
-                let paginaURL = actualURL.href.replace('index.html',pagina)
-                // let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/4_ProyectoFinal_PrimeraParte/' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
+                // let paginaURL = actualURL.href.replace('index.html',pagina) -- Modo Local
+                let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/4_ProyectoFinal_PrimeraParte/' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
                 let opciones="status=no, menubar=no, directories=no, location=no, toolbar=no, scrollbars=yes, resizable=no, width="+anchoFinal+", height="+altoFinal+", top="+tope+", left="+lado+"";
                 open(paginaURL,"_blank",opciones);
     
