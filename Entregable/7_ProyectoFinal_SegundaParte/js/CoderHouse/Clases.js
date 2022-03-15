@@ -140,7 +140,7 @@ class Pedido{
     
                 let actualURL = window.location;
                 // let paginaURL = actualURL.href.replace('index.html',pagina) -- Modo Local
-                let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/7_ProyectoFinal_SegundaParte/' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
+                let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/7_ProyectoFinal_SegundaParte' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
                 let opciones="status=no, menubar=no, directories=no, location=no, toolbar=no, scrollbars=yes, resizable=no, width="+anchoFinal+", height="+altoFinal+", top="+tope+", left="+lado+"";
                 open(paginaURL,"_blank",opciones);
     
