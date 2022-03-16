@@ -39,6 +39,7 @@ class Pedido{
 
     obtenerPedidoIndexById(idProducto){
         let oPedidoFind =  oPedidos.findIndex( (pedido) => pedido.idProducto === idProducto  )
+        // let mensaje = (oPedidoFind ==null )? 'NaN , no existe el id Producto ' + idProducto + ' en el pedido' : oPedidoFind.idProducto;
         console.log(`Clase : Pedido , Metodo : obtenerPedidoIndexById con Id : ${idProducto} e index ${oPedidoFind}` )
         return oPedidoFind;
     }
@@ -230,13 +231,17 @@ class Pedido{
                     if (willDelete) {
                         oPedidos= [];       
                         let fechaEntrega = sumarDias(new Date(Date.now()),3)
+        
                         swal(`Bolsa de Pedido`, `${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
                         sessionStorage.removeItem('oUsuario');
                         removeDOMUsuarioInfo()
                         removeDOMPedido()
                     } 
                 })
+              
             }
+
+
         }
     }
 }
@@ -341,8 +346,13 @@ class Producto {
 
     mostrarProducto(oPedido,boolActualizarProducto=False){
         let mensaje ;
-        mensaje = (boolActualizarProducto)? 'Felicidades acabas de actualizar a tu Pedido: \n':'Felicidades acabas de agregar a tu Pedido: \n';
 
+        if(boolActualizarProducto){
+            mensaje = 'Felicidades acabas de actualizar a tu Pedido: \n';
+        }
+        else {
+            mensaje = 'Felicidades acabas de agregar a tu Pedido: \n';
+        }
         mensaje += 'Producto : ' +   oPedido.nombre + '\n' + 
         '('  +  oPedido.cantidad +' unidades) x ' + 
                 oPedido.precioUnitario + moneda + ' = ' + 
@@ -368,6 +378,9 @@ console.table(oProductos)
 
 // oUsuario =sessionStorage.getItem('oUsuario') 
 oUsuario =JSON.parse( sessionStorage.getItem('oUsuario') )
-(oUsuario != null && oUsuario != 'null' )? crearDOMUsuarioInfo(oUsuario) : ''
-(oPedidos!=null && oPedidos.length>0 ) ?   crearDOMUsuarioInfoPrecio(oPedidos) : '' 
-
+if(oUsuario != null && oUsuario != 'null' ){
+    crearDOMUsuarioInfo(oUsuario);
+ }
+if(oPedidos!=null && oPedidos.length>0 ){
+    crearDOMUsuarioInfoPrecio(oPedidos);
+}

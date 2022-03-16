@@ -120,7 +120,12 @@ usuarioConSession.addEventListener('click',()=>{
         </li>
     `
     isSession =  false;
+    
+
 })
+
+
+
 
 //////////////////////////////// Iniciar Session
 
@@ -180,6 +185,7 @@ formUser_btnLogIn.addEventListener('click',()=>{
     }
 })
 
+
 //////////////////////////////// Cerrar modal formUser_btnRegistrar
 let formUser_btnCerrar = document.getElementById('formUser_btnCerrar')
 formUser_btnCerrar.addEventListener('click',()=>{  
@@ -192,3 +198,6 @@ formUser_btnCerrar.addEventListener('click',()=>{
     sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
 
 })
+
+
+
