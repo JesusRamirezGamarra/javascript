@@ -39,7 +39,6 @@ function probabilidadRandom()
 }
 
 ////////////////////////////////Funcion encargada de Agregar x DOM el nombre del Usuario
-//  <span> Jesus Ramirez </span>
 function crearDOMUsuarioInfo(oUsuario){
     let parrafoById = document.getElementById("idUsuarioInfo") ;
     let NombreUsuario =  (oUsuario=='') ? 'Bienvenido': (oUsuario?.nombre || 'Coder Pet Lovers');

@@ -340,13 +340,14 @@ class Producto {
     }
 
     mostrarProducto(oPedido,boolActualizarProducto=False){
+        let {nombre,cantidad,precioUnitario,subTotal} = oPedido;
         let mensaje ;
         mensaje = (boolActualizarProducto)? 'Felicidades acabas de actualizar a tu Pedido: \n':'Felicidades acabas de agregar a tu Pedido: \n';
 
-        mensaje += 'Producto : ' +   oPedido.nombre + '\n' + 
-        '('  +  oPedido.cantidad +' unidades) x ' + 
-                oPedido.precioUnitario + moneda + ' = ' + 
-                oPedido.subTotal + moneda +  ' ) \n' 
+        mensaje += 'Producto : ' +   nombre + '\n' + 
+        '('  +  cantidad +' unidades) x ' + 
+                precioUnitario + moneda + ' = ' + 
+                subTotal.toFixed(2) + moneda +  ' ) \n' 
         swal(mensaje)
         crearDOMUsuarioInfoPrecio(oPedidos);
     }
