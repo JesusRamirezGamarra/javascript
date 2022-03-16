@@ -3,7 +3,8 @@
 //////////////////////////////// Funcion ValidarInicioSession : retorna OUsuario de existir en el sessionStorage 
 function ValidarInicioSession(email,clave){
     
-    let oUsuarioSession =  sessionStorage.getItem('oUsuario').filter((item) => item.email.toLowerCase() === email.toLowerCase() && item.clave.toLowerCase() === clave.toLowerCase())
+    let oUsuario = JSON.parse( localStorage.getItem('oUsuario'))
+    let oUsuarioSession = ( oUsuario != '[]' ) ? (oUsuario.find((item) => item.email.toLowerCase() === email.toLowerCase() && item.clave.toLowerCase() === clave.toLowerCase())) : null;
     return oUsuarioSession ??[]
 }
 
@@ -41,7 +42,7 @@ function probabilidadRandom()
 //  <span> Jesus Ramirez </span>
 function crearDOMUsuarioInfo(oUsuario){
     let parrafoById = document.getElementById("idUsuarioInfo") ;
-    let NombreUsuario =  (oUsuario == null || oUsuario == 'null')?'Bienvenido':oUsuario.nombre;
+    let NombreUsuario =  (oUsuario=='') ? 'Bienvenido': oUsuario.nombre;
     parrafoById.innerHTML = `<div id="idUsuarioInfoNombre" class="usuario_titulo">
                                 <span> ${NombreUsuario} </span><br>
                             </div>`

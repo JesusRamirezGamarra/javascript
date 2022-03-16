@@ -367,7 +367,7 @@ console.table(oProductos)
 
 
 // oUsuario =sessionStorage.getItem('oUsuario') 
-oUsuario =JSON.parse( sessionStorage.getItem('oUsuario') )
-(oUsuario != null && oUsuario != 'null' )? crearDOMUsuarioInfo(oUsuario) : ''
-(oPedidos!=null && oPedidos.length>0 ) ?   crearDOMUsuarioInfoPrecio(oPedidos) : '' 
+oUsuario = ( JSON.parse( sessionStorage.getItem('oUsuario') ) ?? [] );
+(oUsuario != '' )? (crearDOMUsuarioInfo(oUsuario)) : null;
+(oPedidos!=null && oPedidos.length>0 ) ?   crearDOMUsuarioInfoPrecio(oPedidos) : null ;
 

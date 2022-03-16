@@ -28,11 +28,18 @@ if( localStorage.getItem('oUsuario')){
     localStorage.setItem('oUsuario',JSON.stringify(oUsuarioStorage))
 }
 
+let oUsuarioSession
+if( sessionStorage.getItem('oUsuario')){     
+    oUsuarioSession = JSON.parse( sessionStorage.getItem('oUsuario') )
+}else{
+    oUsuarioSession = []
+    sessionStorage.setItem('oUsuario',JSON.stringify(oUsuarioSession))
+}
+
 //////////////////////////////// Registrar nuevo Usuario
 
 let formUserNew_btnRegistrar = document.getElementById('formUserNew_btnRegistrar');
 formUserNew_btnRegistrar.addEventListener('click',()=>{   
-    sessionStorage.clear()
     let nombre = document.getElementById('formUserNew_nombre').value
     let email = document.getElementById('formUserNew_email').value
     let clave = document.getElementById('formUserNew_clave').value
@@ -46,6 +53,8 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
         const usuarioActual = new Usuario(email,clave,nombre)
         oUsuarioStorage.push(usuarioActual)
         localStorage.setItem('oUsuario',JSON.stringify(oUsuarioStorage))
+        // sessionStorage.clear()
+        sessionStorage.removeItem('oUsuario')
         sessionStorage.setItem('oUsuario',JSON.stringify(usuarioActual))
 
         divMensaje.innerHTML = `
@@ -100,8 +109,9 @@ formUserNew_btncerrar.addEventListener('click',()=>{
     document.getElementById('formUserNew_nombre').value = ""
     document.getElementById('formUserNew_email').value = ""
     document.getElementById('formUserNew_clave').value = ""    
-    oUsuario = null;
-    sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
+    sessionStorage.removeItem('oUsuario')
+    // oUsuario = [];
+    // sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
 
 })
 
@@ -120,23 +130,27 @@ usuarioConSession.addEventListener('click',()=>{
         </li>
     `
     isSession =  false;
+    sessionStorage.removeItem('oUsuario')
+    oUsuario = []
+    crearDOMUsuarioInfo(oUsuario)
 })
 
 //////////////////////////////// Iniciar Session
 
 let formUser_btnLogIn = document.getElementById('formUser_btnLogIn');
 formUser_btnLogIn.addEventListener('click',()=>{   
-    sessionStorage.clear()
     let email = document.getElementById('formUser_email').value
     let clave = document.getElementById('formUser_clave').value
     let divMensaje = document.getElementById('divMensajeLogIn');
     let divUsuarioSinSession = document.getElementById('usuarioSinSession');
     let divUsuarioConSession = document.getElementById('usuarioConSession');
 
-    // oUsuario =  oUsuarioStorage.find(   (oUsuario) => oUsuario.email.toLowerCase() === email.toLowerCase() && oUsuario.clave.toLowerCase() === clave.toLowerCase())
-    oUsuario = validarInicioSession(email, clave)
+    //oUsuario =  oUsuarioStorage.find(   (oUsuario) => oUsuario.email.toLowerCase() === email.toLowerCase() && oUsuario.clave.toLowerCase() === clave.toLowerCase())
+    oUsuario = ValidarInicioSession(email,clave);
+    // oUsuario = validarInicioSession(email, clave)
 
-    if(oUsuario != [] ){
+    if(oUsuario != ''  ){
+        // sessionStorage.removeItem('oUsuario')
         sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
 
         divMensaje.innerHTML = `
@@ -171,7 +185,7 @@ formUser_btnLogIn.addEventListener('click',()=>{
         divMensaje.innerHTML = `
         <div class="card" style="width: 100%;">
             <div class="card-body">
-                <h6 class="card-title">El Usuario No esta registrado o la clave es incorrecte, valide sus datos e ingrese de nuevo:</h6>
+                <h6 class="card-title">El Usuario No esta registrado o la clave es incorrecta, valide sus datos e ingrese de nuevo:</h6>
                 <p class="card-text text-danger">Email : ${email} </p>
             </div>
         </div>
@@ -189,7 +203,8 @@ formUser_btnCerrar.addEventListener('click',()=>{
     divMensaje.innerHTML =""
     document.getElementById('formUser_email').value= ""
     document.getElementById('formUser_clave').value= ""
-    oUsuario = null;
-    sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
+    sessionStorage.removeItem('oUsuario')
+    // oUsuario = [];
+    // sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
 
 })
