@@ -11,10 +11,17 @@ Ademas para los primeros entregables se hicieron juegos utilizando diversas tecn
 NOTA : se puede ingresara al pages del github x medio de las URL : 
 
 BASE : https://jesusramirezgamarra.github.io/javascript/
+
 desafio 01 : https://jesusramirezgamarra.github.io/javascript/Entregable/1_Ciclos_e_Iteraciones/
+
 desafio 02 : https://jesusramirezgamarra.github.io/javascript/Entregable/2_funciones/
+
 desafio 03 : https://jesusramirezgamarra.github.io/javascript/Entregable/3_Arrays/
+
 desafio 04 : https://jesusramirezgamarra.github.io/javascript/Entregable/4_ProyectoFinal_PrimeraParte/
+
 desafio 05 : https://jesusramirezgamarra.github.io/javascript/Entregable/5_DOM/
+
 desafio 06 : https://jesusramirezgamarra.github.io/javascript/Entregable/6_Eventos/
+
 desafio 07 : https://jesusramirezgamarra.github.io/javascript/Entregable/7_ProyectoFinal_SegundaParte/
