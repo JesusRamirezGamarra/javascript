@@ -28,4 +28,4 @@ desafio 07 : https://jesusramirezgamarra.github.io/javascript/Entregable/7_Proye
 
 desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/8_OperadoresAvanzadados/
 
-desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/9_Librerias/
+desafio 09 : https://jesusramirezgamarra.github.io/javascript/Entregable/9_Librerias/
