@@ -26,6 +26,6 @@ desafio 06 : https://jesusramirezgamarra.github.io/javascript/Entregable/6_Event
 
 desafio 07 : https://jesusramirezgamarra.github.io/javascript/Entregable/7_ProyectoFinal_SegundaParte/
 
-desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/8_OperadoresAvanzados/
+desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/8_OperadoresAvanzadados/
 
 desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/9_Librerias/
