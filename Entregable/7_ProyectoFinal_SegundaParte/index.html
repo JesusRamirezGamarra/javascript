@@ -486,52 +486,52 @@
         <!-- Modal Log IN-->
         <div class="modal fade" id="ModalLogIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
-			  <div class="modal-content">
+				<div class="modal-content">
 				<div class="modal-header">
-				  <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-				  </button>
+					</button>
 				</div>
 				<div class="modal-body">
-				  	<form id="formUser">
-						<input type="email"placeholder="email" name="email" id="formUser_email">
-						<input type="text" placeholder="Clave" name="clave" id="formUser_clave">
-						<button type="submit" name=""  class="bbtn btn-dark"  >Ingresar</button>
+					<form id="formUser">
+						<input type="email"placeholder="email" name="email" id="formUser_email" style="width:48%" required>
+						<input type="password" placeholder="Clave" name="clave" id="formUser_clave" style="width:48%" required>
+						<div id="divMensajeLogIn" class="description" style="align-items:center;"></div>
 					</form>
 					<div id="divMensajeLogIn" class="row" ></div>
 				</div>
 				<div class="modal-footer">
-				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				  <button type="button" class="btn btn-primary">Recordar Usuario</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="formUser_btnCerrar">Cerrar</button>
+					<button type="button" class="btn btn-primary"  id="formUser_btnLogIn" >Ingresar</button>
 				</div>
-			  </div>
+				</div>
 			</div>
 		</div>
         <!-- Modal Register-->
         <div class="modal fade" id="ModalRegistrate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
-			  <div class="modal-content">
+				<div class="modal-content">
 				<div class="modal-header">
-				  <h5 class="modal-title" id="exampleModalLabel">Registrate : Nuevo Usuario</h5>
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<h5 class="modal-title" id="exampleModalLabel">Registrate : Nuevo Usuario</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-				  </button>
+					</button>
 				</div>
 				<div class="modal-body">
 					<form id="formUserNew">
-						<input type="text" placeholder="Nombre" name="nombre" id="formUserNew_nombre" style="width:97%">
-						<input type="email"placeholder="email" name="email" id="formUserNew_email"  style="width:70%">
-						<input type="password" placeholder="Clave" name="clave" id="formUserNew_clave"  style="width:26%">
+						<input type="text" placeholder="Nombre" name="nombre" id="formUserNew_nombre" style="width:97%" required>
+						<input type="email"placeholder="email" name="email" id="formUserNew_email"  style="width:70%" required>
+						<input type="password" placeholder="Clave" name="clave" id="formUserNew_clave"  style="width:26%" required>
 						<div id="divMensajeRegister" class="description" style="align-items:center;"></div>
 					</form>
 				
 				</div>
 				<div class="modal-footer">
-				  <button type="button" class="btn btn-secondary" data-dismiss="modal" id="formUserNew_btnCerrar">Close</button>
-				  <button type="button" class="btn btn-primary" id="formUserNew_btnRegistrar" >Registrar</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="formUserNew_btnCerrar">Close</button>
+					<button type="button" class="btn btn-primary" id="formUserNew_btnRegistrar" >Registrar</button>
 				</div>
-			  </div>
+				</div>
 			</div>
 		</div>
 </div>

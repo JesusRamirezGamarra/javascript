@@ -15,26 +15,24 @@ buttons.forEach(button => {
         button.addEventListener('click', () => {
             new Producto().agregarProducto(idCantidad,idProducto);
         })     
-        // console.log(`se Creo evento click boton[idProducto=${idProducto}]`) 
     }
 });
 
 //////////////////////////////// Validar Inicio Session
-
-localStorage.clear()// - Solo para efectos de prueba de la funcionalidad.
-let oUsuarioSession
+//localStorage.clear()// - Solo para efectos de prueba de la funcionalidad.
+let oUsuarioStorage
 if( localStorage.getItem('oUsuario')){     
-    oUsuarioSession = JSON.parse( localStorage.getItem('oUsuario') )
+    oUsuarioStorage = JSON.parse( localStorage.getItem('oUsuario') )
 }else{
-    oUsuarioSession = []
-    localStorage.setItem('oUsuario',JSON.stringify(oUsuarioSession))
-
+    oUsuarioStorage = []
+    localStorage.setItem('oUsuario',JSON.stringify(oUsuarioStorage))
 }
 
 //////////////////////////////// Registrar nuevo Usuario
 
 let formUserNew_btnRegistrar = document.getElementById('formUserNew_btnRegistrar');
 formUserNew_btnRegistrar.addEventListener('click',()=>{   
+    sessionStorage.clear()
     let nombre = document.getElementById('formUserNew_nombre').value
     let email = document.getElementById('formUserNew_email').value
     let clave = document.getElementById('formUserNew_clave').value
@@ -42,10 +40,13 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
     let divUsuarioSinSession = document.getElementById('usuarioSinSession');
     let divUsuarioConSession = document.getElementById('usuarioConSession');
 
-    let oUsuario =  oUsuarioSession.find(   (oUsuario) => oUsuario.email === email)
+    oUsuario =  oUsuarioStorage.find(   (oUsuario) => oUsuario.email.toLowerCase() === email.toLowerCase())
+
     if(oUsuario == null ){
-        const usuario = new Usuario(email,clave,nombre)
-        oUsuarioSession.push(usuario)
+        const usuarioActual = new Usuario(email,clave,nombre)
+        oUsuarioStorage.push(usuarioActual)
+        localStorage.setItem('oUsuario',JSON.stringify(oUsuarioStorage))
+        sessionStorage.setItem('oUsuario',JSON.stringify(usuarioActual))
 
         divMensaje.innerHTML = `
         <div class="card" style="width: 100%;">
@@ -53,9 +54,8 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
                 <h6 class="card-title">Felicidades ${nombre} ya estas registrado con :</h6>
                 <p class="card-text text-success">Email : ${email} </p>
             </div>
-         </div>
+        </div>
         `;
-
         divUsuarioSinSession.innerHTML = ``
         divUsuarioConSession.innerHTML = `
             <li class="last" >
@@ -66,6 +66,7 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
             </li>
         `
         isSession =  true;
+        crearDOMUsuarioInfo(usuarioActual);
         setTimeout(function(){ 
             document.getElementById('formUserNew_nombre').value = ""
             document.getElementById('formUserNew_email').value = ""
@@ -74,38 +75,33 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
             $('#ModalRegistrate').modal('hide')
         }, 1500);  
         
+        
     }
     else{
-     
         divMensaje.innerHTML = `
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h6 class="card-title">El Usuario ya esta registrado , ingrese otro :</h6>
                 <p class="card-text text-danger">Email : ${email} </p>
             </div>
-         </div>
+        </div>
         `;
         isSession =  false;
 
     }
-
-    localStorage.setItem('oUsuario',JSON.stringify(oUsuarioSession))
-
-
-
 })
 
+//////////////////////////////// Cerrar modal formUserNew_btnRegistrar
 let formUserNew_btncerrar = document.getElementById('formUserNew_btnCerrar')
 formUserNew_btncerrar.addEventListener('click',()=>{  
-    let nombre = document.getElementById('formUserNew_nombre').value
-    let email = document.getElementById('formUserNew_email').value
-    let clave = document.getElementById('formUserNew_clave').value
     let divMensaje = document.getElementById('divMensajeRegister');
 
     divMensaje.innerHTML =""
-    nombre.value = ""
-    email.value = ""
-    clave.value = ""
+    document.getElementById('formUserNew_nombre').value = ""
+    document.getElementById('formUserNew_email').value = ""
+    document.getElementById('formUserNew_clave').value = ""    
+    oUsuario = null;
+    sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
 
 })
 
@@ -133,12 +129,75 @@ usuarioConSession.addEventListener('click',()=>{
 
 //////////////////////////////// Iniciar Session
 
-let formLogIn = document.getElementById('formUser')
+let formUser_btnLogIn = document.getElementById('formUser_btnLogIn');
+formUser_btnLogIn.addEventListener('click',()=>{   
+    sessionStorage.clear()
+    let email = document.getElementById('formUser_email').value
+    let clave = document.getElementById('formUser_clave').value
+    let divMensaje = document.getElementById('divMensajeLogIn');
+    let divUsuarioSinSession = document.getElementById('usuarioSinSession');
+    let divUsuarioConSession = document.getElementById('usuarioConSession');
 
-formLogIn.addEventListener('submit', (e) =>{
-    e.preventDefault();
+    oUsuario =  oUsuarioStorage.find(   (oUsuario) => oUsuario.email.toLowerCase() === email.toLowerCase() && oUsuario.clave.toLowerCase() === clave.toLowerCase())
 
+    if(oUsuario != null ){
+        sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
+
+        divMensaje.innerHTML = `
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <h6 class="card-title">Felicidades ${oUsuario.nombre} , se ha iniciado tu session.  :</h6>
+                <p class="card-text text-success">Email : ${oUsuario.email} </p>
+            </div>
+        </div>
+        `;
+        divUsuarioSinSession.innerHTML = ``
+        divUsuarioConSession.innerHTML = `
+            <li class="last" >
+                <!-- Button trigger modal -->
+                <a >${oUsuario.nombre}</a>
+                / 
+                <a >Cerrar Session</a>								
+            </li>
+        `
+        isSession =  true;
+        crearDOMUsuarioInfo(oUsuario);
+        setTimeout(function(){ 
+            document.getElementById('formUser_email').value = ""
+            document.getElementById('formUser_clave').value = ""
+            divMensaje.innerHTML = ``
+            $('#ModalLogIn').modal('hide')
+        }, 1500);  
+        
+        
+    }
+    else{
+        divMensaje.innerHTML = `
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <h6 class="card-title">El Usuario No esta registrado o la clave es incorrecte, valide sus datos e ingrese de nuevo:</h6>
+                <p class="card-text text-danger">Email : ${email} </p>
+            </div>
+        </div>
+        `;
+        isSession =  false;
+
+    }
+})
+
+
+//////////////////////////////// Cerrar modal formUser_btnRegistrar
+let formUser_btnCerrar = document.getElementById('formUser_btnCerrar')
+formUser_btnCerrar.addEventListener('click',()=>{  
+    let divMensaje = document.getElementById('divMensajeLogIn');
+
+    divMensaje.innerHTML =""
+    document.getElementById('formUser_email').value= ""
+    document.getElementById('formUser_clave').value= ""
+    oUsuario = null;
+    sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
 
 })
+
 
 

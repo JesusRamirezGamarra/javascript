@@ -1,6 +1,17 @@
 
 
-
+//////////////////////////////// Funcion ValidarInicioSession : retorna OUsuario de existir en el sessionStorage 
+function ValidarInicioSession(email){
+    
+    let oUsuarioSession =  sessionStorage.getItem('oUsuario').filter((item) => item.email === email)  
+    if(  OUsuario != null    ){     
+        oUsuarioSession = JSON.parse( oUsuario.email )
+    }else{
+        oUsuarioSession = []
+        sessionStorage.setItem('oUsuario',JSON.stringify(oUsuarioSession))
+    }
+    return oUsuarioSession
+}
 
 //////////////////////////////// Funcion validarCantidad : encarga de Validar la informacion de cantidad de producto a ser comprados por el usuario ( formato , tipo ,min )
 function validarCantidad(value,btnAgregarProducto) {
@@ -75,29 +86,6 @@ function removeDOMUsuarioInfo(){
 ////////////////////////////////Funcion encargada de eliminar pedido resumen
 function removeDOMPedido(){
     // Se implementa un bucle a drede para poner en practica el recorriro y eliminado x elemento
-
-    //Forma 01
-    // let parrafoById = document.getElementById("idPedidoInfo") ;
-    // oPedidos.forEach(opedidoEnArray =>{
-    //     parrafoById = document.getElementById("idProducto_"+opedidoEnArray.idProducto) ;
-    //     parrafoById.remove();
-    // })
-    // parrafoById = document.getElementById("idProducto_total") ;
-    // parrafoById.remove() ;
-
-    //Forma 02
-    // [...document.getElementById('idPedidoInfo').children].forEach(child => {
-    //     console.log(child.id)
-    //     child.remove()
-    // })
-
-    //Forma 03
-    // let parrafoById = document.getElementById('idPedidoInfo')
-    // for (let i=0; i< parrafoById.children.length;i++) {
-    //     console.log(`Producto eliminado con Id :${parrafoById.children[i].id}`);
-    //     elemento = document.getElementById(parrafoById.children[i].id)
-    //     parrafoById.removeChild(elemento)
-    //   }
     let parrafoById = document.getElementById("idPedidoInfo");
     while (parrafoById.firstChild) {
         parrafoById.removeChild(parrafoById.firstChild);
@@ -142,22 +130,11 @@ function crearDOMPedido(oPedidos){
             </div>	
         </div>            
         `
-        // onclick="new Pedido().eliminarPedido(${opedidoEnArray.idProducto});" 
-        // let btn_FinalizarPedido= document.getElementById('Eliminar_01');
-        // btn_FinalizarPedido.addEventListener('click',()=>{   
-        //     new Pedido().eliminarPedido(opedidoEnArray.idProducto,opedidoEnArray.cantidad)
-        // })
-        // btn_EliminarProductoPedido.onclick = () =>{   new Pedido().eliminarPedido(opedidoEnArray.idProducto,opedidoEnArray.cantidad)}
+
         
     })   
     
-    // oPedidos.forEach(opedidoEnArray =>{
-    //     let btn_EliminarProductoPedido= document.getElementById(`Eliminar_0${opedidoEnArray.idProducto}`);
-    //     btn_EliminarProductoPedido.addEventListener('click',()=>{   
-    //         console.log(`mmmmmmmmmmmmmmmmmmmm${opedidoEnArray.idProducto}`)
-    //             new Pedido().eliminarPedido(opedidoEnArray.idProducto)
-    //     })
-    // })
+
     
     let total = 0;
     
@@ -167,8 +144,7 @@ function crearDOMPedido(oPedidos){
     crearDOMPedidoTotal(total,0,0,0)
 
 }
-// style="text-align: center;background-color:black;color: #ffffff;"
-// class="usuario_titulo">
+
 ////////////////////////////////Funcion encargada de Crear el total de la bolsa de pedido
 function crearDOMPedidoTotal(total , descuento , montoDescuento , totalConDescuento){
     let parrafoById = document.getElementById("idPedidoInfo") ;

@@ -6,6 +6,7 @@ let oPedidos= [];
 const moneda =  ' s/. PEN'     
 let oUsuario ;
 let isSession = false;
+let oUsuarioLogeado
 
 //////////////////////////////// Clase Usuario : Encargada de alamcenar los datos del Usuario Registrado
 class Usuario{
@@ -45,19 +46,10 @@ class Pedido{
 
 
     eliminarPedido(idProducto ){
-        // let oPedidoIndex = new Pedido().obtenerPedidoIndexById(idProducto);
-        // let oProducto = new Producto().obtenerProductoById(parseInt(idProducto))
-
-        // let oPedido= new Pedido(idProducto,oProducto.nombre,cantidad,oProducto.precio,oProducto.        precioOriginal,oProducto.precio *cantidad)
-
-        // oPedidos.splice(oPedidoIndex,1,oPedido)
-        // let boolActualizarProducto = true;
-
         let oPedidosNew = oPedidos.filter((item) => item.idProducto != idProducto);
         oPedidos = oPedidosNew;
         crearDOMPedido(oPedidos);
         crearDOMUsuarioInfoPrecio(oPedidos);
-        // new Producto().mostrarProducto(oPedido,boolActualizarProducto)
     }
 
 
@@ -74,21 +66,30 @@ class Pedido{
             })
         }
         else{
-
-            // localStorage.setItem("oPedidos", JSON.stringify(oPedidos));
             console.log(`Se realiza confirmacion de compra del pedido con : ${oPedidos.length} Productos`);
             console.table(oPedidos)
             oPedidos.forEach((item, index)=>{
                 console.log(index, item)
             })
-            this.mostrarPedido(oPedidos)
-            // oPedidos= [];
+            
+            oUsuario = JSON.parse( sessionStorage.getItem('oUsuario') )
+            if( oUsuario != null){
+                this.mostrarPedido(oPedidos)
+            }
+            else {
+                swal({
+                    title: "Debe logeaese en el sistema antes de continuar?",
+                    text: "Ingresa en el menu LogIn si cuenta con usuario o Registrar para crear un nuevo usuario",
+                    icon: "warning",
+                    buttons: {   cancel: "OK",},
+                    dangerMode: true,
+                })
+            }
         }
     }
 
     mostrarPedido(oPedidosActual){
         let total = 0;
-        // let mensaje = 'Bolsa de Pedido: \n';
         let titulo = 'Bolsa de Pedido'
         let mensaje = '';
         
@@ -105,7 +106,7 @@ class Pedido{
 
 
         swal({
-            title: "¿Deseas Probar tu suerte ?",
+            title: "¿Deseas Probar tu suerte?",
             text: "Selecciona OK, juega  y gana! descuentos adicionales",
             icon: "warning",
             buttons: true,
@@ -145,12 +146,7 @@ class Pedido{
                 open(paginaURL,"_blank",opciones);
     
     
-                //setTimeout(this.aplicarPromocion,tiempoNivel * 1000)
                 timerId =setInterval(this.aplicarPromocion,1000);
-                 // swal("Poof! Your imaginary file has been deleted!", {
-                //     icon: "success",
-                // });
-                
 
             }
             else {
@@ -172,7 +168,7 @@ class Pedido{
     aplicarPromocion(){
         tiempo--;
         let boolGame;
-     
+
         boolGame = localStorage.getItem('Game'); 
         if( boolGame == null && tiempo <0 ){
             boolGame = false;
@@ -313,14 +309,7 @@ class Producto {
     //  Informacion Adicional : https://es.acervolima.com/diferencia-entre-metodos-y-funciones-en-javascript/
     agregarProducto(idElementoInput_cantidad,idProducto){  
         
-        // let oUsuario = sessionStorage.getItem('oUsuario');
-        // if(oUsuario == null){
-        //     // let oUsuario = prompt(`Bienvenido a Coder pet , Ingresa tu nombre :` , 'Nombre o Nick ')
-        //     $('#ModalRegistrate').modal('show')
-            
-        //     sessionStorage.setItem('oUsuario',oUsuario);
-            crearDOMUsuarioInfo(oUsuario);
-        // }
+        crearDOMUsuarioInfo(oUsuario);
 
         let precioProducto = 0;
         let precioProductoSubTotal = 0;
@@ -344,24 +333,11 @@ class Producto {
             }
             else{
 
-                // let mensaje =   `Su pedido ya tiene unidades del Producto : \n `+ 
-                //                         `${oPedido.nombre} \n\n ` + 
-                //                 'su pedido actual es de : \n ' + 
-                //                         `(`  +  oPedido.cantidad +` unidades) x ` + 
-                //                         oPedido.precioUnitario + moneda + ` = ` + 
-                //                         oPedido.subTotal + moneda +  ` ) \n\n` +
-                //                 `desea reemplazarlo por : \n `+ 
-                //                         `(`  +  cantidad +` unidades) x ` + 
-                //                         oPedido.precioUnitario + moneda + ` = ` + 
-                //                         oProducto.precio *cantidad + moneda +  ` ) \n\n` 
-
-                // if(confirm(mensaje)){
-                    let oPedidoIndex = new Pedido().obtenerPedidoIndexById(idProducto);
-                    oPedido= new Pedido(idProducto,oProducto.nombre,cantidad,oProducto.precio,oProducto.precioOriginal,oProducto.precio *cantidad)
-                    oPedidos.splice(oPedidoIndex,1,oPedido)
-                    boolActualizarProducto = true;
-                    crearDOMPedido(oPedidos);
-                // }
+                let oPedidoIndex = new Pedido().obtenerPedidoIndexById(idProducto);
+                oPedido= new Pedido(idProducto,oProducto.nombre,cantidad,oProducto.precio,oProducto.precioOriginal,oProducto.precio *cantidad)
+                oPedidos.splice(oPedidoIndex,1,oPedido)
+                boolActualizarProducto = true;
+                crearDOMPedido(oPedidos);
             }
         }
         
@@ -386,6 +362,7 @@ class Producto {
     }
 }
 
+//Data de prueba de productos
 const oProducto01 = new Producto(1,'Brit Premium By Nature Junior','67.00','54.50','Perros','10')
 const oProducto02 = new Producto(2,'Brit Care Mini GF Yorkshire','73.00','81.40','Perros','50')
 const oProducto03 = new Producto(3,'Proplan Adulto mayor Cordero','354.51','393.90','Perros','3')
@@ -399,8 +376,8 @@ oProductos =[oProducto01,oProducto02,oProducto03,oProducto04,oProducto05,oProduc
 console.table(oProductos)
 
 
-
-oUsuario =sessionStorage.getItem('oUsuario') 
+// oUsuario =sessionStorage.getItem('oUsuario') 
+oUsuario =JSON.parse( sessionStorage.getItem('oUsuario') )
 if(oUsuario != null && oUsuario != 'null' ){
     crearDOMUsuarioInfo(oUsuario);
  }
