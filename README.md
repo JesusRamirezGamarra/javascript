@@ -25,3 +25,5 @@ desafio 05 : https://jesusramirezgamarra.github.io/javascript/Entregable/5_DOM/
 desafio 06 : https://jesusramirezgamarra.github.io/javascript/Entregable/6_Eventos/
 
 desafio 07 : https://jesusramirezgamarra.github.io/javascript/Entregable/7_ProyectoFinal_SegundaParte/
+
+desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/8_OperadoresAvanzados/
