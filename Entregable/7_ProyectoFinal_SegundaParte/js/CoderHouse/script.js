@@ -1,16 +1,10 @@
 
 
 //////////////////////////////// Funcion ValidarInicioSession : retorna OUsuario de existir en el sessionStorage 
-function ValidarInicioSession(email){
+function ValidarInicioSession(email,clave){
     
-    let oUsuarioSession =  sessionStorage.getItem('oUsuario').filter((item) => item.email.toLowerCase() === email.toLowerCase() )  
-    if(  OUsuario != null    ){     
-        oUsuarioSession = JSON.parse( oUsuario.email )
-    }else{
-        oUsuarioSession = []
-        sessionStorage.setItem('oUsuario',JSON.stringify(oUsuarioSession))
-    }
-    return oUsuarioSession
+    let oUsuarioSession =  sessionStorage.getItem('oUsuario').filter((item) => item.email.toLowerCase() === email.toLowerCase() && item.clave.toLowerCase() === clave.toLowerCase())
+    return oUsuarioSession ??[]
 }
 
 //////////////////////////////// Funcion validarCantidad : encarga de Validar la informacion de cantidad de producto a ser comprados por el usuario ( formato , tipo ,min )

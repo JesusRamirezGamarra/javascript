@@ -134,8 +134,9 @@ formUser_btnLogIn.addEventListener('click',()=>{
     let divUsuarioConSession = document.getElementById('usuarioConSession');
 
     oUsuario =  oUsuarioStorage.find(   (oUsuario) => oUsuario.email.toLowerCase() === email.toLowerCase() && oUsuario.clave.toLowerCase() === clave.toLowerCase())
+    //oUsuario = validarInicioSession(email, clave)
 
-    if(oUsuario != null ){
+    if(oUsuario != [] ){
         sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
 
         divMensaje.innerHTML = `

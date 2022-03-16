@@ -1,16 +1,10 @@
 
 
 //////////////////////////////// Funcion ValidarInicioSession : retorna OUsuario de existir en el sessionStorage 
-function ValidarInicioSession(email){
+function ValidarInicioSession(email,clave){
     
-    let oUsuarioSession =  sessionStorage.getItem('oUsuario').filter((item) => item.email === email)  
-    if(  OUsuario != null    ){     
-        oUsuarioSession = JSON.parse( oUsuario.email )
-    }else{
-        oUsuarioSession = []
-        sessionStorage.setItem('oUsuario',JSON.stringify(oUsuarioSession))
-    }
-    return oUsuarioSession
+    let oUsuarioSession =  sessionStorage.getItem('oUsuario').filter((item) => item.email.toLowerCase() === email.toLowerCase() && item.clave.toLowerCase() === clave.toLowerCase())
+    return oUsuarioSession ??[]
 }
 
 //////////////////////////////// Funcion validarCantidad : encarga de Validar la informacion de cantidad de producto a ser comprados por el usuario ( formato , tipo ,min )
@@ -39,12 +33,7 @@ function probabilidadRandom()
     let numeroRandomFloatToFixed2A = parseFloat(Math.random().toFixed(2));
     let numeroRandomFloatToFixed2B = Number(Math.round(Math.random()+'e2')+'e-2'); 
     let decuentoAdicional = numeroRandomFloatToFixed2A * numeroRandomFloatToFixed2B /  (  1/seed *numeroRandomFloatToFixed2B  )  ;
-        if(decuentoAdicional >= 20){
-            decuentoAdicional = 20
-        }
-        else if ( decuentoAdicional <=5){
-            decuentoAdicional = 5
-        }
+    decuentoAdicional= (decuentoAdicional > 20 ) ? 20: (decuentoAdicional<=5) ? 5 : decuentoAdicional 
     return parseInt(decuentoAdicional);
 }
 
