@@ -165,8 +165,17 @@ function desTructuracionObjeto ({nC:nombre , aC:apellido , dC:direccion}){
     // console.log(`${},${},${}`)
     console.log(`${nombre},${apellido},${direccion},${calle},${numero}`)
 }
+function desTructuracionObjetoV2 ({ aC:apellido , dC:direccion}){
+    // let{nc:nombre, aC:apellido,dC:direccion} = obj
+    let{nc:calle, aC:numero} = direccion
+    // console.log(`${},${},${}`)
+    console.log(`${apellido},${direccion},${calle},${numero}`)
+}
 
 desTructuracionObjeto ( persona)
+desTructuracionObjetoV2 ( persona)
+
+
 
 
 let arrayPersonas = [persona,persona2,persona3,persona4]

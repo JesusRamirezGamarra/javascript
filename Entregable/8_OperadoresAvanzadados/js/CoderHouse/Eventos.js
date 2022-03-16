@@ -60,7 +60,7 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
         divMensaje.innerHTML = `
         <div class="card" style="width: 100%;">
             <div class="card-body">
-                <h6 class="card-title">Felicidades ${nombre} ya estas registrado con :</h6>
+                <h6 class="card-title">Felicidades ${usuarioActual?.nombre || 'Coder Pet Lover'} ya estas registrado con :</h6>
                 <p class="card-text text-success">Email : ${email} </p>
             </div>
         </div>
@@ -69,7 +69,7 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
         divUsuarioConSession.innerHTML = `
             <li class="last" >
                 <!-- Button trigger modal -->
-                <a >${nombre}</a>
+                <a >${usuarioActual?.nombre || 'Coder Pet Lover'}</a>
                 / 
                 <a >Cerrar Session</a>								
             </li>
@@ -156,7 +156,7 @@ formUser_btnLogIn.addEventListener('click',()=>{
         divMensaje.innerHTML = `
         <div class="card" style="width: 100%;">
             <div class="card-body">
-                <h6 class="card-title">Felicidades ${oUsuario.nombre} , se ha iniciado tu session.  :</h6>
+                <h6 class="card-title">Felicidades ${oUsuario?.nombre || 'Coder Pet Lovers'} , se ha iniciado tu session.  :</h6>
                 <p class="card-text text-success">Email : ${oUsuario.email} </p>
             </div>
         </div>

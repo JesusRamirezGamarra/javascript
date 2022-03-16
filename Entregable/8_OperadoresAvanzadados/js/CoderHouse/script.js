@@ -42,7 +42,7 @@ function probabilidadRandom()
 //  <span> Jesus Ramirez </span>
 function crearDOMUsuarioInfo(oUsuario){
     let parrafoById = document.getElementById("idUsuarioInfo") ;
-    let NombreUsuario =  (oUsuario=='') ? 'Bienvenido': oUsuario.nombre;
+    let NombreUsuario =  (oUsuario=='') ? 'Bienvenido': (oUsuario?.nombre || 'Coder Pet Lovers');
     parrafoById.innerHTML = `<div id="idUsuarioInfoNombre" class="usuario_titulo">
                                 <span> ${NombreUsuario} </span><br>
                             </div>`
