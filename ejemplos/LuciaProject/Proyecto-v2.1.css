@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
+body {
+  background: #f2f7fb;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.container__content {
+  width: 40vw;
+}
+
+button {
+  background: linear-gradient(145deg, #b2d8c9, #b0f3c4);
+  border-radius: 0.5rem;
+  border: transparent;
+  padding: 1rem;
+  margin: 1rem;
+}
+.btn-ver-top5 {
+  background: linear-gradient(145deg, #d8beb2, #f3c5b0);
+  border-radius: 0.5rem;
+  border: transparent;
+}
+
+.btn-ocultar {
+  background: linear-gradient(145deg, #c7b2d8, #d3b0f3);
+  border-radius: 0.5rem;
+  border: transparent;
+}
+input {
+  border-radius: 0.5rem;
+  border: transparent;
+  padding: 1rem;
+  margin: 1rem;
+}
+.keyboard {
+  padding: 1rem;
+  background: linear-gradient(145deg, #b2c7d8, #b0d1f3);
+  box-shadow: 0.5rem 0.5rem 11rem #d9e3ec;
+  border-radius: 1rem;
+  min-width: 46rem;
+  max-width: 62rem;
+}
+.keyboard__keys {
+  display: flex;
+  justify-content: center;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem;
+  margin: 0.6rem;
+  min-width: 3rem;
+  height: 3rem;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #f2f7fb, #e9f2fb);
+  box-shadow: 0.3rem 0.3rem 1rem #d9e3ec;
+}
+.key__letter {
+  background-clip: linear-gradient(245deg, #1e71f5, #3cdee7);
+}
+
+/* esta clase se agrega con JS */
+
+.key__down {
+  color: linear-gradient(45deg, #1e71f5, #3cdee7);
+  background: linear-gradient(145deg, #e9f2fb, #f2f7fb);
+  box-shadow: inset 0.3rem 0.3rem 0.3rem #d9e3ec;
+}
+
+.key__space {
+  width: 60%;
+}
