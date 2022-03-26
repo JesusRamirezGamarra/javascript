@@ -29,3 +29,16 @@ desafio 07 : https://jesusramirezgamarra.github.io/javascript/Entregable/7_Proye
 desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/8_OperadoresAvanzadados/
 
 desafio 09 : https://jesusramirezgamarra.github.io/javascript/Entregable/9_Librerias/
+
+
+
+NOTA : https://http.cat/ Errores Http con gatos
+
+API > https://github.com/public-apis/public-apis
+
+starwar : https://swapi.dev/
+
+Pokemon : https://pokeapi.co/
+
+
+JSON Generator : https://json-generator.com/
