@@ -29,3 +29,7 @@ desafio 07 : https://jesusramirezgamarra.github.io/javascript/Entregable/7_Proye
 desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/8_OperadoresAvanzadados/
 
 desafio 09 : https://jesusramirezgamarra.github.io/javascript/Entregable/9_Librerias/
+
+
+
+spotify hub : https://open.spotify.com/playlist/2MERu4woQlbzAsGYta0nSo?si=0c3fe43592e24564&nd=1

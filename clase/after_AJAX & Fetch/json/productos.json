@@ -1,0 +1,34 @@
+[
+    {
+        "nombre":"Celular",
+        "marca": "Quantum",
+        "modelo": "UP",
+        "precio": 20000,
+        "stock": 20,
+        "img": "celular-quantum.jpg"
+    }, 
+    {
+        "nombre":"Notebook",
+        "marca": "HP",
+        "modelo": "AA1111",
+        "precio": 80000,
+        "stock": 15,
+        "img": "notebook-hp.jpg"
+    },
+    {
+        "nombre":"Reloj Inteligente",
+        "marca": "Xiomi",
+        "modelo": "6",
+        "precio": 15000,
+        "stock": 25,
+        "img": "reloj-inteligente.png"
+    },
+    {
+        "nombre":"Sistema de Audio",
+        "marca": "Philips",
+        "modelo": "RT4101",
+        "precio": 30000,
+        "stock": 30,
+        "img": "sistema-audio-philips.jpg"
+    }
+]

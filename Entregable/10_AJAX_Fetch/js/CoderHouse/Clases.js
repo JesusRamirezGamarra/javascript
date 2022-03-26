@@ -1,3 +1,4 @@
+// Parametros de configuracion general del sistema.
 let timerId = 0;
 const tiempoNivel = 20; //Segundos
 let tiempo = tiempoNivel;
@@ -28,7 +29,17 @@ class Pedido{
         this.subTotal = subTotal;
     }
 
+    validarStock(cantidad,idProducto){
+       let oProducto = new Producto().obtenerProductoById(idProducto)
+       return oProducto.stock >= cantidad ? true : false;
+    }
 
+    obtenerStock(idProducto){
+        let oProducto = new Producto().obtenerProductoById(idProducto)
+        return oProducto.stock;
+     }
+
+    //////////////////////////////// Metodo encargado de Obtener Producto utilizando find.
     obtenerPedidoById(idProducto){
         let oPedidoFind =  oPedidos.find( (pedido) => pedido.idProducto === idProducto  )
         let mensaje = (oPedidoFind ==null )? 'NaN , no existe el id Producto ' + idProducto + ' en el pedido' : oPedidoFind.idProducto;
@@ -37,13 +48,14 @@ class Pedido{
         return oPedidoFind;
     }
 
+    //////////////////////////////// Metodo encargado de Obtener Porducto utilizano findIndex.
     obtenerPedidoIndexById(idProducto){
         let oPedidoFind =  oPedidos.findIndex( (pedido) => pedido.idProducto === idProducto  )
         console.log(`Clase : Pedido , Metodo : obtenerPedidoIndexById con Id : ${idProducto} e index ${oPedidoFind}` )
         return oPedidoFind;
     }
 
-
+    //////////////////////////////// Metodo encargado de Eliminar pedido
     eliminarPedido(idProducto ){
         let oPedidosNew = oPedidos.filter((item) => item.idProducto != idProducto);
         oPedidos = oPedidosNew;
@@ -52,7 +64,7 @@ class Pedido{
     }
 
 
-    //////////////////////////////// Metodo encargado de confirmar compra de productos agregados a la bolsa
+    //////////////////////////////// Metodo encargado de confirmar compra de productos agregados a la bolsa como paso final en el carrito de compra
     ComprarPedido(){
         if(oPedidos==null || oPedidos.length==0)
         {
@@ -72,21 +84,24 @@ class Pedido{
             })
             
             oUsuario = JSON.parse( sessionStorage.getItem('oUsuario') )
-            if( oUsuario != null && oUsuario != ''){
+            if( oUsuario != null & oUsuario != ''){
                 this.mostrarPedido(oPedidos)
             }
             else {
                 swal({
-                    title: "Debe logearese en el sistema antes de continuar?",
+                    title: "Debe logearse en el sistema antes de continuar?",
                     text: "Ingresa en el menu LogIn si cuenta con usuario o Registrar para crear un nuevo usuario",
                     icon: "warning",
                     buttons: {   cancel: "OK",},
                     dangerMode: true,
                 })
+                .then(()=>{
+                    $('#ModalLogIn').modal('show')
+                })
             }
         }
     }
-
+     ////////////////////////////////  Metodo encargado de mostrar pedido total ( conjunto de productos ) 
     mostrarPedido(oPedidosActual){
         let total = 0;
         let titulo = 'Bolsa de Pedido'
@@ -140,7 +155,7 @@ class Pedido{
     
                 let actualURL = window.location;
                 // let paginaURL = actualURL.href.replace('index.html',pagina) -- Modo Local
-                let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/7_ProyectoFinal_SegundaParte' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
+                let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/9_Librerias' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
                 let opciones="status=no, menubar=no, directories=no, location=no, toolbar=no, scrollbars=yes, resizable=no, width="+anchoFinal+", height="+altoFinal+", top="+tope+", left="+lado+"";
                 open(paginaURL,"_blank",opciones);
     
@@ -150,12 +165,11 @@ class Pedido{
             }
             else {
                 oPedidos= [];    
-                let oUsuario = sessionStorage.getItem('oUsuario');     
+                let oUsuario = JSON.parse( sessionStorage.getItem('oUsuario'));     
                 let NombreUsuario =  (oUsuario == null || oUsuario == 'null')?'':oUsuario.nombre;                
                 let fechaEntrega = sumarDias(new Date(Date.now()),3)
                 swal(`${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
-                sessionStorage.removeItem('oUsuario');
-                removeDOMUsuarioInfo()
+                crearDOMUsuarioInfo(oUsuario);
                 removeDOMPedido()
             }
 
@@ -163,7 +177,7 @@ class Pedido{
     }
         
 
-
+     ////////////////////////////////  Metodo encargado de Aplicacion promocion adicional en base al ganar /perder un juego aleatorio
     aplicarPromocion(){
         tiempo--;
         let boolGame;
@@ -174,7 +188,7 @@ class Pedido{
         }
     
         let fechaEntrega = sumarDias(new Date(Date.now()),3)
-        let oUsuario = sessionStorage.getItem('oUsuario');      
+        let oUsuario = JSON.parse( sessionStorage.getItem('oUsuario'));      
         let NombreUsuario =  (oUsuario == null || oUsuario == 'null')?'':oUsuario.nombre;
         
         if( boolGame != null){
@@ -214,8 +228,7 @@ class Pedido{
                     oPedidos= [];   
                     mensaje +=`\n\n${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`
                     swal(`Bolsa de Pedido`,mensaje,{icon: "success",})
-                    sessionStorage.removeItem('oUsuario');
-                    removeDOMUsuarioInfo()
+                    crearDOMUsuarioInfo(oUsuario);
                     removeDOMPedido()
                 })  
             }
@@ -231,8 +244,7 @@ class Pedido{
                         oPedidos= [];       
                         let fechaEntrega = sumarDias(new Date(Date.now()),3)
                         swal(`Bolsa de Pedido`, `${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
-                        sessionStorage.removeItem('oUsuario');
-                        removeDOMUsuarioInfo()
+                        crearDOMUsuarioInfo(oUsuario);
                         removeDOMPedido()
                     } 
                 })
@@ -243,18 +255,22 @@ class Pedido{
 
 //////////////////////////////// Clase Producto : Encargada de implementar la funcionalidad del producto en el carrito de compra.
 class Producto {
-    constructor(idProducto,nombre,precio,precioOriginal,categoria,stock) {
+    constructor(idProducto,nombre,precio,precioOriginal,categoria,stock,img) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
         this.precioOriginal = precioOriginal;
         this.categoria = categoria;
         this.stock = stock;
+        this.img = img;
     }
 
+    ////////////////////////////////  Metodo encargado de Obtener un determinado Producto por nombre 
+    // --> URL con Informacion Adicional  : https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Classes/static
     static BuscarProductobyName(){
-        let textoBusqueda = document.getElementById('idinputBuscar').value;
+        let textoBusqueda = document.getElementById('idinputBuscar').value.toLowerCase();
         let PrecioBusqueda = document.getElementById('idinputPrecio').value;
+        PrecioBusqueda = ( PrecioBusqueda=='' ) ?   0   :   PrecioBusqueda ;
         let oProductoBusqueda 
         let mensaje 
         if(textoBusqueda=="" && PrecioBusqueda == ""){
@@ -269,7 +285,7 @@ class Producto {
                     return oProducto;
                 }  
             })
-            mensaje =  `existen ${oProductoBusqueda.length} productos \n` 
+            mensaje =  `existen ${oProductoBusqueda.length} productos :  \n\n` 
             oProductoBusqueda.forEach((item, index)=>{
                 mensaje += 'Producto  #' +  (index+1) + ' : ' + item.nombre + '\n' + 
                                     '('  +   item.stock +' unidades disponibles) x ' + 
@@ -282,26 +298,26 @@ class Producto {
         return oProductoBusqueda;
     }
 
-    //////////////////////////////// Metodo encargado de obtener un determinado Producto x idPrducto
+    //////////////////////////////// Metodo encargado de obtener un determinado Producto por idPrducto
     obtenerProductoById(idProducto){
             let oProductoFind =  oProductos.find( (producto) => producto.idProducto === idProducto  )
             console.log(`Clase : Producto , Metodo : obtenerProducto con Id : ${oProductoFind.idProducto}`)
             console.log(oProductoFind);
             return oProductoFind;
     }
-    //////////////////////////////// Metodo encargado de obtener determinado Producto x NombreProducto
-    buscarProducto(nombreProducto){
-        let oProductoFind =  oProductos.find( (producto) => producto.nombre === nombre ||
-                                                            producto.categoria === categoria            
-                                            )
-        console.log(`Clase : Producto , Metodo : buscarProducto con Nombre : ${oProductoFind.nombre}`)
-        console.log(oProductoFind)
-        return oProductoFind;
-    }
+    // //////////////////////////////// Metodo encargado de obtener determinado Producto x NombreProducto
+    // buscarProducto(nombreProducto){
+    //     let oProductoFind =  oProductos.find( (producto) => producto.nombre === nombre ||
+    //                                                         producto.categoria === categoria            
+    //                                         )
+    //     console.log(`Clase : Producto , Metodo : buscarProducto con Nombre : ${oProductoFind.nombre}`)
+    //     console.log(oProductoFind)
+    //     return oProductoFind;
+    // }
 
 
-    //////////////// Metodo agregar Producto : Encargado de agregar cantidad de Unidades solicitada por el Usuario para un determinado Producto
-    //  Informacion Adicional : https://es.acervolima.com/diferencia-entre-metodos-y-funciones-en-javascript/
+    ////////////////////////////////  Metodo agregar Producto : Encargado de agregar cantidad de Unidades solicitada por el Usuario para un determinado Producto
+    // --> URL con Informacion Adicional  : https://es.acervolima.com/diferencia-entre-metodos-y-funciones-en-javascript/ 
     agregarProducto(idElementoInput_cantidad,idProducto){  
         
         crearDOMUsuarioInfo(oUsuario);
@@ -339,37 +355,40 @@ class Producto {
         this.mostrarProducto(oPedido,boolActualizarProducto)
     }
 
+    //////////////////////////////// Metodo encargado de mostrar mensaje Swwet alert : Producto . Incluye : { Producto , unidades , moneda , subTotal }
     mostrarProducto(oPedido,boolActualizarProducto=False){
+        let {nombre,cantidad,precioUnitario,subTotal} = oPedido;
         let mensaje ;
         mensaje = (boolActualizarProducto)? 'Felicidades acabas de actualizar a tu Pedido: \n':'Felicidades acabas de agregar a tu Pedido: \n';
 
-        mensaje += 'Producto : ' +   oPedido.nombre + '\n' + 
-        '('  +  oPedido.cantidad +' unidades) x ' + 
-                oPedido.precioUnitario + moneda + ' = ' + 
-                oPedido.subTotal + moneda +  ' ) \n' 
+        mensaje += 'Producto : ' +   nombre + '\n' + 
+        '('  +  cantidad +' unidades) x ' + 
+                precioUnitario + moneda + ' = ' + 
+                subTotal.toFixed(2) + moneda +  ' ) \n' 
         swal(mensaje)
         crearDOMUsuarioInfoPrecio(oPedidos);
     }
 }
 
-//Data de prueba de productos
-const oProducto01 = new Producto(1,'Brit Premium By Nature Junior','67.00','54.50','Perros','10')
-const oProducto02 = new Producto(2,'Brit Care Mini GF Yorkshire','73.00','81.40','Perros','50')
-const oProducto03 = new Producto(3,'Proplan Adulto mayor Cordero','354.51','393.90','Perros','3')
-const oProducto04 = new Producto(4,'Brit Care Mini Hair & Skin','50.00','75.20','Perros','20')
-const oProducto05 = new Producto(5,'Equilibrio Grain Free Puppy','51.00','51.00','Perros','20')
-const oProducto06 = new Producto(6,'Brit Care Mini GF Puppy','73.00','81.40','Perros','10')
-const oProducto07 = new Producto(7,'Brit Care Senior Lamb & Rice','243.00','270.90','Perros','50')
-const oProducto08 = new Producto(8,'Pro Plan Active Mind Raza','49.05','109','Perros','30')
-const oProducto09 = new Producto(9,'Equilibrio Active Adulto mayor','100','100','Perros','30')
-oProductos =[oProducto01,oProducto02,oProducto03,oProducto04,oProducto05,oProducto06,oProducto07,oProducto08,oProducto09]
-console.table(oProductos)
+
+
+// //Data de prueba de productos
+// Entidad utilizada antes de la implementacion de la funcion Async que carga Productos desde un archivo JSON . 
+// const oProducto01 = new Producto(1,'Brit Premium By Nature Junior','67.00','54.50','Perros','10')
+// const oProducto02 = new Producto(2,'Brit Care Mini GF Yorkshire','73.00','81.40','Perros','50')
+// const oProducto03 = new Producto(3,'Proplan Adulto mayor Cordero','354.51','393.90','Perros','3')
+// const oProducto04 = new Producto(4,'Brit Care Mini Hair & Skin','50.00','75.20','Perros','20')
+// const oProducto05 = new Producto(5,'Equilibrio Grain Free Puppy','51.00','51.00','Perros','20')
+// const oProducto06 = new Producto(6,'Brit Care Mini GF Puppy','73.00','81.40','Perros','10')
+// const oProducto07 = new Producto(7,'Brit Care Senior Lamb & Rice','243.00','270.90','Perros','50')
+// const oProducto08 = new Producto(8,'Pro Plan Active Mind Raza','49.05','109','Perros','30')
+// const oProducto09 = new Producto(9,'Equilibrio Active Adulto mayor','100','100','Perros','30')
+// oProductos =[oProducto01,oProducto02,oProducto03,oProducto04,oProducto05,oProducto06,oProducto07,oProducto08,oProducto09]
+// console.table(oProductos)
 
 
 // oUsuario =sessionStorage.getItem('oUsuario') 
-oUsuario =JSON.parse( sessionStorage.getItem('oUsuario') )
-if(oUsuario != null && oUsuario != 'null' ){
-    crearDOMUsuarioInfo(oUsuario);
- }
-(oPedidos!=null && oPedidos.length>0 ) ?   crearDOMUsuarioInfoPrecio(oPedidos) : '' 
+oUsuario = ( JSON.parse( sessionStorage.getItem('oUsuario') ) ?? [] );
+(oUsuario != '' )? (crearDOMUsuarioInfo(oUsuario)) : null;
+(oPedidos!=null && oPedidos.length>0 ) ?   crearDOMUsuarioInfoPrecio(oPedidos) : null ;
 
