@@ -185,3 +185,158 @@ formUser_btnCerrar.addEventListener('click',()=>{
     $('#ModalLogIn').modal('hide')
 
 })
+
+
+
+let divDolar = document.getElementById('divCarousel_TC_fetch')
+let divDolar_footer = document.getElementById('divCarousel_TC_fetch_footer')
+
+// Funcion encargada de cargar un archivo JSON a traves de ASYNC await
+// Informacion adiconal -> https://platzi.com/tutoriales/1789-asincronismo-js/5063-las-promesas-y-async-await-logicamente-no-son-iguales-y-te-explico-el-porque/?gclid=Cj0KCQjw0PWRBhDKARIsAPKHFGj2a64CTDkwBf4hMNZBr4qx0d9i6CLOcpSHFqVmmFPSffOl9du3NZAaAqM8EALw_wcB&gclsrc=aw.ds
+async function cargarTipoCambio_Dolar() {
+    let promesa = await fetch('https://criptoya.com/api/dolar')
+    let TCJson = await promesa.json()
+    return TCJson
+}
+
+// Funcion que crea el DOM que muestra informacin de Tipo de cambio en base a la informacion del API : https://criptoya.com/api/dolar
+cargarTipoCambio_Dolar().then(data => {
+    let {oficial, solidario, blue, ccb, ccl, mep,time} = data
+    divDolar.innerHTML = `
+    <div class="carousel-item active" data-bs-interval="1500"><p>Oficial : $ ${oficial}</p></div>
+    <div class="carousel-item" data-bs-interval="1500"><p>Solidario : $ ${solidario}</p></div>
+    <div class="carousel-item" data-bs-interval="1500"><p>Informal : $ ${blue}</p></div>
+    <div class="carousel-item" data-bs-interval="1500"><p>Contado Bitcoin : $  ${ccb}</p></div>
+    <div class="carousel-item" data-bs-interval="1500"><p>Contado Liquidación : $ ${ccl}</p></div>      
+    <div class="carousel-item" data-bs-interval="1500"><p>Mep : $ ${mep}</p></div>   
+    `
+    //NO encontre en la documentacion algo referente al valor que envia en int para la propiedad time de esta API. Sin embargo note que de esta forma da la fecha.
+    let Fecha = new Date(parseInt(time.toString() + '000'))
+    divDolar_footer.innerHTML=`
+    <div style="font-size: 9px"> Tipo de cambio en $. ARS </div>
+    <div style="font-size: 9px">  ${Fecha} </div>
+    `
+})
+.catch(error => console.error(error));
+
+
+// funcion async para hacer await fetch del archivo producto.json
+async function cargarProductos() {
+    let promesa = await fetch('./json/producto.json')
+    let productosJSON = await promesa.json()
+    return productosJSON
+}
+
+// funcion encargada de la Carga de Productos - push sobre entiadad [] o Productos por cada item de producto.json
+// Se agrega sobre el JSON el nombre del Objeto mediante la estructura { "producto" : [ { ...
+cargarProductos().then( data => {
+    oProductos = [];
+    // Carga de productos en oProductos[] desde Producto.json
+    data.producto.forEach((producto, indice) => {
+        oProductos.push(new Producto(producto.idProducto,
+                                producto.nombre,
+                                producto.precio,
+                                producto.precioOriginal,
+                                producto.categoria,
+                                producto.stock,
+                                producto.img
+            ))
+    })
+
+    let nroColumnas = 3
+    let divlistadoProductos  = document.getElementById('divlistadoProductos');
+    let divlistadoProductosCanasta  =  document.getElementById('divlistadoProductosCanasta')==null?`<div id="divlistadoProductosCanasta"  class="col-sm-6 col-md-6 col-lg-3">
+                                                <div id="idPedidoInfo"  style="padding: 0px 0px 0px 0px; font-size: 12px;" >
+                                                </div>		
+                                                <div  style="text-align: center;">
+                                                    <button id="btn_FinalizarPedido" class="dog_bt" style="width:100%;cursor:pointer;font-size: 24px;" >Finalizar Compra</button>
+                                                </div>			
+                                            </div> `:document.getElementById('divlistadoProductosCanasta');
+    let NroProductos = oProductos.length;
+    let NroProductosXColumna = parseInt(NroProductos/nroColumnas) + ( NroProductos % nroColumnas);
+    let contador =1 ;
+    let htmlColumna=``;
+    let EsColumnaCompleta =true ;
+    
+    //DOM para Productos disponibles para la venta obtenidos desde oProductos
+    oProductos.forEach((producto, indice) => {
+        if(contador==1){
+            htmlColumna +=`<div class="col-sm-6 col-md-6 col-lg-3">`
+        }
+
+        htmlColumna +=`
+            <div>
+                <div>
+                    <img src="./images/Producto/${producto.img}" style="width: 225px;height: 300px;">
+                </div>
+                <h4>${producto.nombre}</h4>	
+                <h6>Unidades Disponibles : <div id="stock_${producto.idProducto}">${producto.stock}</div></h6>	
+                ${producto.precioOriginal == producto.precio ? `` : `<del><span style="color:red" >S/ ${producto.precioOriginal}</span></del>`}
+                <span style="color:green;font-weight: bold;" >S/ ${producto.precio}</span>
+                <div>
+                    <input  type="number" id="Cantidad_${producto.idProducto}" value="0" style="width:60px" onchange="validarCantidad(this.value,'Agregar_${producto.idProducto}')" min="0" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete="off" > 
+                    <button type="button" id="Agregar_${producto.idProducto}" text="Agregar Carrito"  
+                    style="cursor:pointer;" disabled>Agregar Carrito</button>
+                </div>
+            </div>
+                `
+        
+        EsColumnaCompleta = ( contador ==  NroProductosXColumna ) ? false : true;
+        contador++;
+        if(!EsColumnaCompleta){
+            htmlColumna +=`</div>`
+            nroColumnas -=1;
+            NroProductos -= NroProductosXColumna;
+            contador = 1;
+            NroProductosXColumna = parseInt(NroProductos/nroColumnas) + ( NroProductos % nroColumnas);
+        }
+   
+    })
+
+    divlistadoProductos.innerHTML = htmlColumna + divlistadoProductosCanasta.outerHTML;
+
+    let btn_FinalizarPedido= document.getElementById('btn_FinalizarPedido');
+        btn_FinalizarPedido.addEventListener('click',()=>{   
+            new Pedido().ComprarPedido();
+    })
+
+
+
+    const containerShopPet = document.getElementById('divlistadoProductos');
+    const buttons = containerShopPet.querySelectorAll('button[type="button"]');
+    const inputs = containerShopPet.querySelectorAll('input[type="number"]');
+    // Agregar evento Click para todo button[type="button"] existente en el div : divlistadoProductos , agrega productos al pedido.
+    buttons.forEach(button => {
+        if(button.id.includes('Agregar_')){
+            let idProducto = button.id.replace('Agregar_','');
+            let idCantidad = button.id.replace('Agregar_','Cantidad_');
+
+            button.addEventListener('click', () => {
+                new Producto().agregarProducto(idCantidad,idProducto);
+            })     
+        }
+    });
+
+    // Agregar evento Click para todo input[type="number"] existente en el div : divlistadoProductos , evita solicitar cantidades superiores al stock
+    inputs.forEach(input => {
+
+        if(input.id.includes('Cantidad_')){
+            input.addEventListener('input', (e) => {
+                let idProducto = input.id.replace('Cantidad_','');
+                let btnAgregarProducto = 'Agregar_'+idProducto;
+                let stockIdProducto = new Producto().obtenerProductoById(parseInt(idProducto)).stock;
+                if(  stockIdProducto > e.target.value   ){
+                    document.getElementById('stock_'+idProducto).innerHTML = stockIdProducto - e.target.value;
+        
+                }
+                else if( stockIdProducto <= e.target.value) {
+                    document.getElementById('stock_'+idProducto).innerHTML = 0;
+                    document.getElementById('Cantidad_'+idProducto).value = stockIdProducto;
+                }
+                
+   
+            })     
+        }
+    });
+
+})

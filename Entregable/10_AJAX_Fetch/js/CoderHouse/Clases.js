@@ -29,15 +29,6 @@ class Pedido{
         this.subTotal = subTotal;
     }
 
-    validarStock(cantidad,idProducto){
-       let oProducto = new Producto().obtenerProductoById(idProducto)
-       return oProducto.stock >= cantidad ? true : false;
-    }
-
-    obtenerStock(idProducto){
-        let oProducto = new Producto().obtenerProductoById(idProducto)
-        return oProducto.stock;
-     }
 
     //////////////////////////////// Metodo encargado de Obtener Producto utilizando find.
     obtenerPedidoById(idProducto){
@@ -118,16 +109,32 @@ class Pedido{
         swal(titulo, mensaje);
         localStorage.removeItem('Game');
 
-
+  
         swal({
             title: "¿Deseas Probar tu suerte?",
-            text: "Selecciona OK, juega  y gana! descuentos adicionales",
-            icon: "warning",
-            buttons: true,
+            text: "Arriesgate !!! selecciona si, juega  y gana! descuentos adicionales",
+            icon: "info",
+            buttons: {  
+                cancel:{   
+
+                    text: "NO",
+                    value: false,
+                    visible: true,
+                    closeModal: true,
+                },
+                confirm:{
+                    text : "SI",
+                    value: true,
+                    visible: true,
+                    closeModal: true,
+                },
+            },
+            closeOnEsc: false,
+            closeOnClickOutside: false,
             dangerMode: true,
         })
-        .then((willDelete) => {
-            if (willDelete) {
+        .then((value) => {
+            if (value) {
                 let ancho = screen.width;
                 let alto = screen.height;
                 let anchoFinal = 700;
@@ -160,7 +167,14 @@ class Pedido{
                 open(paginaURL,"_blank",opciones);
     
     
-                timerId =setInterval(this.aplicarPromocion,1000);
+                 timerId =setInterval(this.aplicarPromocion,1000);
+
+                // Swal.fire({
+                //     title: 'Error!',
+                //     text: 'Do you want to continue',
+                //     icon: 'error',
+                //     confirmButtonText: 'Cool'
+                //   })
 
             }
             else {
@@ -305,16 +319,6 @@ class Producto {
             console.log(oProductoFind);
             return oProductoFind;
     }
-    // //////////////////////////////// Metodo encargado de obtener determinado Producto x NombreProducto
-    // buscarProducto(nombreProducto){
-    //     let oProductoFind =  oProductos.find( (producto) => producto.nombre === nombre ||
-    //                                                         producto.categoria === categoria            
-    //                                         )
-    //     console.log(`Clase : Producto , Metodo : buscarProducto con Nombre : ${oProductoFind.nombre}`)
-    //     console.log(oProductoFind)
-    //     return oProductoFind;
-    // }
-
 
     ////////////////////////////////  Metodo agregar Producto : Encargado de agregar cantidad de Unidades solicitada por el Usuario para un determinado Producto
     // --> URL con Informacion Adicional  : https://es.acervolima.com/diferencia-entre-metodos-y-funciones-en-javascript/ 
@@ -365,7 +369,7 @@ class Producto {
         '('  +  cantidad +' unidades) x ' + 
                 precioUnitario + moneda + ' = ' + 
                 subTotal.toFixed(2) + moneda +  ' ) \n' 
-        swal(mensaje)
+        swal.fire(mensaje)
         crearDOMUsuarioInfoPrecio(oPedidos);
     }
 }
