@@ -155,7 +155,7 @@ formUser_btnLogIn.addEventListener('click',()=>{
             document.getElementById('formUser_clave').value = "";
             divMensaje.innerHTML = ``;
             $('#ModalLogIn').modal('hide');
-         }, 1500);  
+        }, 1500);  
         
     }
     else{
@@ -194,7 +194,7 @@ let divDolar_footer = document.getElementById('divCarousel_TC_fetch_footer')
 // Funcion encargada de cargar un archivo JSON a traves de ASYNC await
 // Informacion adiconal -> https://platzi.com/tutoriales/1789-asincronismo-js/5063-las-promesas-y-async-await-logicamente-no-son-iguales-y-te-explico-el-porque/?gclid=Cj0KCQjw0PWRBhDKARIsAPKHFGj2a64CTDkwBf4hMNZBr4qx0d9i6CLOcpSHFqVmmFPSffOl9du3NZAaAqM8EALw_wcB&gclsrc=aw.ds
 async function cargarTipoCambio_Dolar() {
-    let promesa = await fetch('https://criptoya.com/api/dolar')
+    let promesa = await fetch(API_TCDolar)
     let TCJson = await promesa.json()
     return TCJson
 }
@@ -222,7 +222,7 @@ cargarTipoCambio_Dolar().then(data => {
 
 // funcion async para hacer await fetch del archivo producto.json
 async function cargarProductos() {
-    let promesa = await fetch('./json/producto.json')
+    let promesa = await fetch(API_Producto)
     let productosJSON = await promesa.json()
     return productosJSON
 }
@@ -290,7 +290,6 @@ cargarProductos().then( data => {
             contador = 1;
             NroProductosXColumna = parseInt(NroProductos/nroColumnas) + ( NroProductos % nroColumnas);
         }
-   
     })
 
     divlistadoProductos.innerHTML = htmlColumna + divlistadoProductosCanasta.outerHTML;
@@ -299,8 +298,6 @@ cargarProductos().then( data => {
         btn_FinalizarPedido.addEventListener('click',()=>{   
             new Pedido().ComprarPedido();
     })
-
-
 
     const containerShopPet = document.getElementById('divlistadoProductos');
     const buttons = containerShopPet.querySelectorAll('button[type="button"]');
@@ -333,10 +330,7 @@ cargarProductos().then( data => {
                     document.getElementById('stock_'+idProducto).innerHTML = 0;
                     document.getElementById('Cantidad_'+idProducto).value = stockIdProducto;
                 }
-                
-   
             })     
         }
     });
-
 })

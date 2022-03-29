@@ -1,13 +1,18 @@
 // Parametros de configuracion general del sistema.
-let timerId = 0;
+
 const tiempoNivel = 20; //Segundos
+const moneda =  ' s/. PEN'     
+const API_Producto ='./json/producto.json'
+const API_TCDolar = 'https://criptoya.com/api/dolar'
+
+let timerId = 0;
 let tiempo = tiempoNivel;
 let oProductos= [];
 let oPedidos= [];
-const moneda =  ' s/. PEN'     
 let oUsuario ;
 let isSession = false;
 let oUsuarioLogeado
+
 
 //////////////////////////////// Clase Usuario : Encargada de alamcenar los datos del Usuario Registrado
 class Usuario{
@@ -104,6 +109,9 @@ class Pedido{
                                         item.precioUnitario + moneda + ' = ' + 
                                         item.subTotal + moneda +  ' ) \n' 
             total += item.subTotal;
+            Producto.updateStock(item.idProducto,item.cantidad);
+            document.getElementById('Cantidad_'+item.idProducto).value = 0;
+
         })
         mensaje +='\n\n Total : ' + parseFloat(total.toFixed(2)) + moneda
         swal(titulo, mensaje);
@@ -166,15 +174,8 @@ class Pedido{
                 let opciones="status=no, menubar=no, directories=no, location=no, toolbar=no, scrollbars=yes, resizable=no, width="+anchoFinal+", height="+altoFinal+", top="+tope+", left="+lado+"";
                 open(paginaURL,"_blank",opciones);
     
-    
-                 timerId =setInterval(this.aplicarPromocion,1000);
+                timerId =setInterval(this.aplicarPromocion,1000);
 
-                // Swal.fire({
-                //     title: 'Error!',
-                //     text: 'Do you want to continue',
-                //     icon: 'error',
-                //     confirmButtonText: 'Cool'
-                //   })
 
             }
             else {
@@ -279,9 +280,16 @@ class Producto {
         this.img = img;
     }
 
+    //////////////////////////////// Metodo statico encargado de actualizar el stock sobre el objeto oProductos
+    // -> URL con Informacion Adicional  : https://desarrolloweb.com/articulos/static-clases-javascript-es6.html 
+    static updateStock(idProducto , cantidad){
+        oProductos.filter( item => (item.idProducto == idProducto) ?item.stock = item.stock  -cantidad : item.stock )
+
+    }
+
     ////////////////////////////////  Metodo encargado de Obtener un determinado Producto por nombre 
     // --> URL con Informacion Adicional  : https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Classes/static
-    static BuscarProductobyName(){
+    static buscarProductobyName(){
         let textoBusqueda = document.getElementById('idinputBuscar').value.toLowerCase();
         let PrecioBusqueda = document.getElementById('idinputPrecio').value;
         PrecioBusqueda = ( PrecioBusqueda=='' ) ?   0   :   PrecioBusqueda ;
@@ -369,7 +377,7 @@ class Producto {
         '('  +  cantidad +' unidades) x ' + 
                 precioUnitario + moneda + ' = ' + 
                 subTotal.toFixed(2) + moneda +  ' ) \n' 
-        swal.fire(mensaje)
+        swal(mensaje)
         crearDOMUsuarioInfoPrecio(oPedidos);
     }
 }
