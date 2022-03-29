@@ -58,7 +58,7 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
                 <a >Cerrar Session</a>								
             </li>
         `
-        isSession =  true;
+        
         crearDOMUsuarioInfo(usuarioActual);
         setTimeout(function(){ 
             document.getElementById('formUserNew_nombre').value = ""
@@ -79,13 +79,12 @@ formUserNew_btnRegistrar.addEventListener('click',()=>{
             </div>
         </div>
         `;
-        isSession =  false;
 
     }
 })
 
 //////////////////////////////// Eventos del modal : formUserNew - Registrar nuevo Usuario [Cerrar Formulario]
-let formUserNew_btncerrar = document.getElementById('formUserNew_btnCerrar')
+let formUserNew_btncerrar = document.getElementById('formUserNew_btnCerrar');
 formUserNew_btncerrar.addEventListener('click',()=>{  
     let divMensaje = document.getElementById('divMensajeRegister');
 
@@ -110,7 +109,7 @@ usuarioConSession.addEventListener('click',()=>{
             <a data-toggle="modal" data-target="#ModalRegistrate">Registrate</a>
         </li>
     `
-    isSession =  false;
+    
     sessionStorage.removeItem('oUsuario')
     oUsuario = []
     crearDOMUsuarioInfo(oUsuario)
@@ -123,14 +122,13 @@ formUser_btnLogIn.addEventListener('click',()=>{
     let email = document.getElementById('formUser_email').value
     let clave = document.getElementById('formUser_clave').value
     let divMensaje = document.getElementById('divMensajeLogIn');
-    let divUsuarioSinSession = document.getElementById('usuarioSinSession');
-    let divUsuarioConSession = document.getElementById('usuarioConSession');
+    // let divUsuarioSinSession = document.getElementById('usuarioSinSession');
+    // let divUsuarioConSession = document.getElementById('usuarioConSession');
 
     oUsuario = ValidarInicioSession(email,clave);
 
     if(oUsuario != ''  ){
         sessionStorage.setItem('oUsuario',JSON.stringify(oUsuario))
-
         divMensaje.innerHTML = `
         <div class="card" style="width: 100%;">
             <div class="card-body">
@@ -139,16 +137,15 @@ formUser_btnLogIn.addEventListener('click',()=>{
             </div>
         </div>
         `;
-        divUsuarioSinSession.innerHTML = ``
-        divUsuarioConSession.innerHTML = `
-            <li class="last" >
-                <!-- Button trigger modal -->
-                <a >${oUsuario.nombre}</a>
-                / 
-                <a >Cerrar Session</a>								
-            </li>
-        `
-        isSession =  true;
+        // divUsuarioSinSession.innerHTML = ``
+        // divUsuarioConSession.innerHTML = `
+        //     <li class="last" >
+        //         <!-- Button trigger modal -->
+        //         <a >${oUsuario.nombre}</a>
+        //         / 
+        //         <a >Cerrar Session</a>								
+        //     </li>
+        // `
         crearDOMUsuarioInfo(oUsuario);
         setTimeout(function(){ 
             document.getElementById('formUser_email').value = "";
@@ -167,11 +164,26 @@ formUser_btnLogIn.addEventListener('click',()=>{
             </div>
         </div>
         `;
-        isSession =  false;
         $('#ModalLogIn').modal('show')
 
     }
 })
+
+//////////////////////////////// Eventos del modal : formUser - : encargado de abrir modal Registar nuevo Usuario   . Reinicia valores de controles existentes en el modal.
+let formUser_btUserNew = document.getElementById('formUser_btUserNew')
+formUser_btUserNew.addEventListener('click',()=>{  
+    let divMensaje = document.getElementById('divMensajeLogIn');
+
+    divMensaje.innerHTML =""
+    document.getElementById('formUser_email').value= ""
+    document.getElementById('formUser_clave').value= ""
+    sessionStorage.removeItem('oUsuario')
+    $('#ModalLogIn').modal('hide')
+    $('#ModalRegistrate').modal('show')
+
+})
+
+
 
 //////////////////////////////// Eventos del modal : formUser - : encargado de cerrar modal Iniciar Session  . Reinicia valores de controles existentes en el modal.
 let formUser_btnCerrar = document.getElementById('formUser_btnCerrar')

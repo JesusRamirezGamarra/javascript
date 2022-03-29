@@ -1,5 +1,4 @@
-# javascript
-Curso de Coder House de Javascript
+# javascript - Curso de Coder House de Javascript
 
 Para Ingresar a la seccion de desafios puede ingresar a "Entregtable" y luego seleccionar el requerido por e.g "7_ProyectoFinal_SegundaParte"
 Sobre este directorio estan todos los componentes requeridos .
@@ -30,11 +29,16 @@ desafio 08 : https://jesusramirezgamarra.github.io/javascript/Entregable/8_Opera
 
 desafio 09 : https://jesusramirezgamarra.github.io/javascript/Entregable/9_Librerias/
 
+desafio 10 : https://jesusramirezgamarra.github.io/javascript/Entregable/10_AJAX_Fetch/
+
+    - dependencias opcionales : npm install console-log-colors 
 
 
-<<<<<<< HEAD
+
+# Informacion adicional : 
+
 spotify hub : https://open.spotify.com/playlist/2MERu4woQlbzAsGYta0nSo?si=0c3fe43592e24564&nd=1
-=======
+
 NOTA : https://http.cat/ Errores Http con gatos
 
 API > https://github.com/public-apis/public-apis
@@ -43,6 +47,4 @@ starwar : https://swapi.dev/
 
 Pokemon : https://pokeapi.co/
 
-
 JSON Generator : https://json-generator.com/
->>>>>>> 3dc247d4f8d8c18262573f52173d95e53793573c

@@ -10,7 +10,6 @@ let tiempo = tiempoNivel;
 let oProductos= [];
 let oPedidos= [];
 let oUsuario ;
-let isSession = false;
 let oUsuarioLogeado
 
 

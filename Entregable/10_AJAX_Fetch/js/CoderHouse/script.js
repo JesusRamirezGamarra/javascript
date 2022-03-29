@@ -48,6 +48,19 @@ function crearDOMUsuarioInfo(oUsuario){
     parrafoById.innerHTML = `<div id="idUsuarioInfoNombre" class="usuario_titulo">
                                 <span> ${NombreUsuario} </span><br>
                             </div>`
+    if (oUsuario!=''){
+        let divUsuarioSinSession = document.getElementById('usuarioSinSession');
+        let divUsuarioConSession = document.getElementById('usuarioConSession');
+        divUsuarioSinSession.innerHTML = ``
+        divUsuarioConSession.innerHTML = `
+            <li class="last" >
+                <!-- Button trigger modal -->
+                <a >${(oUsuario.nombre==null)?`Log In`:oUsuario.nombre}</a>
+                / 
+                <a >Cerrar Session</a>								
+            </li>
+        `                 
+    }           
 }
 
 ////////////////////////////////Funcion encargada de Agregar x DOM el precio total del carrito de compra
@@ -180,9 +193,4 @@ function crearDOMPedidoTotal(total , descuento , montoDescuento , totalConDescue
 
     parrafoById.innerHTML += mensaje
 }
-
-
-
-
-
 
