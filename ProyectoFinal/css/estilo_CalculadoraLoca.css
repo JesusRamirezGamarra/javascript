@@ -1,0 +1,124 @@
+*{
+    padding : 0px;
+    margin : 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    box-sizing: border-box;
+}
+
+h1{color:orange; height: 20px;font-size:20px;}
+
+.main{
+    min-height: 100px;
+    display: grid;
+    place-content: center;
+    
+}
+
+/* .resultado{
+    padding: 4px;
+    font-size: 30px;
+    text-align: right;
+    border: 1px;
+} */
+.inputBitacoraReadOnly{
+    
+    padding: 4px;
+    font-size: 15px;
+    text-align: right;
+    border: 1px;
+    width:400px;
+    background-color:black;
+    color: white;
+}
+.inputReadOnly{
+    
+    padding: 4px;
+    font-size: 30px;
+    text-align: right;
+    border: 1px;
+    width:400px;
+    background-color:darkgray;
+}
+
+.input{
+    
+    padding: 0px;
+    font-size: 30px;
+    text-align: right;
+    /* border: 1px; */
+    width:400px;
+}
+
+section{
+    display: grid;
+    grid-template-columns:repeat(4,100px);
+}
+
+button{
+    border: 0px;
+    cursor:pointer;
+    width :100px;
+    height :100px;
+    font-size: 30px;
+}
+
+
+.buttonIniciar{
+    border: 1;
+    cursor:pointer;
+    font-size: 12px;
+    width: 120px;
+    height: 50px;
+}
+
+
+button:hover{
+    filter:brightness(80%)
+}
+
+.operacion{
+    background-color:aqua;
+    /* border: 0.5px; */
+}
+
+
+
+.contenedor{
+    padding: 0px;
+    margin:auto;
+    /* margin-top: 50px; */
+    width: 400px;
+    height: 70px;
+    background-color: rgb(187, 255, 249);
+    /* border: 3px dashed rgb(68, 155, 170); */
+
+}
+
+
+.cabecera{
+    background-color: firebrick;
+    height: 80px;
+    /* margin-top: 30px; */
+    border-bottom: 0px;
+    color: #fff;
+    font-size: 1um;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.puntaje{
+
+    text-align: center;
+}
+
+.footer{
+    background-color: black;
+    height: 70px;
+    /* margin-top: 30px; */
+    border-bottom: 0px;
+    color: #fff;
+    font-size: 1um;
+    text-align: center;
+    padding: 10px 0px;
+}

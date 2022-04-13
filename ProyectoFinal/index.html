@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- mobile metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<!-- site metas -->
+<title>Coder Pet - Proyecto Final</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">	
+<!-- bootstrap css -->
+<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+<!-- style css -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- Responsive-->
+<link rel="stylesheet" href="css/responsive.css">
+<!-- fevicon -->
+<link rel="shortcut icon" type="image/x-icon" href="./images/BassetIngeniero.ico">
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+<!-- Tweaks for older IEs-->
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<!-- owl stylesheets --> 
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"> -->
+<link rel="stylesheet" href="./css/jquery.fancybox.min.css" media="screen">
+<!-- Button trigger modal -->
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/> -->
+<!-- <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet"/> -->
+<!-- bootstrap css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous2">
+
+</head>
+<body>
+	<!-- section banner start -->
+	<div class="header_section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4">
+					<div><a href="index.html"><img src="images/logo.png" style="width:200px;"></a></div>
+				</div>
+				<div class="col-md-8">
+					<div class="menu_text">
+						<ul>
+							<div id="usuarioSinSession">
+								<li class="last"  >
+									<!-- Button trigger modal -->
+									<a data-toggle="modal" data-target="#ModalLogIn">Log in </a>
+									/ 
+									<a data-toggle="modal" data-target="#ModalRegistrate">Registrate</a>
+								</li>
+							</div>
+							<div id="usuarioConSession"   >
+								<li class="last" style="display:none;">
+									<!-- Button trigger modal -->
+									<a >Jesus Ramirez</a>
+									/ 
+									<a >Cerrar Session</a>								
+								</li>
+							</div>
+							<li class="last"><a href="#"><img src="images/search-icon.png"></a></li>
+							<li class="active">
+								<div id="myNav" class="overlay">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+							<div class="overlay-content">
+								<a href="index.html">Home</a>
+                                <a href="about.html">Acerca de Nosotros</a>
+                                <a href="gallery.html">Galeria</a>
+                                <a href="contact.html">Contactanos</a>
+                            </div>
+                            </div>
+								<span style="font-size:30px;cursor:pointer;color: #ffffff !important;" onclick="openNav()" >&#9776; Menu</span>
+                            </div>	
+                            </li>
+						</ul>
+					</div>
+			</div>
+		</div>
+		<div class="banner_main">
+			<div class="container">
+				<div class="ram">
+					<div class="row">
+					    <div class="col-sm-12">
+						    <h1 class="taital">El mejor lugar para tu Amigo !</h1>
+						    <p class="consectetur_text">PETSHOP, TIENDA DE ALIMENTOS, ROPA Y ACCESORIOS PARA PERROS Y GATOS
+								Alimentos Premium, Húmedo, Seco, Snaks , Antipulgas, Juguetes. Servicio de Delivery</p>
+						    <div class="banner_bt">
+								<a href="#shop">
+						    	<button class="read_bt" >ver +</button>
+								</a>
+						    </div>
+					    </div>
+				    </div>
+				</div>
+				<div class="box">
+					<h1 class="numbar_text">01</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- section banner end -->
+	<!-- section about start -->
+	<div class="about_section">
+		<div class="about_text">
+			<div class="container">
+				<h1 class="about_taital_1"><strong><span style="color: #f7941d;">Acerca de</span> Coder Pet</strong></h1>
+				<p class="magna_text"> Somos una empresa familiar que ama las mascotas por tal motivo decidimos dedicarnos al cuidado de tus engreid@s a través de la venta de alimentos balanceados, juguetes, accesorios y ropa.</p>
+				<div class="about_bt">
+					<button class="more_bt">ver +</button>
+				</div>
+				<div class="about">
+					<h1 class="numbar_text">02</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- section about end -->
+	<!-- section Shop Coder pet start -->	
+    <div class="gallery_section_2" id="shop">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-9" style="background-color: white;height: 50px;" >
+				</div>
+				<div class="col-sm-3"  >
+
+					<div id="carouselExampleDark" class="carousel slide" style="background-color: black !important;font-family: Helvetica !important;color: white !important;align-items:center !important;text-align: center !important;height: 100px;width: 300px;" data-bs-ride="carousel">
+						<div style="background-color: #CD5C5C !important;color: white !important;">
+							<p>1 USD Dolar</p>
+						</div>
+						<div class="carousel-indicators" style="color: white !important;">
+						  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+						  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+						  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+						  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+						  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
+						  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5" aria-label="Slide 6"></button>
+						</div>
+						<div class="carousel-inner" id="divCarousel_TC_fetch" style="background-color:black;color: white !important;">
+	
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+						  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						  <span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+						  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+						  <span class="visually-hidden">Next</span>
+						</button>
+					</div> 
+					<div id="divCarousel_TC_fetch_footer" class="carousel slide" style="background-color: black;font-family: Helvetica;color: white;align-items:center;text-align: center;width: 300px;">
+						<div style="font-size: 9px"> Tipo de cambio en $. ARS </div>
+						<div style="font-size: 9px"> actualizado al 12 de mayo del 2021 5:32 pm </div>
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<h1 class="pet_taital">
+						<strong>
+							<span style="color: #f7941d;">Shop</span> 
+							Coder Pet
+						</strong>
+					</h1>
+					<p class="lorem_text">Todo tipo de productos para tu engreido segun sus necesidades.</p>
+					<input type="text" id="idinputBuscar" style="width:50%" placeholder="Nombre de Producto"  >
+					<input list="precio" name="Precios" id="idinputPrecio" placeholder="Precio de Producto">
+					<datalist id="precio">
+						<option value="40">mas de 40</option>
+						<option value="50">mas de 50</option>
+						<option value="60">mas de 60</option>
+						<option value="70">mas de 70</option>
+						<option value="80">mas de 80</option>
+						<option value="90">mas de 90</option>
+						<option value="100">mas de 100</option>
+					</datalist>
+					<!-- Invocacion de funcion Javascript directamente  -->
+					<button id="idBuscar" type="button" onclick="Producto.buscarProductobyName();" style="cursor:pointer;" >Buscar</button>
+				</div>
+				<div class="col-sm-3">
+					<div class="dog_img">
+						<img src="./images/PetEmergencia.png" style="max-width: 230px;">
+						<h3 >
+							<div id="idUsuarioInfo" >
+							</div>
+						</h3>
+					</div>
+				</div>
+			</div>	
+		</div>	
+
+		<div class="container">
+			<div id="divlistadoProductos" class="row">	
+				<div class="col-sm-6 col-md-6 col-lg-3">					
+
+				</div>	
+				<div class="col-sm-6 col-md-6 col-lg-3">
+
+				</div>					
+				<div class="col-sm-6 col-md-6 col-lg-3">
+
+				</div>
+				<div id="divlistadoProductosCanasta"  class="col-sm-6 col-md-6 col-lg-3">
+					<div id="idPedidoInfo"  style="padding: 0px 0px 0px 0px; font-size: 12px;" >
+					</div>		
+					<div  style="text-align: center;">
+						<button id="btn_FinalizarPedido" class="dog_bt" style="width:100%;cursor:pointer;font-size: 24px;" >Finalizar Compra</button>
+					</div>			
+				</div> 
+			
+			</div>
+		</div>	
+
+		<div class="container">
+			<div id="divlistadoProductos" class="row">	
+				<div class="col-sm-8">
+				</div>		
+				<div class="col-sm-4">
+					<div class="box_3">
+						<h1 class="numbar">03</h1>
+					</div>
+				</div>					
+
+
+			</div>			
+		</div>
+	</div>	
+	<!-- section Shop Coder pet end -->
+	<!-- section gallery start -->
+    <div class="gallery_main layout_padding">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-sm-12">
+    				<h1 class="about_taital"><strong><span style="color: #ffffff;">Nuestros</span> Dogs</strong></h1>
+				    <p class="sed_text">Estas son algunas de las mejores fotos de perros que vais a ver este año; también algunos de los canes más feos</p>
+
+    			</div>
+    		</div>
+    		<div class="gallery_images">
+    			<div class="row">
+    				<div class="col-sm-7">
+						<div class="gallery_blog">
+                           <img src="./images/gallery-img1.jpg" style="max-width: 100%; height: 300px; width: 100%;">
+                        <div class="overlay">
+                            <div class="text"><strong>PuppyDogPetAnimal</strong></div>
+                        </div>
+					    </div>
+    				</div>
+    				<div class="col-sm-5">
+						<div class="gallery_blog">
+						<img src="./images/Galeria/Siberiano.jpeg" style="max-width: 100%; height: 300px; width: 100%;">
+                        <div class="overlay">
+                            <div class="text"><strong>PuppyDogPetAnimal</strong></div>
+                        </div>
+					    </div>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="gallery_images">
+    			<div class="row">
+    				<div class="col-sm-5">
+						<div class="gallery_blog">
+							<img src="./images/Galeria/BassethoundIngeniero.jpeg" style="max-width: 100%; width: 100%;">
+                        <div class="overlay">
+                            <div class="text"><strong>PuppyDogPetAnimal</strong></div>
+                        </div>
+					    </div>
+    				</div>
+    				<div class="col-sm-7">
+						<div class="gallery_blog">
+							<img src="./images/gallery-img4.jpg" style="max-width: 100%; height: 300px; width: 100%;">
+                        <div class="overlay">
+                            <div class="text"><strong>PuppyDogPetAnimal</strong></div>
+                        </div>
+					    </div>
+						<div class="gallery_blog">
+							<img src="./images/gallery-img5.jpg" style="max-width: 100%; height: 297px; width: 100%;">
+                        <div class="overlay">
+                            <div class="text"><strong>PuppyDogPetAnimal</strong></div>
+                        </div>
+					    </div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+	<!-- section gallery end -->
+	<!-- section get in touch start -->
+    <div class="touch_section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1 class="get_taital"><strong><span style="color: #ffffff;">Contactanos</span>  Coder Pet</strong></h1>
+				</div>
+			</div>
+			<div class="email_box">
+					<div class="input_main">
+						<div class="container">
+							<form action="/action_page.php">
+							<div class="form-group">
+								<input type="text" class="email-bt" placeholder="Nombre" name="Name">
+							</div>
+							<div class="form-group">
+								<input type="text" class="email-bt" placeholder="Celular" name="Name">
+							</div>
+							<div class="form-group">
+								<input type="text" class="email-bt" placeholder="Email" name="Email">
+							</div>
+							
+							<div class="form-group">
+								<textarea class="massage-bt" placeholder="Mensaje" rows="5" id="comment" name="Massage"></textarea>
+							</div>
+							</form>   
+						</div> 
+						<div class="send_btn">
+						<button type="button" class="main_bt"><a href="#">Enviar</a></button>
+						</div>                   
+					</div>
+			</div>
+		</div>
+    </div>
+    <div class="touch_section_2">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1 class="our_texts">Newsletter</h1>
+					<div class="input-group mb-3">
+						<input class="email_bt" type="text" class="form-control" placeholder="Email">
+						<div class="input-group-append">
+						<button class="subscribe_bt" class="btn btn-primary" type="Subscribe">Subscribe</button>  
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <!-- section get in touch end -->
+	<!-- section footer start -->
+    <div class="section_footer">
+		<div class="container">
+			<div class="mail_section">
+				<ul>
+					<li class="footer-logo"><img src="images/logo.png" style="width:200px;"></li>
+					<li class="footer-logo"><img src="images/map-icon.png"><span class="map_text">Ignacio Seminario #364</span></li>
+					<li class="footer-logo"><img src="images/call-icon.png"><span class="map_text">(+51) 978-111-558</span></li>
+					<li class="footer-logo"><img src="images/email-icon.png"><span class="map_text">LucioJesusRamiezGamarra@gmail.com</span></li>
+				</ul>
+			</div> 
+			<div class="footer_section_2">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<h2 class="shop_text">Acerca de Coder Pet Shop</h2>
+						<p class="dummy_text">Somos un equipo de profesionales comprometidos a proporcionar a su mascota la mejor atención médica posible.
+							Nuestros servicios incluyen el asesoramiento para cualquier consulta sobre su mascota.  </p>
+						<p class="dummy_text">Somos un equipo de profesionales comprometidos a proporcionar a su mascota la mejor atención médica posible.
+							El mejor tratamiento de mano de nuestros expertos. En Hurón Azul encontrarás todo lo que necesitas para tu mascota. Nuestro objetivo es dejarle libre de preocupaciones porque sabe que sus mascotas están en las mejores manos. </p>
+					</div>
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<h2 class="shop_text">Links</h2>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Pet Dictionary</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Help</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Preguntas frecuentes</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">llamar al Doctor</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Pet Emergencias</span></div>
+					</div>
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<h2 class="shop_text">Overview</h2>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Bacerim Dictionary</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">Help</span></div>
+						<div class="image-icon"><img src="images/bulit-icon.png"><span class="pet_text">bacerim Attitudes</span></div>    				
+					</div>
+					<div class="col-sm-6 col-md-6 col-lg-3">
+						<h2 class="adderess_text">Instagram</h2>
+						<div class="footer-img">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="footer-img"><img src="images/footer-img1.png" style="width: 100%;"></div>
+									<div class="footer-img"><img src="images/footer-img2.png" style="width: 100%;"></div>
+								</div>
+								<div class="col-sm-6">
+									<div class="footer-img"><img src="images/footer-img3.png" style="width: 100%;"></div>
+									<div class="footer-img"><img src="images/footer-img4.png" style="width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="social-icon">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="icons">
+							<ul>
+								<li><a href="#"><img src="images/fb-icon.png"></a></li>
+								<li><a href="#"><img src="images/twitter-icon.png"></a></li>
+								<li><a href="#"><img src="images/google-icon.png"></a></li>
+								<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">2022 All Rights Reserved. <a href="https://RamirezGamarra.Com">@JesusRamirez</a></div>
+		</div>
+	</div>
+	<!-- Modal Log IN-->
+	<div class="modal fade" id="ModalLogIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="formUser">
+					<input type="email"placeholder="email" name="email" id="formUser_email" style="width:48%" required>
+					<input type="password" placeholder="Clave" name="clave" id="formUser_clave" style="width:48%" required>
+					<div id="divMensajeLogIn" class="description" style="align-items:center;"></div>
+				</form>
+				<div id="divMensajeLogIn" class="row" ></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="formUser_btUserNew">Registrar Nuevo Usuario</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="formUser_btnCerrar">Cerrar</button>
+				<button type="button" class="btn btn-primary"  id="formUser_btnLogIn" >Ingresar</button>
+			</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Register-->
+	<div class="modal fade" id="ModalRegistrate" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Registrate : Nuevo Usuario</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="formUserNew">
+					<input type="text" placeholder="Nombre" name="nombre" id="formUserNew_nombre" style="width:97%" required>
+					<input type="email"placeholder="email" name="email" id="formUserNew_email"  style="width:70%" required>
+					<input type="password" placeholder="Clave" name="clave" id="formUserNew_clave"  style="width:26%" required>
+					<div id="divMensajeRegister" class="description" style="align-items:center;"></div>
+				</form>
+			
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="formUserNew_btnCerrar">Close</button>
+				<button type="button" class="btn btn-primary" id="formUserNew_btnRegistrar" >Registrar</button>
+			</div>
+			</div>
+		</div>
+	</div>
+<!-- </div> -->
+	<!-- section footer end -->
+
+<!-- Inicio Library's -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+<!--  Library's Ends -->
+    <script src="./js/Portal/jquery.min.js"></script>
+    <script src="./js/Portal/popper.min.js"></script>
+    <script src="./js/Portal/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous2"></script>
+	<script src="./js/Portal/jquery-3.0.0.min.js"></script>
+	<script src="./js/Portal/plugin.js"></script>
+	<!-- sidebar -->
+	<script src="./js/Portal/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="./js/Portal/custom.js"></script>
+	<!-- javascript --> 
+	<script src="./js/Portal/jquery.fancybox.min.js"></script>
+
+
+	<script>
+	$(document).ready(function(){
+	$(".fancybox").fancybox({
+		openEffect: "none",
+		closeEffect: "none"
+		});
+		
+		$(".zoom").hover(function(){
+		
+		$(this).addClass('transition');
+		}, function(){
+		
+		$(this).removeClass('transition');
+		});
+		});
+		</script> 
+
+
+<script>
+
+function openNav() {
+document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+document.getElementById("myNav").style.width = "0%";
+}
+</script>
+    <!-- Javascript files-->
+	<!-- CoderHouse Javascript : Script a ser revisados en el contexto de lo solicitado en los desafios -->
+	<script src="./js/CoderHouse/script.js"></script>
+	<script src="./js/CoderHouse/Clases.js"></script>
+	<script src="./js/CoderHouse/Eventos.js"></script>	
+	<!-- CoderHouse Javascript End	 -->
+</body>
+</html>

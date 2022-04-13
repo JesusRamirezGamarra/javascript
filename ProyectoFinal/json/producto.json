@@ -1,0 +1,98 @@
+{
+    "producto" : 
+        [
+            {
+                "idProducto": 1,
+                "nombre":"Brit Premium By Nature Junior",
+                "precio": 54.50,
+                "precioOriginal": 67.00,
+                "categoria": "Perros",
+                "stock": 10,
+                "img": "brit-premiun-chicken.jpg"
+            }, 
+            {
+                "idProducto": 2,
+                "nombre":"Brit Care Mini GF Yorkshire",
+                "precio": 73.00,
+                "precioOriginal": 81.40,
+                "categoria": "Perros",
+                "stock": 50,
+                "img": "brit_care_mini_yorkshire-1.jpg"
+            },
+            {
+                "idProducto": 3,
+                "nombre":"Proplan Adulto mayor Cordero",
+                "precio": 354.51,
+                "precioOriginal": 393.90,
+                "categoria": "Perros",
+                "stock": 3,
+                "img": "pro-plan.jpg"
+            },
+            {
+                "idProducto": 4,
+                "nombre":"Brit Care Mini Hair & Skin",
+                "precio": 50.00,
+                "precioOriginal": 75.20,
+                "categoria": "Perros",
+                "stock": 20,
+                "img": "brit_care_mini_hair_skin-1.jpg"
+            },
+            {
+                "idProducto": 5,
+                "nombre":"Equilibrio Grain Free Puppy",
+                "precio": 51.00,
+                "precioOriginal": 51.00,
+                "categoria": "Perros",
+                "stock": 20,
+                "img": "equilibriograinfreecachorro.jpg"
+            }, 
+            {
+                "idProducto": 6,
+                "nombre":"Brit Care Mini GF Puppy",
+                "precio": 73.00,
+                "precioOriginal": 81.40,
+                "categoria": "Perros",
+                "stock": 10,
+                "img": "brit_care_mini_puppy_lamb-1.jpg"
+            },
+            {
+                "idProducto": 7,
+                "nombre":"Brit Care Senior Lamb & Rice",
+                "precio": 243.00,
+                "precioOriginal": 270.90,
+                "categoria": "Perros",
+                "stock": 50,
+                "img": "lamb-senior-ric.jpg"
+            },
+            {
+                "idProducto": 8,
+                "nombre":"Pro Plan Active Mind Raza",
+                "precio": 49.05,
+                "precioOriginal": 109,
+                "categoria": "Perros",
+                "stock": 30,
+                "img": "pruina-pr-plan.jpg"
+            },
+            {
+                "idProducto": 9,
+                "nombre":"Equilibrio Active Adulto mayor",
+                "precio": 100,
+                "precioOriginal": 100,
+                "categoria": "Perros",
+                "stock": 30,
+                "img": "equilibrio-1.jpg"
+            },
+            {
+                "idProducto": 10,
+                "nombre":"Gati razas chicas Extra nutrientes",
+                "precio": 116,
+                "precioOriginal": 116,
+                "categoria": "Gatos",
+                "stock": 10,
+                "img": "Gati_care_RazaChica.jpg"
+            }
+
+
+            
+        ]
+}

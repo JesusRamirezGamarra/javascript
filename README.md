@@ -1,6 +1,15 @@
 # javascript - Curso de Coder House de Javascript
 
-Para Ingresar a la seccion de desafios puede ingresar a "Entregtable" y luego seleccionar el requerido por e.g "7_ProyectoFinal_SegundaParte"
+Proyecto Final : https://jesusramirezgamarra.github.io/javascript/ProyectoFinal/
+
+    - dependencias opcionales : npm install console-log-colors 
+
+_Este proyecto incluye una pagina web que contiene la funcionalidad de carrito de compra y 3 juegos elaborados los cuales fueron integrados en el proceso de confirmacion de pedido en el carrito de compra ._
+_Estos juegos permiten que el usuario que compra adquiera un descuento adicional en caso de superar / vender el juego._
+
+## Entregable
+
+Para Ingresar a la seccion de desafios puede ingresar a "Entregable" y luego seleccionar el requerido por e.g "7_ProyectoFinal_SegundaParte"
 Sobre este directorio estan todos los componentes requeridos .
 
 Desde el entretable : #4 : "4_ProyectoFinal_PrimeraParte" el JavaScript Organizado del proyecto se encuentra en el directorio :  "js/CoderHouse/"
@@ -52,11 +61,12 @@ JSON Generator : https://json-generator.com/
 # Otros Proyectos de referencia : 
 
 Proyectos Referenciales CoderHouse
-Tienda de PC: 			https://bcoalova.github.io/CODER-js-Tienda/
-Tienda de Bebidas: 		https://vanifederici.github.io/mono-galactico/
+Tienda de PC: 			    https://bcoalova.github.io/CODER-js-Tienda/
+Tienda de Bebidas: 		    https://vanifederici.github.io/mono-galactico/
 Conversor de divisas:  		https://conversor-de-monedas.000webhostapp.com/index.html
 Buscador de reservar:		https://antopr.github.io/Javascript-Coder/#
 Simulador de préstamos: 	https://mguidocaruso.github.io/AlPrestamo/
+snake juego :               https://github.com/joaquinxtx/snake_juego
 
 bootstrap :  https://getbootstrap.com/docs/5.0/components/modal/ ( cerrar layer)
 
