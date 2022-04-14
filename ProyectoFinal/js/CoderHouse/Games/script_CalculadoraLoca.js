@@ -117,7 +117,7 @@ function updateDisplay(){
         clearInterval(timerId);
         timerId =0;
         localStorage.setItem('Game',true)
-        self.close();
+        // self.close();
     }
 }
 
@@ -242,7 +242,7 @@ function restarTiempo(){
         puntos=0;
         timerId =0;
         localStorage.setItem('Game',false);
-        self.close();        
+        // self.close();        
     }
 }
 

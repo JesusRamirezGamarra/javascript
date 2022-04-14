@@ -194,7 +194,7 @@ function ganador() {
             nroJugadasX =0;
             nroJugadasO =0;
             localStorage.setItem('Game',true)
-            self.close();
+            // self.close();
 
         } else if (turn == 1) {
             setTimeout(() => { swal.fire({
@@ -242,7 +242,7 @@ function restarTiempo(){
         nroJugadasX =0;
         nroJugadasO =0;
         localStorage.setItem('Game',false);
-        self.close();
+        // self.close();
     }
 
 }

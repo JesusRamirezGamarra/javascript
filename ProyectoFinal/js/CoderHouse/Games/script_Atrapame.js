@@ -28,7 +28,7 @@
 console.log('1.ARMAR UN SIMULADOR INTERACTIVO, LA ESTRUCTURA FINAL DE TU PROYECTO INTEGRADOR')
 let puntos = 0;
 let puntosNivel = 20;  //cantidad de puntos para pasar de nivel
-const tiempoNivel =20; //segundos
+const tiempoNivel =15; //segundos
 let tiempo = tiempoNivel;
 let timerId =0;
 document.getElementById('player').addEventListener("mouseover",sumarPuntos);
@@ -85,7 +85,7 @@ function restarTiempo(){
         puntos=0;
         swal.fire("continua intentando , muy pronto subiras lograras obtener grandes descuentos!!! ")
         localStorage.setItem('Game',false);
-        self.close();
+        // self.close();
     }
 
 }

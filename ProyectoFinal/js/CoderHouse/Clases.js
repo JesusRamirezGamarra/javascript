@@ -168,7 +168,7 @@ class Pedido{
                     icon: 'info',
                     html: 'Te quedan .... <b></b> milisegundos.',
                     footer: `
-                            <iframe width="1000" height="700" src="${paginaURL}"></iframe>
+                            <iframe width="1000" height="800" src="${paginaURL}"></iframe>
                     `,
                     width: 1000,
                     timerProgressBar: true,
@@ -188,88 +188,83 @@ class Pedido{
                     /* Read more about handling dismissals below */
                     if (result.dismiss === Swal.DismissReason.timer) {
                         boolGame = localStorage.getItem('Game')== null?false:localStorage.getItem('Game'); 
+
+                        let fechaEntrega = sumarDias(new Date(Date.now()),3)
+                        let oUsuario = JSON.parse( sessionStorage.getItem('oUsuario'));      
+                        let NombreUsuario =  (oUsuario == null || oUsuario == 'null')?'':oUsuario.nombre;
+
                         if(boolGame){
-
-                            let fechaEntrega = sumarDias(new Date(Date.now()),3)
-                            let oUsuario = JSON.parse( sessionStorage.getItem('oUsuario'));      
-                            let NombreUsuario =  (oUsuario == null || oUsuario == 'null')?'':oUsuario.nombre;
                             
-                            if( boolGame != null){
-
-                                if(boolGame){
-                                    
-                                    localStorage.setItem('Game',false)
-                                    let total = 0;
-                                    let montoDescuento =0;
-                                    let totalConDescuento =0;
-                                    let mensaje = ''
-                                    
-                                    const descuento = probabilidadRandom();
-                    
-                    
-                                    oPedidos.forEach((item, index)=>{
-                                        mensaje += 'Producto  #' +  (index+1) + ' : ' + item.nombre + '\n' + 
-                                                            '(' +   item.cantidad +' unidades) x ' + 
-                                                                    item.precioUnitario + moneda + ' = ' + 
-                                                                    item.subTotal + moneda +  '  \n'  + 
-                                                            '-> (' +   descuento + ' %) = ' +
-                                                            parseFloat( (item.subTotal * (1- descuento/100)).toFixed(2)) + moneda +  '  \n' 
-                                        total += item.subTotal;
-                                    })
-                                    
-                                    total = parseFloat(total.toFixed(2))
-                                    montoDescuento = parseFloat((total* (descuento/100)).toFixed(2))
-                                    totalConDescuento = parseFloat((total* (1- descuento/100)).toFixed(2))
-                    
-                                    mensaje +='\nTotal : ' + total  + moneda
-                                    mensaje +='\nDescuento : ' + montoDescuento  + moneda
-                                    mensaje +='\nTotal Final (' +   descuento + ' %) : ' + totalConDescuento + moneda
-                    
+                            localStorage.setItem('Game',false)
+                            let total = 0;
+                            let montoDescuento =0;
+                            let totalConDescuento =0;
+                            let mensaje = ''
+                            
+                            const descuento = probabilidadRandom();
+            
+            
+                            oPedidos.forEach((item, index)=>{
+                                mensaje += 'Producto  #' +  (index+1) + ' : ' + item.nombre + '\n' + 
+                                                    '(' +   item.cantidad +' unidades) x ' + 
+                                                            item.precioUnitario + moneda + ' = ' + 
+                                                            item.subTotal + moneda +  '  \n'  + 
+                                                    '-> (' +   descuento + ' %) = ' +
+                                                    parseFloat( (item.subTotal * (1- descuento/100)).toFixed(2)) + moneda +  '  \n' 
+                                total += item.subTotal;
+                            })
+                            
+                            total = parseFloat(total.toFixed(2))
+                            montoDescuento = parseFloat((total* (descuento/100)).toFixed(2))
+                            totalConDescuento = parseFloat((total* (1- descuento/100)).toFixed(2))
+            
+                            mensaje +='\nTotal : ' + total  + moneda
+                            mensaje +='\nDescuento : ' + montoDescuento  + moneda
+                            mensaje +='\nTotal Final (' +   descuento + ' %) : ' + totalConDescuento + moneda
+            
+                            swal.fire({
+                                title: "Felicidades",
+                                text: `${NombreUsuario} lo lograste tienes un descuento adicional de :${descuento}%`,
+                                icon: 'success',
+                                width: 700
+                            })
+                            .then(() => {  
+                                oPedidos= [];   
+                                mensaje +=`\n\n${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`
+                                // swal(`Bolsa de Pedido`,mensaje,{icon: "success",})
+                                swal.fire({
+                                    title:"Bolsa de Pedido",
+                                    text:mensaje,
+                                    icon: 'success',
+                                    width: 700
+            
+                                })
+                                crearDOMUsuarioInfo(oUsuario);
+                                removeDOMPedido()
+                            })  
+                        }
+                        else {
+                            swal.fire({
+                                title: "Es una lastima ...",
+                                text: "Sigue intentando muy pronto tendras la posibilidad de tener mas descuentos.",
+                                icon: "warning",
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    oPedidos= [];       
+                                    let fechaEntrega = sumarDias(new Date(Date.now()),3)
+                                    // swal(`Bolsa de Pedido`, `${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
                                     swal.fire({
-                                        title: "Felicidades",
-                                        text: `${NombreUsuario} lo lograste tienes un descuento adicional de :${descuento}%`,
-                                        icon: 'success',
-                                        width: 700
+                                        title: "Bolsa de Pedido",
+                                        text:`${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,
+                                        icon: "success"
                                     })
-                                    .then(() => {  
-                                        oPedidos= [];   
-                                        mensaje +=`\n\n${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`
-                                        // swal(`Bolsa de Pedido`,mensaje,{icon: "success",})
-                                        swal.fire({
-                                            title:"Bolsa de Pedido",
-                                            text:mensaje,
-                                            icon: 'success',
-                                            width: 700
-                    
-                                        })
-                                        crearDOMUsuarioInfo(oUsuario);
-                                        removeDOMPedido()
-                                    })  
-                                }
-                                else {
-                                    swal.fire({
-                                        title: "Es una lastima ...",
-                                        text: "Sigue intentando muy pronto tendras la posibilidad de tener mas descuentos.",
-                                        icon: "warning",
-                                        dangerMode: true,
-                                    })
-                                    .then((willDelete) => {
-                                        if (willDelete) {
-                                            oPedidos= [];       
-                                            let fechaEntrega = sumarDias(new Date(Date.now()),3)
-                                            // swal(`Bolsa de Pedido`, `${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
-                                            swal.fire({
-                                                title: "Bolsa de Pedido",
-                                                text:`${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,
-                                                icon: "success"
-                                            })
-                    
-                                            crearDOMUsuarioInfo(oUsuario);
-                                            removeDOMPedido()
-                                        } 
-                                    })
-                                }
-                            }
+            
+                                    crearDOMUsuarioInfo(oUsuario);
+                                    removeDOMPedido()
+                                } 
+                            })
                         }
 
                     }
