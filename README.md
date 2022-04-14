@@ -4,6 +4,10 @@ Proyecto Final : https://jesusramirezgamarra.github.io/javascript/ProyectoFinal/
 
     - dependencias opcionales : npm install console-log-colors 
 
+NOTA : considerar que el codigo fuente se encuentra en :
+
+    - https://github.com/JesusRamirezGamarra/javascript/tree/main/ProyectoFinal
+
 _Este proyecto incluye una pagina web que contiene la funcionalidad de carrito de compra y 3 juegos elaborados los cuales fueron integrados en el proceso de confirmacion de pedido en el carrito de compra ._
 
 _Estos juegos permiten que el usuario que compra adquiera un descuento adicional en caso de superar / vender el juego._
@@ -12,7 +16,7 @@ _(a) : Atrapame si puedes !!! : Requiere que persigas por la pantalla con el cur
 
 _(b) :  Calculadora loka : debes lograr alcanzar el numero ramdom utilizando como maximo la cantidad de operaciones basicas ( +, - , x , % ) , pon a prueba que tan rapido operas._
 
-_(c) : tres en raya : juega tres en raya en un tablero un poco mas grande de lo normal , tu puedes lograr 3 en raya incluso con esa dificultad.
+_(c) : tres en raya : juega tres en raya en un tablero un poco mas grande de lo normal , tu puedes lograr 3 en raya incluso con esa dificultad._
 
 ## Entregable
 
