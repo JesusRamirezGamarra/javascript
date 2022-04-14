@@ -10,7 +10,7 @@ _Estos juegos permiten que el usuario que compra adquiera un descuento adicional
 
 _(a) : Atrapame si puedes !!! : Requiere que persigas por la pantalla con el cursor a una pelota debes atraparla una cantidad de veces para superar el reto antes que se venza el tiempo._
 
-_(b) :  Calculadora loka : debes lograr alcanzar el numero ramdom utilizando como maximo la cantidad de operaciones basicas ( +, - , x , % ) , pon a prueba que tan rapido operas_
+_(b) :  Calculadora loka : debes lograr alcanzar el numero ramdom utilizando como maximo la cantidad de operaciones basicas ( +, - , x , % ) , pon a prueba que tan rapido operas._
 
 _(c) : tres en raya : juega tres en raya en un tablero un poco mas grande de lo normal , tu puedes lograr 3 en raya incluso con esa dificultad.
 
