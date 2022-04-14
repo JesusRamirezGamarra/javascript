@@ -168,7 +168,7 @@ class Pedido{
                     icon: 'info',
                     html: 'Te quedan .... <b></b> milisegundos.',
                     footer: `
-                            <iframe width="1000" height="1000" src="${paginaURL}"></iframe>
+                            <iframe width="1000" height="700" src="${paginaURL}"></iframe>
                     `,
                     width: 1000,
                     timerProgressBar: true,
