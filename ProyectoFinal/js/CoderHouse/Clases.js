@@ -158,11 +158,9 @@ class Pedido{
                         pagina = '/Games/index_Atrapame.html'
                 }
     
-                
-                // let paginaURL = actualURL.href.replace('index.html',pagina) -- Modo Local
-                // let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/ProyectoFinal' + pagina; // debido a que la estructura 
-                let actualURL = window.location;
-                let paginaURL = actualURL.href.replace('index.html',pagina) 
+                let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/ProyectoFinal' + pagina; // debido a que la estructura 
+                // let actualURL = window.location;
+                // let paginaURL = actualURL.href.replace('index.html',pagina) 
 
                 let timerInterval
 
