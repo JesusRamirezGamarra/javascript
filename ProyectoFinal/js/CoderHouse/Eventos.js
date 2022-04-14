@@ -206,9 +206,15 @@ let divDolar_footer = document.getElementById('divCarousel_TC_fetch_footer')
 // Funcion encargada de cargar un archivo JSON a traves de ASYNC await
 // Informacion adiconal -> https://platzi.com/tutoriales/1789-asincronismo-js/5063-las-promesas-y-async-await-logicamente-no-son-iguales-y-te-explico-el-porque/?gclid=Cj0KCQjw0PWRBhDKARIsAPKHFGj2a64CTDkwBf4hMNZBr4qx0d9i6CLOcpSHFqVmmFPSffOl9du3NZAaAqM8EALw_wcB&gclsrc=aw.ds
 async function cargarTipoCambio_Dolar() {
+    try{
     let promesa = await fetch(API_TCDolar)
     let TCJson = await promesa.json()
     return TCJson
+    }
+    catch(ex){
+        console.log(`Error cargando API : ${API_TCDolar}`)
+        return null;
+    }
 }
 
 // Funcion que crea el DOM que muestra informacin de Tipo de cambio en base a la informacion del API : https://criptoya.com/api/dolar

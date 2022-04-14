@@ -3,7 +3,7 @@ let turn = 1;
 let a1, a2, a3, a4, a5, a6,  b1, b2, b3,b4, b5, b6, c1, c2, c3 , c4, c5, c6;
 let  bitacoraJugadadas=['X',0,'O',0];
 let timerId = 0;
-const tiempoNivel = 20; //Segundos
+const tiempoNivel = 15; //Segundos
 let tiempo = tiempoNivel;
 let nroJugadasMaxima= 10;
 let nroJugadasX=0;
@@ -46,14 +46,14 @@ c5 = document.getElementById("c5");
 c6 = document.getElementById("c6");
 
 
-
+//////////////////////////////// Crea el evento para para los botones del juego.
 const btns = document.querySelectorAll('.btn');
 for(elemento of btns){
     let id = elemento.id
     elemento.onclick = () => { turno(id); };
 }
 
-
+//////////////////////////////// Funcion encargada de contener los valores correspondientes a la matriz del juego
 function obtenerMatriz(elemento,operacion){
     columna = parseInt( elemento.substring(1,2) -1);
    if(elemento.substring(0,1) =='a'){
@@ -72,6 +72,7 @@ function obtenerMatriz(elemento,operacion){
     console.log(arrayBidimensional)
 }
 
+//////////////////////////////// Funcion en cargada de operar en funcion a lo marcado por el jugador.
 function turno(elemento) {
     
 
@@ -172,13 +173,20 @@ function verificarGanador(turn){
 
 }
 
-
+//////////////////////////////// Funcion Encargada de Elegir un ganador o Pededor.
 function ganador() {
 
     if(verificarGanador(turn)){
         if (turn == 0) {
-            setTimeout(() => { swal(`Gana el jugador ${bitacoraJugadadas[0]}  !!! , con un total de :  ${bitacoraJugadadas[1]} jugadas`); }, 100); 
-            setTimeout(() => { location.reload(); },1000);
+            setTimeout(() => { swal.fire({
+                title:"",
+                text:`Gana el jugador ${bitacoraJugadadas[0]}  !!! , con un total de :  ${bitacoraJugadadas[1]} jugadas`,
+                icon: "info",
+                allowEscapeKey:false,
+                showConfirmButton: false
+
+            }); }, 100); 
+            // setTimeout(() => { location.reload(); },1000);
             clearInterval(timerId);
             tiempo=tiempoNivel;
             puntos=0;
@@ -189,9 +197,15 @@ function ganador() {
             self.close();
 
         } else if (turn == 1) {
-            setTimeout(() => { swal(`Gana el jugador ${bitacoraJugadadas[2]}  !!! , con un total de :  ${bitacoraJugadadas[3]} jugadas`); }, 100); 
+            setTimeout(() => { swal.fire({
+                title: '',
+                text:`Gana el jugador ${bitacoraJugadadas[2]}  !!! , con un total de :  ${bitacoraJugadadas[3]} jugadas`,
+                icon: "info" ,
+                allowEscapeKey:false,
+                showConfirmButton: false
+            }); }, 100); 
             setTimeout(() => { location.reload(); },1000);
-            clearInterval(timerId);
+            // clearInterval(timerId);
             tiempo=tiempoNivel;
             puntos=0;
             timerId =0;
@@ -203,6 +217,8 @@ function ganador() {
     };
 }
 
+
+//////////////////////////////// Funcion encargada verificar el estado del juego (Gano o Perdio) en funcion a la disminucion del tiempo ( Timer)
 function restarTiempo(){
     tiempo--;
     document.getElementById("jugadas").innerHTML =  "<br># Jugadas Permitidas : " + nroJugadasMaxima + 
@@ -212,7 +228,14 @@ function restarTiempo(){
         nroJugadasX >= nroJugadasMaxima ||  
         nroJugadasO >= nroJugadasMaxima  ){ 
         clearInterval(timerId);
-        swal("continua intentando , muy pronto subiras lograsras obtener grandes descuentos!!! ")
+        swal.fire({
+            title:"",
+            text:"continua intentando , muy pronto subiras lograsras obtener grandes descuentos!!! ",
+            icon: "info",
+            allowEscapeKey:false,
+            showConfirmButton: false
+
+        })
         tiempo=tiempoNivel;
         puntos=0;
         timerId =0;
@@ -225,7 +248,7 @@ function restarTiempo(){
 }
 timerId =setInterval(restarTiempo,1000);
 
-
+//////////////////////////////// Funcion encargada de inicializar la matriz del juego  ( largo x ancho)
 function iniciarMatriz(){
     let i = 0
     let j = 0
@@ -237,8 +260,10 @@ function iniciarMatriz(){
     console.log(arrayBidimensional)
 }
 
+//////////////////////////////// Funcion encargada de inicializar el juego.
 function iniciar(){
-    location.reload();
+    // location.reload();
+    localStorage.setItem('Game',false)
     iniciarMatriz();
     // retirando los elemento del Array antes de iniciar
     bitadoraJugadadas=['X',0,'O',0];

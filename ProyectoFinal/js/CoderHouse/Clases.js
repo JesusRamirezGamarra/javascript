@@ -1,16 +1,12 @@
 // Parametros de configuracion general del sistema.
-
-const tiempoNivel = 20; //Segundos
 const moneda =  ' s/. PEN'     
 const API_Producto ='./json/producto.json'
 const API_TCDolar = 'https://criptoya.com/api/dolar'
 
-let timerId = 0;
-let tiempo = tiempoNivel;
-let oProductos= [];
-let oPedidos= [];
-let oUsuario ;
-let oUsuarioLogeado
+let oProductos= []; // Arrego de objetos clase Producto
+let oPedidos= [];   // Arrego de objetos clase Pedido
+let oUsuario ;      // objeto Usuario
+let boolGame; // gano o no el juego opcional para descuento adicional
 
 
 //////////////////////////////// Clase Usuario : Encargada de alamcenar los datos del Usuario Registrado
@@ -64,7 +60,7 @@ class Pedido{
         if(oPedidos==null || oPedidos.length==0)
         {
             console.log(`Intento de compra sin Producto en la Bolsa de Pedido`);
-            swal({
+            swal.fire({
                 title: "Agrega productos a tu pedido",
                 text: "Selecciona la cantidad mas apropiedad del producto que deseas, selecciona agregar carrito y listo . Continua comprando.",
                 icon: "warning",
@@ -83,7 +79,7 @@ class Pedido{
                 this.mostrarPedido(oPedidos)
             }
             else {
-                swal({
+                swal.fire({
                     title: "Debe logearse en el sistema antes de continuar?",
                     text: "Ingresa en el menu LogIn si cuenta con usuario o Registrar para crear un nuevo usuario",
                     icon: "warning",
@@ -113,35 +109,27 @@ class Pedido{
 
         })
         mensaje +='\n\n Total : ' + parseFloat(total.toFixed(2)) + moneda
-        swal(titulo, mensaje);
+        swal.fire({
+            icon: 'success',
+            title: titulo,
+            html: mensaje,
+            width: 700,
+            showConfirmButton: true 
+        });
         localStorage.removeItem('Game');
 
-  
-        swal({
+        swal.fire({
             title: "¿Deseas Probar tu suerte?",
             text: "Arriesgate !!! selecciona si, juega  y gana! descuentos adicionales",
             icon: "info",
-            buttons: {  
-                cancel:{   
-
-                    text: "NO",
-                    value: false,
-                    visible: true,
-                    closeModal: true,
-                },
-                confirm:{
-                    text : "SI",
-                    value: true,
-                    visible: true,
-                    closeModal: true,
-                },
-            },
-            closeOnEsc: false,
-            closeOnClickOutside: false,
-            dangerMode: true,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, juega!',
+            cancelButtonText: 'No'      
         })
-        .then((value) => {
-            if (value) {
+        .then((result) => {
+            if (result.isConfirmed) {
                 let ancho = screen.width;
                 let alto = screen.height;
                 let anchoFinal = 700;
@@ -163,18 +151,131 @@ class Pedido{
                     case 2:
                         pagina = '/Games/index_CalculadoraLoca.html'
                         break;
-                    default://1
+                    case 1:
                         pagina = '/Games/index_tresEnRaya.html'
+                        break;                        
+                    default:
+                        pagina = '/Games/index_Atrapame.html'
                 }
     
-                let actualURL = window.location;
+                
                 // let paginaURL = actualURL.href.replace('index.html',pagina) -- Modo Local
-                let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/Entregable/9_Librerias' + pagina; // debido a que la estructura de directorios en github es diferente a la esturctura que tengo en local ( git hub le agrega /Javascript)
-                let opciones="status=no, menubar=no, directories=no, location=no, toolbar=no, scrollbars=yes, resizable=no, width="+anchoFinal+", height="+altoFinal+", top="+tope+", left="+lado+"";
-                open(paginaURL,"_blank",opciones);
-    
-                timerId =setInterval(this.aplicarPromocion,1000);
+                // let paginaURL = 'https://jesusramirezgamarra.github.io/javascript/ProyectoFinal' + pagina; // debido a que la estructura 
+                let actualURL = window.location;
+                let paginaURL = actualURL.href.replace('index.html',pagina) 
 
+                let timerInterval
+
+                Swal.fire({
+                    icon: 'info',
+                    html: 'Te quedan .... <b></b> milisegundos.',
+                    footer: `
+                            <iframe width="1000" height="1000" src="http://127.0.0.1:5502/ProyectoFinal/Games/index_Atrapame.html"></iframe>
+                    `,
+                    width: 1000,
+                    timerProgressBar: true,
+                    timer: 15000,
+                    allowEscapeKey:false,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                        },
+                        willClose: () => {
+                        clearInterval(timerInterval)
+                    }                    
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        boolGame = localStorage.getItem('Game')== null?false:localStorage.getItem('Game'); 
+                        if(boolGame){
+
+                            let fechaEntrega = sumarDias(new Date(Date.now()),3)
+                            let oUsuario = JSON.parse( sessionStorage.getItem('oUsuario'));      
+                            let NombreUsuario =  (oUsuario == null || oUsuario == 'null')?'':oUsuario.nombre;
+                            
+                            if( boolGame != null){
+
+                                if(boolGame){
+                                    
+                                    localStorage.setItem('Game',false)
+                                    let total = 0;
+                                    let montoDescuento =0;
+                                    let totalConDescuento =0;
+                                    let mensaje = ''
+                                    
+                                    const descuento = probabilidadRandom();
+                    
+                    
+                                    oPedidos.forEach((item, index)=>{
+                                        mensaje += 'Producto  #' +  (index+1) + ' : ' + item.nombre + '\n' + 
+                                                            '(' +   item.cantidad +' unidades) x ' + 
+                                                                    item.precioUnitario + moneda + ' = ' + 
+                                                                    item.subTotal + moneda +  '  \n'  + 
+                                                            '-> (' +   descuento + ' %) = ' +
+                                                            parseFloat( (item.subTotal * (1- descuento/100)).toFixed(2)) + moneda +  '  \n' 
+                                        total += item.subTotal;
+                                    })
+                                    
+                                    total = parseFloat(total.toFixed(2))
+                                    montoDescuento = parseFloat((total* (descuento/100)).toFixed(2))
+                                    totalConDescuento = parseFloat((total* (1- descuento/100)).toFixed(2))
+                    
+                                    mensaje +='\nTotal : ' + total  + moneda
+                                    mensaje +='\nDescuento : ' + montoDescuento  + moneda
+                                    mensaje +='\nTotal Final (' +   descuento + ' %) : ' + totalConDescuento + moneda
+                    
+                                    swal.fire({
+                                        title: "Felicidades",
+                                        text: `${NombreUsuario} lo lograste tienes un descuento adicional de :${descuento}%`,
+                                        icon: 'success',
+                                        width: 700
+                                    })
+                                    .then(() => {  
+                                        oPedidos= [];   
+                                        mensaje +=`\n\n${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`
+                                        // swal(`Bolsa de Pedido`,mensaje,{icon: "success",})
+                                        swal.fire({
+                                            title:"Bolsa de Pedido",
+                                            text:mensaje,
+                                            icon: 'success',
+                                            width: 700
+                    
+                                        })
+                                        crearDOMUsuarioInfo(oUsuario);
+                                        removeDOMPedido()
+                                    })  
+                                }
+                                else {
+                                    swal.fire({
+                                        title: "Es una lastima ...",
+                                        text: "Sigue intentando muy pronto tendras la posibilidad de tener mas descuentos.",
+                                        icon: "warning",
+                                        dangerMode: true,
+                                    })
+                                    .then((willDelete) => {
+                                        if (willDelete) {
+                                            oPedidos= [];       
+                                            let fechaEntrega = sumarDias(new Date(Date.now()),3)
+                                            // swal(`Bolsa de Pedido`, `${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
+                                            swal.fire({
+                                                title: "Bolsa de Pedido",
+                                                text:`${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,
+                                                icon: "success"
+                                            })
+                    
+                                            crearDOMUsuarioInfo(oUsuario);
+                                            removeDOMPedido()
+                                        } 
+                                    })
+                                }
+                            }
+                        }
+
+                    }
+                });
 
             }
             else {
@@ -182,7 +283,12 @@ class Pedido{
                 let oUsuario = JSON.parse( sessionStorage.getItem('oUsuario'));     
                 let NombreUsuario =  (oUsuario == null || oUsuario == 'null')?'':oUsuario.nombre;                
                 let fechaEntrega = sumarDias(new Date(Date.now()),3)
-                swal(`${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
+                swal.fire({
+                    title: "Tu pedido ya esta en camino",
+                    text: `${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,
+                    icon: 'success',
+                    width: 700
+                })
                 crearDOMUsuarioInfo(oUsuario);
                 removeDOMPedido()
             }
@@ -192,15 +298,7 @@ class Pedido{
         
 
      ////////////////////////////////  Metodo encargado de Aplicacion promocion adicional en base al ganar /perder un juego aleatorio
-    aplicarPromocion(){
-        tiempo--;
-        let boolGame;
-
-        boolGame = localStorage.getItem('Game'); 
-        if( boolGame == null && tiempo <0 ){
-            boolGame = false;
-        }
-    
+    async aplicarPromocion(){
         let fechaEntrega = sumarDias(new Date(Date.now()),3)
         let oUsuario = JSON.parse( sessionStorage.getItem('oUsuario'));      
         let NombreUsuario =  (oUsuario == null || oUsuario == 'null')?'':oUsuario.nombre;
@@ -236,18 +334,29 @@ class Pedido{
                 mensaje +='\nDescuento : ' + montoDescuento  + moneda
                 mensaje +='\nTotal Final (' +   descuento + ' %) : ' + totalConDescuento + moneda
 
-
-                swal(`Felicidades`, `Lo lograste tienes un decuento adicional de :${descuento}%`,{icon: "success",})
+                swal.fire({
+                    title: "Felicidades",
+                    text: `${NombreUsuario} lo lograste tienes un descuento adicional de :${descuento}%`,
+                    icon: 'success',
+                    width: 700
+                })
                 .then(() => {  
                     oPedidos= [];   
                     mensaje +=`\n\n${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`
-                    swal(`Bolsa de Pedido`,mensaje,{icon: "success",})
+                    // swal(`Bolsa de Pedido`,mensaje,{icon: "success",})
+                    swal.fire({
+                        title:"Bolsa de Pedido",
+                        text:mensaje,
+                        icon: 'success',
+                        width: 700
+
+                    })
                     crearDOMUsuarioInfo(oUsuario);
                     removeDOMPedido()
                 })  
             }
             else {
-                swal({
+                swal.fire({
                     title: "Es una lastima ...",
                     text: "Sigue intentando muy pronto tendras la posibilidad de tener mas descuentos.",
                     icon: "warning",
@@ -257,7 +366,13 @@ class Pedido{
                     if (willDelete) {
                         oPedidos= [];       
                         let fechaEntrega = sumarDias(new Date(Date.now()),3)
-                        swal(`Bolsa de Pedido`, `${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
+                        // swal(`Bolsa de Pedido`, `${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,{icon: "success",})
+                        swal.fire({
+                            title: "Bolsa de Pedido",
+                            text:`${NombreUsuario} tu pedido ya esta en camino :\nTu pedido sera entregado antes del :\n${fechaEntrega} \nEsperamos volverte a ver pronto !!!`,
+                            icon: "success"
+                        })
+
                         crearDOMUsuarioInfo(oUsuario);
                         removeDOMPedido()
                     } 
@@ -314,7 +429,11 @@ class Producto {
 
             })
         }
-        swal(mensaje);            
+        swal.fire({
+            title: "Busqueda de productos",
+            text:mensaje,
+            icon:"info"
+        })
         console.table(oProductoBusqueda)
         return oProductoBusqueda;
     }
@@ -376,7 +495,17 @@ class Producto {
         '('  +  cantidad +' unidades) x ' + 
                 precioUnitario + moneda + ' = ' + 
                 subTotal.toFixed(2) + moneda +  ' ) \n' 
-        swal(mensaje)
+        Swal.fire(
+            {
+                position: 'top-end',
+                icon: 'success',
+                title: `Producto Agregado`,
+                html: mensaje,
+                width: 700,
+                showConfirmButton: false,
+                timer: 1500
+            }
+        )
         crearDOMUsuarioInfoPrecio(oPedidos);
     }
 }

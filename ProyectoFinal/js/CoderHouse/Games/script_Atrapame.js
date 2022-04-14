@@ -24,33 +24,32 @@
 // Calcular edad promedio de personas registradas.
 // Calcular nota final de alumnos ingresados.
 
-
+// Parametros de configuracion general del sistema.
 console.log('1.ARMAR UN SIMULADOR INTERACTIVO, LA ESTRUCTURA FINAL DE TU PROYECTO INTEGRADOR')
 let puntos = 0;
-let puntosNivel = 15;  //cantidad de puntos para pasar de nivel
+let puntosNivel = 20;  //cantidad de puntos para pasar de nivel
 const tiempoNivel =20; //segundos
 let tiempo = tiempoNivel;
 let timerId =0;
 document.getElementById('player').addEventListener("mouseover",sumarPuntos);
 
-
+//////////////////////////////// Funcion encargada de Sumar puntos cuandos se cumple la condicion
 function sumarPuntos(){
     puntos++
     MostarCabecera(puntos,puntosNivel);
     moverObjeto();
     if(puntos == puntosNivel){
-        clearInterval(timerId);
-        timerId =0;
         localStorage.setItem('Game',true)
-        self.close();
     }
 }
 
+//////////////////////////////// Funcion encargada de actualiza la bitacora de puntajes 
 function MostarCabecera(puntos,puntosNivel){
     document.getElementById("puntaje").innerHTML=  "<br>Puntos: "   + puntos +"/" 
                                                                     + puntosNivel + "  </br>";
 }
 
+//////////////////////////////// Funcion en cargada de mover de forma aleatoria la bola a atrapar con el cursos del mouse.
 function moverObjeto(){
     let numero = probabilidadRandom()
     console.log(numero)
@@ -59,6 +58,7 @@ function moverObjeto(){
 
 }
 
+//////////////////////////////// Funcion que que genera el ramdom aleatorio para ser utilizado por funciones como : MoverObjeto
 function probabilidadRandom()
 {
     let numeroRandomFloatToFixed = Math.random(); 
@@ -69,13 +69,13 @@ function probabilidadRandom()
     // console.log(numeroRandomFloatToFixed.toFixed(0))
     return Math.round(numeroRandomFloatToFixed).toFixed(0);
 }
-
+//////////////////////////////// Funcion encargada verificar el estado del juego (Gano o Perdio) en funcion a la disminucion del tiempo ( Timer)
 function restarTiempo(){
     tiempo--;
     document.getElementById("tiempo").innerHTML = "Tiempo:" + tiempo ; 
-    if(tiempo ==0 && puntos<puntosNivel){
+    if(tiempo >=0 && puntos>=puntosNivel){
         clearInterval(timerId);
-        swal("continua intentando , muy pronto subiras lograsras obtener grandes descuentos!!! ")
+        swal.fire("Felicidades", "Has ganado", "success");
         tiempo=tiempoNivel;
         puntos=0;
         timerId =0;
@@ -83,17 +83,19 @@ function restarTiempo(){
     else if (tiempo<=0){
         tiempo=tiempoNivel;
         puntos=0;
-        swal("continua intentando , muy pronto subiras lograsras obtener grandes descuentos!!! ")
+        swal.fire("continua intentando , muy pronto subiras lograras obtener grandes descuentos!!! ")
         localStorage.setItem('Game',false);
-        self.close();
+        // self.close();
     }
 
 }
 
+//////////////////////////////// Funcion encargada de inicializar el juego.
 function iniciar(){
     // console.log(timerId)
+    localStorage.setItem('Game',false)
     puntos = 0;
-    puntosNivel = 15;  //cantidad de puntos para pasar de nivel
+    puntosNivel = 20;  //cantidad de puntos para pasar de nivel
     tiempo = tiempoNivel;
 
     MostarCabecera(0);
@@ -105,3 +107,5 @@ function iniciar(){
     
 
 }
+
+iniciar()

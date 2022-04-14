@@ -24,7 +24,7 @@
 // Calcular edad promedio de personas registradas.
 // Calcular nota final de alumnos ingresados.
 
-
+// Parametros de configuracion general del sistema.
 console.log('1.ARMAR UN SIMULADOR INTERACTIVO, LA ESTRUCTURA FINAL DE TU PROYECTO INTEGRADOR')
 
 const buttons=document.querySelectorAll('button')
@@ -32,7 +32,7 @@ const display=document.querySelector('#display')
 const reto=document.querySelector('#reto')
 const bitacora=document.querySelector('#bitacora')
 let timerId =0;
-const tiempoNivel =20; //segundos
+const tiempoNivel =15; //segundos
 let tiempo = tiempoNivel;
 let jugadas = 10;
 let nroOperadoresUtilizados =0;
@@ -96,18 +96,18 @@ function updateJugadas(operador){
 }
 
 
-//funcion para actualizar las operaciones = potencial respuesta
+//////////////////////////////// Funcion para actualizar las operaciones = potencial respuesta
 function updateBitacora(){
     bitacora.value += calculator.bitacoraValue;
     calculator.bitacoraValue =''
 }
 
-//funcion para actualizar el reto = desafio
+//////////////////////////////// Funcion para actualizar el reto = desafio
 function updateReto(){
     reto.value = calculator.retoValue;
 }
 
-// funcion para actualizar el display = resultado
+//////////////////////////////// Funcionpara actualizar el display = resultado
 function updateDisplay(){
     display.value = calculator.displayValue;
     if( reto.value !='' && 
@@ -121,6 +121,7 @@ function updateDisplay(){
     }
 }
 
+//////////////////////////////// Funcion encargada de actualizar los estados en funcion al numero maximo de jugadas por Operador
 function iniciarEstados(){
     nroJugadasSuma =-1;
     nroJugadasResta =-1;
@@ -146,7 +147,7 @@ function iniciarEstados(){
 
 }
 
-
+//////////////////////////////// Funcion encargada verificar el estado del juego (Gano o Perdio) en funcion a la disminucion del tiempo ( 
 function calcular(operator,key){
 
     if( calculator.displayValue!='')
@@ -170,10 +171,14 @@ function calcular(operator,key){
         updateDisplay();
     }
     else{
-        swal('Debe seleccionar un numero')
+        swal.fire({
+            title: "",
+            text: 'Debe seleccionar un numero',
+            icon: "info"           
+        })
     }
 }
-
+ //////////////////////////////// Creador de eventos para los objetos button de la calculadora.
 buttons.forEach(button => {
     button.addEventListener('click',() =>{
             const key = button.innerText;        
@@ -217,7 +222,7 @@ buttons.forEach(button => {
     })
 })
 
-
+//////////////////////////////// Funcion encargada verificar el estado del juego (Gano o Perdio) en funcion a la disminucion del tiempo ( Timer)
 function restarTiempo(){
     tiempo--;
     document.getElementById("jugadas").innerHTML = "<br># Jugadas Permitidas : " + jugadas + ", minimo : " + nroOperadoresUtilizados+ "/" + parseInt( jugadas /2) ; 
@@ -228,7 +233,11 @@ function restarTiempo(){
         nroJugadasMultiplicacion > nroJugadasMaximoMultiplicacion ||  
         nroJugadasDivision > nroJugadasMaximoDivision  ){ 
         clearInterval(timerId);
-        swal("continua intentando , muy pronto lograsras obtener grandes descuentos!!! ")
+        swal.fire({
+            title:"",
+            text:"continua intentando , muy pronto lograsras obtener grandes descuentos!!! ",
+            icon: 'info',
+        })
         tiempo=tiempoNivel;
         puntos=0;
         timerId =0;
@@ -237,8 +246,9 @@ function restarTiempo(){
     }
 }
 
-
+//////////////////////////////// Funcion encargada de inicializar el juego.
 function iniciar(){  
+    localStorage.setItem('Game',false)
     updateBitacora();
     updateReto();
     updateDisplay();
@@ -248,3 +258,5 @@ function iniciar(){
     }
     
 }
+
+iniciar()
