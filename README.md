@@ -5,9 +5,13 @@ Proyecto Final : https://jesusramirezgamarra.github.io/javascript/ProyectoFinal/
     - dependencias opcionales : npm install console-log-colors 
 
 _Este proyecto incluye una pagina web que contiene la funcionalidad de carrito de compra y 3 juegos elaborados los cuales fueron integrados en el proceso de confirmacion de pedido en el carrito de compra ._
+
 _Estos juegos permiten que el usuario que compra adquiera un descuento adicional en caso de superar / vender el juego._
+
 _(a) : Atrapame si puedes !!! : Requiere que persigas por la pantalla con el cursor a una pelota debes atraparla una cantidad de veces para superar el reto antes que se venza el tiempo._
+
 _(b) :  Calculadora loka : debes lograr alcanzar el numero ramdom utilizando como maximo la cantidad de operaciones basicas ( +, - , x , % ) , pon a prueba que tan rapido operas_
+
 _(c) : tres en raya : juega tres en raya en un tablero un poco mas grande de lo normal , tu puedes lograr 3 en raya incluso con esa dificultad.
 
 ## Entregable
@@ -65,10 +69,15 @@ JSON Generator : https://json-generator.com/
 
 Proyectos Referenciales CoderHouse
 Tienda de PC: 			    https://bcoalova.github.io/CODER-js-Tienda/
+
 Tienda de Bebidas: 		    https://vanifederici.github.io/mono-galactico/
+
 Conversor de divisas:  		https://conversor-de-monedas.000webhostapp.com/index.html
+
 Buscador de reservar:		https://antopr.github.io/Javascript-Coder/#
+
 Simulador de préstamos: 	https://mguidocaruso.github.io/AlPrestamo/
+
 snake juego :               https://github.com/joaquinxtx/snake_juego
 
 bootstrap :  https://getbootstrap.com/docs/5.0/components/modal/ ( cerrar layer)
