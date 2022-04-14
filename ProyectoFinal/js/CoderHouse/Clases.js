@@ -168,7 +168,7 @@ class Pedido{
                     icon: 'info',
                     html: 'Te quedan .... <b></b> milisegundos.',
                     footer: `
-                            <iframe width="1000" height="1000" src="http://127.0.0.1:5502/ProyectoFinal/Games/index_Atrapame.html"></iframe>
+                            <iframe width="1000" height="1000" src="${paginaURL}"></iframe>
                     `,
                     width: 1000,
                     timerProgressBar: true,
