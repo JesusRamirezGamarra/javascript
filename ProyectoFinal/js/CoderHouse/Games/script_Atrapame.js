@@ -39,7 +39,7 @@ function sumarPuntos(){
     MostarCabecera(puntos,puntosNivel);
     moverObjeto();
     if(puntos == puntosNivel){
-        localStorage.setItem('Game',true)
+        localStorage.setItem('Game',true);
     }
 }
 
@@ -85,7 +85,7 @@ function restarTiempo(){
         puntos=0;
         swal.fire("continua intentando , muy pronto subiras lograras obtener grandes descuentos!!! ")
         localStorage.setItem('Game',false);
-        // self.close();
+        self.close();
     }
 
 }
